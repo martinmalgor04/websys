@@ -88,7 +88,7 @@ Examples:
 
 ```
 
-### list of tasks to be completed to fullfill the PRP in the order they should be completed
+### List of tasks to be completed to fulfill the PRP in the order they should be completed
 
 ```yaml
 Task 1:
@@ -114,7 +114,7 @@ Task N:
 ```python
 
 # Task 1
-# Pseudocode with CRITICAL details dont write entire code
+# Pseudocode with CRITICAL details don't write entire code
 async def new_feature(param: str) -> Result:
     # PATTERN: Always validate input first (see src/validators.py)
     validated = validate_input(param)  # raises ValidationError
@@ -203,6 +203,21 @@ curl -X POST http://localhost:8000/feature \
 
 # Expected: {"status": "success", "data": {...}}
 # If error: Check logs at logs/app.log for stack trace
+```
+
+### Level 4: Deployment & Creative Validation
+
+```bash
+# MCP servers or other creative validation methods
+# Examples:
+# - Load testing with realistic data
+# - End-to-end user journey testing
+# - Performance benchmarking
+# - Security scanning
+# - Documentation validation
+
+# Custom validation specific to the feature
+# [Add creative validation methods here]
 ```
 
 ## Final validation Checklist

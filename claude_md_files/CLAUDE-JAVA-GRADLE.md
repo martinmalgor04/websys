@@ -5,12 +5,15 @@ This file provides comprehensive guidance to Claude Code when working with Java 
 ## Core Development Philosophy
 
 ### KISS (Keep It Simple, Stupid)
+
 Simplicity should be a key goal in design. Choose straightforward solutions over complex ones whenever possible. Simple solutions are easier to understand, maintain, and debug.
 
 ### YAGNI (You Aren't Gonna Need It)
+
 Avoid building functionality on speculation. Implement features only when they are needed, not when you anticipate they might be useful in the future.
 
 ### Design Principles
+
 - **Dependency Inversion**: High-level modules should not depend on low-level modules. Both should depend on abstractions.
 - **Open/Closed Principle**: Software entities should be open for extension but closed for modification.
 - **Single Responsibility**: Each class, method, and module should have one clear purpose.
@@ -19,32 +22,70 @@ Avoid building functionality on speculation. Implement features only when they a
 ## 🤖 AI Assistant Guidelines
 
 ### Context Awareness
+
 - When implementing features, always check existing patterns first
 - Prefer composition over inheritance in all designs
 - Use existing utilities before creating new ones
 - Check for similar functionality in other domains/features
 
 ### Common Pitfalls to Avoid
+
 - Creating duplicate functionality
 - Overwriting existing tests
 - Modifying core frameworks without explicit instruction
 - Adding dependencies without checking existing alternatives
 
 ### Workflow Patterns
+
 - Prefferably create tests BEFORE implementation (TDD)
 - Use "think hard" for architecture decisions
 - Break complex tasks into smaller, testable units
 - Validate understanding before implementation
 
+### Search Command Requirements
+
+**CRITICAL**: Always use `rg` (ripgrep) instead of traditional `grep` and `find` commands:
+
+```bash
+# ❌ Don't use grep
+grep -r "pattern" .
+
+# ✅ Use rg instead
+rg "pattern"
+
+# ❌ Don't use find with name
+find . -name "*.java"
+
+# ✅ Use rg with file filtering
+rg --files | rg "\.java$"
+# or
+rg --files -g "*.java"
+```
+
+**Enforcement Rules:**
+
+```
+(
+    r"^grep\b(?!.*\|)",
+    "Use 'rg' (ripgrep) instead of 'grep' for better performance and features",
+),
+(
+    r"^find\s+\S+\s+-name\b",
+    "Use 'rg --files | rg pattern' or 'rg --files -g pattern' instead of 'find -name' for better performance",
+),
+```
+
 ## 🧱 Code Structure & Modularity
 
 ### File and Method Limits
+
 - **Never create a class file longer than 500 lines**. If approaching this limit, refactor by extracting classes.
 - **Methods should be under 50 lines** for better AI comprehension and maintainability.
 - **Classes should focus on one concept** - follow Single Responsibility Principle.
 - **Cyclomatic complexity must not exceed 10** per method (SonarQube rule).
 
 ### Project Structure (Gradle Standard Layout)
+
 ```
 project-root/
 ├── build.gradle.kts (or build.gradle)
@@ -83,6 +124,7 @@ project-root/
 ## 🛠️ Gradle Configuration
 
 ### Essential build.gradle.kts Configuration
+
 ```kotlin
 plugins {
     java
@@ -112,18 +154,18 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-    
+
     // OpenAPI documentation
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
-    
+
     // Lombok
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
-    
+
     // Testing
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.assertj:assertj-core")
-    
+
     // Development tools
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 }
@@ -171,6 +213,7 @@ spotless {
 ```
 
 ### Gradle Commands
+
 ```bash
 # Clean and compile
 ./gradlew clean compileJava
@@ -223,6 +266,7 @@ spotless {
 - **One class per file** - except for inner classes
 
 ### Naming Conventions
+
 - **Classes**: `PascalCase` (e.g., `UserService`)
 - **Interfaces**: `PascalCase` without "I" prefix
 - **Methods**: `camelCase` (e.g., `getUserById`)
@@ -233,11 +277,13 @@ spotless {
 ## 🎯 Type Safety & Annotations
 
 ### Bean Validation
+
 - **Use Bean Validation** (JSR-380) for validation
 - **Use `@Valid`** for method parameters
 - **Use `@Validated`** for method return values
 
 ### Strict Typing Requirements
+
 - **No raw types** - Always use generics
 - **No `Object` type** unless absolutely necessary
 - **Use `Optional<T>`** instead of returning null
@@ -245,6 +291,7 @@ spotless {
 - **No suppressed warnings** without justification
 
 ### Essential Annotations
+
 ```java
 // Nullability annotations (JSR-305)
 import javax.annotation.Nonnull;
@@ -294,6 +341,7 @@ public <T extends Comparable<T> & Serializable> void process(T item) {
 - Include environment setup instructions in CLAUDE.md
 
 ### AI-Assisted Development Guidelines
+
 - Provide clear context in method names and Javadoc
 - Include example inputs/outputs in documentation
 - Use descriptive variable names that convey intent
@@ -310,6 +358,7 @@ public <T extends Comparable<T> & Serializable> void process(T item) {
 **CRITICAL**: Every REST controller and DTO MUST include comprehensive OpenAPI annotations for frontend developers.
 
 #### Required Controller Annotations
+
 Every `@RestController` class MUST include:
 
 ```java
@@ -318,7 +367,7 @@ Every `@RestController` class MUST include:
 @Tag(name = "Resource Management", description = "Operations for managing resources")
 @Validated
 public class ResourceController {
-    
+
     @Operation(
         summary = "Brief action description",
         description = "Detailed explanation of what this endpoint does, including business logic"
@@ -333,7 +382,7 @@ public class ResourceController {
     public ResponseEntity<ResourceResponse> getById(
         @Parameter(description = "Resource unique identifier", example = "123", required = true)
         @PathVariable Long id,
-        
+
         @Parameter(description = "Include related data", example = "true")
         @RequestParam(defaultValue = "false") Boolean includeDetails
     ) {
@@ -343,6 +392,7 @@ public class ResourceController {
 ```
 
 #### Required DTO Annotations
+
 Every DTO class MUST include:
 
 ```java
@@ -352,25 +402,27 @@ Every DTO class MUST include:
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResourceResponse {
-    
+
     @Schema(description = "Unique identifier", example = "123", accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
-    
+
     @Schema(description = "Resource name", example = "Sample Resource", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank(message = "Name cannot be blank")
     @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
     private String name;
-    
+
     @Schema(description = "Resource creation timestamp", example = "2024-01-15T10:30:00Z", accessMode = Schema.AccessMode.READ_ONLY)
     private LocalDateTime createdAt;
-    
+
     @Schema(description = "List of related items", implementation = RelatedItemResponse.class)
     private List<RelatedItemResponse> relatedItems;
 }
 ```
 
 #### OpenAPI Documentation Checklist
+
 Every endpoint MUST document:
+
 - ✅ **HTTP methods** - Explicit @Operation annotation
 - ✅ **Path parameters** - @Parameter with description and example
 - ✅ **Query parameters** - @Parameter with description, example, and default values
@@ -381,20 +433,21 @@ Every endpoint MUST document:
 - ✅ **Business context** - What the endpoint does and why
 
 #### Validation Integration
+
 Combine OpenAPI with Bean Validation for automatic schema generation:
 
 ```java
 public class CreateResourceRequest {
-    
+
     @Schema(description = "Resource name", example = "New Resource")
     @NotBlank(message = "Name is required")
     @Size(min = 2, max = 100, message = "Name must be 2-100 characters")
     private String name;
-    
+
     @Schema(description = "Resource category", example = "CATEGORY_A", allowableValues = {"CATEGORY_A", "CATEGORY_B", "CATEGORY_C"})
     @NotNull(message = "Category is required")
     private ResourceCategory category;
-    
+
     @Schema(description = "Resource priority", example = "5", minimum = "1", maximum = "10")
     @Min(value = 1, message = "Priority must be at least 1")
     @Max(value = 10, message = "Priority must be at most 10")
@@ -403,27 +456,29 @@ public class CreateResourceRequest {
 ```
 
 #### Error Response Documentation
+
 MUST document error responses consistently:
 
 ```java
 @Schema(description = "Error response for validation failures")
 public class ErrorResponse {
-    
+
     @Schema(description = "Error message", example = "Validation failed")
     private String message;
-    
+
     @Schema(description = "HTTP status code", example = "400")
     private Integer status;
-    
+
     @Schema(description = "Request timestamp", example = "2024-01-15T10:30:00Z")
     private LocalDateTime timestamp;
-    
+
     @Schema(description = "Field validation errors", implementation = FieldError.class)
     private List<FieldError> fieldErrors;
 }
 ```
 
 #### Dependencies Required (Gradle)
+
 ```kotlin
 dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
@@ -431,10 +486,12 @@ dependencies {
 ```
 
 **Access URLs:**
+
 - Swagger UI: `http://localhost:8080/swagger-ui.html`
 - OpenAPI JSON: `http://localhost:8080/v3/api-docs`
 
 ### Javadoc Requirements
+
 Every public class, method, and field MUST have Javadoc. Use Google's Javadoc style:
 
 ```java
@@ -461,6 +518,7 @@ public BigDecimal calculateDiscount(
 ```
 
 ### Documentation Rules
+
 - First sentence is a summary (ends with period)
 - Use `<p>` for paragraph breaks
 - Document all parameters with `@param`
@@ -472,12 +530,14 @@ public BigDecimal calculateDiscount(
 ## 🧪 Testing Strategy
 
 ### Test Organization
+
 - Unit tests: Same package structure as main code
 - Integration tests: Separate `src/test/integration` folder
 - Test naming: `ClassNameTest` for unit tests
 - Test method naming: `should_ExpectedBehavior_When_StateUnderTest`
 
 ### Testing Best Practices
+
 ```java
 // JUnit 5 + AssertJ + Mockito
 import org.junit.jupiter.api.*;
@@ -486,18 +546,18 @@ import static org.mockito.Mockito.*;
 
 @DisplayName("UserService")
 class UserServiceTest {
-    
+
     @Mock
     private UserRepository userRepository;
-    
+
     @InjectMocks
     private UserService userService;
-    
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-    
+
     @Test
     @DisplayName("should return user when valid ID provided")
     void should_ReturnUser_When_ValidIdProvided() {
@@ -509,17 +569,17 @@ class UserServiceTest {
             .build();
         when(userRepository.findById(userId))
             .thenReturn(Optional.of(expectedUser));
-        
+
         // When
         Optional<User> result = userService.findById(userId);
-        
+
         // Then
         assertThat(result)
             .isPresent()
             .hasValue(expectedUser);
         verify(userRepository).findById(userId);
     }
-    
+
     @Test
     @DisplayName("should throw exception when ID is null")
     void should_ThrowException_When_IdIsNull() {
@@ -532,6 +592,7 @@ class UserServiceTest {
 ```
 
 ### Test Coverage Requirements
+
 - Minimum 80% line coverage
 - Minimum 80% branch coverage
 - Critical business logic: 90%+ coverage
@@ -555,6 +616,7 @@ class UserServiceTest {
 ## 📊 IMPORTANT!!! Follow SonarQube Configuration
 
 ### Code Quality Rules (standard sonarqube rules)
+
 - **Cognitive Complexity**: Max 15 per method
 - **Cyclomatic Complexity**: Max 10 per method
 - **Duplicated Lines**: Max 3%
@@ -566,24 +628,29 @@ class UserServiceTest {
 ## 🌱 Spring Boot Best Practices
 
 ### Final Classes and AOP Limitations
+
 - **CRITICAL**: Avoid `final` modifier on Spring service classes (`@Service`, `@Component`, `@Repository`)
 - **Reason**: Spring AOP (including `@Transactional`, `@Cacheable`, `@Async`) uses CGLIB proxies
 - **Problem**: Final classes cannot be subclassed, preventing proxy creation
 - **Solution**: Use non-final classes with constructor injection
 
 #### When to Use Final
+
 ✅ **DO use final for:**
+
 - Local variables and method parameters
 - Fields that should never change
 - Utility classes with only static methods
 - DTOs and value objects without AOP annotations
 
 ❌ **AVOID final for:**
+
 - `@Service`, `@Component`, `@Repository` classes
 - Classes using `@Transactional`, `@Cacheable`, `@Async`
 - Any class requiring Spring AOP features
 
 ### Interface vs Class-Based Design
+
 - **Modern Spring**: Interfaces are **optional** for most services
 - **Use interfaces when**:
   - Multiple implementations exist
@@ -595,6 +662,7 @@ class UserServiceTest {
   - Simple CRUD operations
 
 ### Proxy Strategy
+
 ```java
 // ✅ Good: Non-final service class
 @Service
@@ -614,6 +682,7 @@ public final class UserService { // CGLIB cannot proxy this!
 ## 🚀 Performance Guidelines
 
 ### Spring Boot 3.5 Performance Features
+
 - **Virtual Threads (Java 21)**: Enable with `spring.threads.virtual.enabled=true`
 - **HTTP/2**: Enabled by default for better multiplexing
 - **Compression**: Enable response compression
@@ -623,12 +692,14 @@ public final class UserService { // CGLIB cannot proxy this!
 ## 🔥 Java Performance Shortcuts
 
 ### Quick Wins
+
 - Use `@RestControllerAdvice` for global exception handling
 - Leverage `@ConfigurationProperties` for type-safe config
 - Use `@Async` with `CompletableFuture` for parallel processing
 - Enable virtual threads: `spring.threads.virtual.enabled=true`
 
 ### Instant Productivity Boosters
+
 ```java
 // Global exception handler template
 @RestControllerAdvice
@@ -725,5 +796,5 @@ Closes #234
 
 ---
 
-*Keep this guide updated as patterns evolve. Quality over speed, always.*
-*Last updated: June 2025*
+_Keep this guide updated as patterns evolve. Quality over speed, always._
+_Last updated: June 2025_

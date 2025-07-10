@@ -1,3 +1,11 @@
+# PRP (Product Requirement prompts)
+
+- A collection of prompts i use in my every day work
+
+## Video Walkthrough
+
+👉 https://www.youtube.com/watch?v=KVOZ9s1S9Gk&lc=UgzfwxvFjo6pKEyPo1R4AaABAg
+
 ### ☕ Support This Work
 
 **Found value in these resources?**

@@ -16,13 +16,13 @@ Template optimized for AI agents to implement features with sufficient context a
 
 ## Goal
 
-[One sentence: What needs to be built - be specific about the end state]
+[What needs to be built - be specific about the end state and desires]
 
 ## Why
 
 - [Business value and user impact]
 - [Integration with existing features]
-- [Problems this solves]
+- [Problems this solves and for whom]
 
 ## What
 
@@ -30,146 +30,128 @@ Template optimized for AI agents to implement features with sufficient context a
 
 ### Success Criteria
 
-- [ ] [Specific measurable outcome]
-- [ ] [Performance requirement if applicable]
-- [ ] [Integration requirement]
+- [ ] [Specific measurable outcomes]
 
-## Critical Context
+## All Needed Context
 
-### Documentation & References
+### Documentation & References (list all context needed to implement the feature)
 
 ```yaml
 # MUST READ - Include these in your context window
-- url: https://nextjs.org/docs/app/building-your-application/routing
-  why: App Router fundamentals and file conventions
+- url: [Official Next.js/React docs URL]
+  why: [Specific sections/methods you'll need]
 
-- file: app/layout.tsx
-  why: Root layout pattern, metadata configuration
+- file: [path/to/example.tsx]
+  why: [Pattern to follow, gotchas to avoid]
 
-- doc: https://react.dev/reference/rsc/server-components
-  section: Server Component constraints and patterns
-  critical: No useState, useEffect, or event handlers in RSC
+- doc: [Library documentation URL]
+  section: [Specific section about common pitfalls]
+  critical: [Key insight that prevents common errors]
 
-- file: components/ui/button.tsx
-  why: Shadcn UI component patterns, styling conventions
+- docfile: [PRPs/ai_docs/file.md]
+  why: [docs that the user has pasted in to the project]
 ```
 
-### Known Gotchas & Library Quirks
+### Current Codebase tree (run `tree` in the root of the project) to get an overview of the codebase
+
+```bash
+
+```
+
+### Desired Codebase tree with files to be added and responsibility of file
+
+```bash
+
+```
+
+### Known Gotchas of our codebase & Library Quirks
 
 ```typescript
-// CRITICAL: Next.js 15 App Router specifics
-// Example: Route handlers must export named functions (GET, POST, etc.)
-// Example: Dynamic routes use [param] folders, catch-all uses [...param]
-// Example: Metadata must be exported from page.tsx, not components
+// CRITICAL: [Library name] requires [specific setup]
+// Example: Next.js 15 App Router - Route handlers must export named functions
 // Example: 'use client' directive must be at top of file, affects entire component tree
 // Example: Server Components can't use browser APIs or event handlers
-// Example: Client Components can't directly import server-only code
+// Example: We use TypeScript strict mode and require proper typing
 ```
 
 ## Implementation Blueprint
 
-### Critical data models and structure
+### Data models and structure
+
+Create the core data models, we ensure type safety and consistency.
 
 ```typescript
-// CRITICAL: Next.js App Router conventions
-// Server Component (default - no directive needed)
-export default async function Page() {
-  const data = await fetchData() // Can use async/await directly
-  return <div>{data}</div>
-}
+Examples:
+ - Zod schemas for validation
+ - TypeScript interfaces/types
+ - Database schema types
+ - API response types
+ - Component prop types
 
-// Client Component (needs interactivity)
-'use client'
-import { useState } from 'react'
-
-export function InteractiveComponent() {
-  const [state, setState] = useState()
-  return <button onClick={() => setState()}>Click</button>
-}
-
-// Route Handler pattern
-export async function GET(request: NextRequest) {
-  return NextResponse.json({ data })
-}
 ```
 
-### Critical data types and schemas
+### List of tasks to be completed to fulfill the PRP in the order they should be completed
+
+```yaml
+Task 1:
+MODIFY app/layout.tsx:
+  - FIND pattern: "export default function RootLayout"
+  - INJECT in metadata object
+  - PRESERVE children prop typing
+
+CREATE app/(dashboard)/layout.tsx:
+  - MIRROR pattern from: app/layout.tsx
+  - MODIFY for dashboard-specific layout
+  - KEEP TypeScript typing patterns identical
+
+...(...)
+
+Task N:
+...
+
+```
+
+### Per task pseudocode as needed added to each task
 
 ```typescript
-// Example with Zod (matches project pattern):
-import { z } from "zod";
 
-export const userSchema = z.object({
-  id: z.string().uuid(),
-  email: z.string().email(),
-  name: z.string().min(1).max(100),
-  role: z.enum(["user", "admin"]),
-  createdAt: z.date(),
-});
-
-export type User = z.infer<typeof userSchema>;
-
-// Validation in route handlers
-export async function POST(request: NextRequest) {
-  const body = await request.json();
-  const validated = userSchema.parse(body); // throws on error
-  // ... rest of implementation
+# Task 1
+// Pseudocode with CRITICAL details don't write entire code
+export default async function NewFeature({ params }: { params: { id: string } }) {
+    // PATTERN: Always validate params first (see lib/validation.ts)
+    const validated = validateParams(params)  // throws ValidationError
+    
+    // GOTCHA: This library requires proper error boundaries
+    try {
+        // PATTERN: Use existing data fetching pattern
+        const data = await fetchData(validated.id)  // see lib/data.ts
+        
+        // CRITICAL: Server Components can fetch data directly
+        return (
+            <div>
+                {/* PATTERN: Use existing component patterns */}
+                <DataDisplay data={data} />
+            </div>
+        )
+    } catch (error) {
+        // PATTERN: Standardized error handling
+        return <ErrorBoundary error={error} />  // see components/error-boundary.tsx
+    }
 }
-```
-
-### Task List, Use information dense keywords and patterns from the codebase
-
-** Use keywords like: MODIFY, CREATE, UPDATE, DELETE, MIRROR, etc.**
-
-** Use patterns from the codebase, like: Export default function, typed children prop, Suspense boundaries for loading states, etc.**
-
-** Use the codebase and documentation as a reference.**
-
-** Use details about what and where to modify, create, update, delete, mirror, etc.**
-
-```
-MODIFY app/layout.tsx: (what and where)
-  - FIND pattern: "export default function RootLayout" (implementation details)
-  - INJECT in metadata object (implementation details)
-  - PRESERVE children prop typing (implementation details)
-  - ...
-
-CREATE app/(dashboard)/layout.tsx: (what and where)
-  - PATTERN: Route group with shared layout (implementation details)
-  - MUST: Export default function, typed children prop (implementation details)
-  - INCLUDE: Suspense boundaries for loading states (implementation details)
-  - ...
-
-CREATE app/api/users/route.ts: (what and where)
-  - MIRROR pattern from: app/api/example/route.ts (implementation details)
-  - EXPORT: Named HTTP method functions (GET, POST) (implementation details)
-  - USE: NextRequest, NextResponse from 'next/server' (implementation details)
-  - ...
-
-```
-
-### Core Implementation
-
-```typescript
-// Pseudocode with CRITICAL Next.js 15 details
-// app/(dashboard)/users/page.tsx - Server Component
-
-// pseudocode for critical implemntation details, integration points, USE REAL CODEBASE AS REFERENCE, NEVER GUESS
-
-// ...
 ```
 
 ### Integration Points
 
 ```yaml
 DATABASE:
-  - client: "@/lib/supabase/client"
-  - pattern: "createClient() for client components"
-  - pattern: "createServerClient() for server components"
+  - migration: "Add table 'feature_data' with proper indexes"
+  - client: "@/lib/database/client"
+  - pattern: "createClient() for client components, createServerClient() for server components"
 
 CONFIG:
   - add to: .env.local
   - pattern: "NEXT_PUBLIC_* for client-side env vars"
+  - pattern: "FEATURE_TIMEOUT = process.env.FEATURE_TIMEOUT || '30000'"
 
 ROUTES:
   - file structure: app/feature-name/page.tsx
@@ -179,36 +161,52 @@ ROUTES:
 
 ## Validation Loop
 
-### Level 1: Syntax & Type Checking
+### Level 1: Syntax & Style
 
 ```bash
 # Run these FIRST - fix any errors before proceeding
 npm run lint                    # ESLint checks
 npx tsc --noEmit               # TypeScript type checking
-
-# prettier
-npx prettier --write .
+npm run format                 # Prettier formatting
 
 # Expected: No errors. If errors, READ the error and fix.
 ```
 
-### Level 2: Component Tests / Unit Tests
+### Level 2: Unit Tests each new feature/file/function use existing test patterns
 
 ```typescript
-// Follow existing testing patterns
-// Each component should have a corresponding test file
-// Use existing test patterns as a reference
-// Never guess, always read the codebase
-// Each unit should be self-contained and independent and testable
+// CREATE __tests__/new-feature.test.tsx with these test cases:
+import { render, screen } from '@testing-library/react'
+import { NewFeature } from '@/components/new-feature'
+
+describe('NewFeature', () => {
+  test('renders without crashing', () => {
+    render(<NewFeature />)
+    expect(screen.getByRole('main')).toBeInTheDocument()
+  })
+
+  test('handles invalid input gracefully', () => {
+    render(<NewFeature invalidProp="" />)
+    expect(screen.getByText(/error/i)).toBeInTheDocument()
+  })
+
+  test('calls API with correct parameters', async () => {
+    const mockFetch = jest.fn()
+    global.fetch = mockFetch
+    
+    render(<NewFeature />)
+    // ... test API interaction
+  })
+})
 ```
 
 ```bash
 # Run and iterate until passing:
 npm test new-feature.test.tsx
-# If failing: Read error, understand root cause, fix code, re-run
+# If failing: Read error, understand root cause, fix code, re-run (never mock to pass)
 ```
 
-### Level 3: Integration Tests
+### Level 3: Integration Test
 
 ```bash
 # Start the dev server
@@ -219,14 +217,15 @@ curl http://localhost:3000/dashboard/users
 # Expected: HTML response with user table
 
 # Test the API endpoint
-curl -X GET http://localhost:3000/api/users \
-  -H "Content-Type: application/json"
+curl -X POST http://localhost:3000/api/feature \
+  -H "Content-Type: application/json" \
+  -d '{"param": "test_value"}'
 
-# Expected: {"users": [...], "total": n}
-# If error: Check console for Next.js error messages
+# Expected: {"status": "success", "data": {...}}
+# If error: Check browser console and Next.js terminal for error messages
 ```
 
-### Level 4: Build Validation
+### Level 4: Deployment & Creative Validation
 
 ```bash
 # Production build check
@@ -240,68 +239,35 @@ npm run build
 
 # Test production build
 npm run start
+
+# Creative validation methods:
+# - E2E testing with Playwright/Cypress
+# - Performance testing with Lighthouse
+# - Accessibility testing with axe
+# - Bundle size analysis
+# - SEO validation
+
+# Custom validation specific to the feature
+# [Add creative validation methods here]
 ```
 
-## Progressive Enhancement
+## Final validation Checklist
 
-### Phase 1: Core Functionality (Do First)
-
-- [ ] Basic page/route working
-- [ ] Data fetching implemented
-- [ ] Error boundaries in place
-
-### Phase 2: Robustness (Do Second)
-
-- [ ] Loading states with Suspense
-- [ ] Error handling with error.tsx
-- [ ] Form validation (client + server)
-
-### Phase 3: Production Ready (Do Third)
-
-- [ ] Optimize images with next/image
-- [ ] Add metadata for SEO
-- [ ] Implement caching strategies
-
-## Debugging Aids
-
-```typescript
-// Add these temporarily for debugging:
-// In Server Components
-console.log("Server render:", { data });
-
-// In Client Components
-("use client");
-useEffect(() => {
-  console.log("Client hydration:", { state });
-}, []);
-
-// In Route Handlers
-export async function GET(request: NextRequest) {
-  console.log("API called:", request.url);
-  // ... rest of handler
-}
-
-// Remove before final commit
-```
-
-## Final Checklist
-
-- [ ] All TypeScript errors resolved: `npx tsc --noEmit`
+- [ ] All tests pass: `npm test`
 - [ ] No linting errors: `npm run lint`
-- [ ] Dev server runs without errors: `npm run dev`
-- [ ] Production build succeeds: `npm run build`
-- [ ] No hydration warnings in browser console
-- [ ] API routes return proper status codes
-- [ ] Loading states implemented with Suspense
-- [ ] Error boundaries handle failures gracefully
+- [ ] No type errors: `npx tsc --noEmit`
+- [ ] Manual test successful: [specific curl/command]
+- [ ] Error cases handled gracefully
+- [ ] Logs are informative but not verbose
+- [ ] Documentation updated if needed
 
 ---
 
 ## Anti-Patterns to Avoid
 
+- ❌ Don't create new patterns when existing ones work
+- ❌ Don't skip validation because "it should work"
+- ❌ Don't ignore failing tests - fix them
 - ❌ Don't use 'use client' unnecessarily - embrace Server Components
-- ❌ Don't fetch data in useEffect - use Server Components or SWR/React Query
-- ❌ Don't mix server and client code in same component
-- ❌ Don't ignore TypeScript errors - they prevent runtime issues
-- ❌ Don't hardcode URLs - use environment variables
-- ❌ Don't skip error boundaries - every page needs error handling
+- ❌ Don't hardcode values that should be config
+- ❌ Don't catch all exceptions - be specific

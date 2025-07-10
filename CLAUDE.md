@@ -31,15 +31,6 @@ This is a **PRP (Product Requirement Prompt) Framework** repository, not a tradi
 
 ## Development Commands
 
-### Python Package Management
-
-```bash
-# This project uses UV package manager
-uv venv                    # Create virtual environment
-uv sync                    # Install dependencies
-uv run [script]            # Run Python scripts
-```
-
 ### PRP Execution
 
 ```bash
@@ -89,13 +80,17 @@ ruff check --fix && mypy .
 uv run pytest tests/ -v
 
 # Level 3: Integration
+uv run uvicorn main:app --reload
 curl -X POST http://localhost:8000/endpoint -H "Content-Type: application/json" -d '{...}'
+
+# Level 4: Deployment
+# mcp servers, or other creative ways to self validate
 ```
 
 ## Anti-Patterns to Avoid
 
-- L Don't create minimal context prompts - context is everything
-- L Don't skip validation steps - they're critical for one-pass success
+- L Don't create minimal context prompts - context is everything - the PRP must be comprehensive and self-contained, reference relevant documentation and examples.
+- L Don't skip validation steps - they're critical for one-pass success - The better The AI is at running the validation loop, the more likely it is to succeed.
 - L Don't ignore the structured PRP format - it's battle-tested
 - L Don't create new patterns when existing templates work
 - L Don't hardcode values that should be config
@@ -103,24 +98,22 @@ curl -X POST http://localhost:8000/endpoint -H "Content-Type: application/json" 
 
 ## Working with This Framework
 
-### When Creating PRPs
+### When Creating new PRPs
 
-1. **Research First**: Analyze codebase patterns and external documentation
-2. **Use Templates**: Start with `PRPs/templates/prp_base.md`
-3. **Include Context**: Add URLs, code examples, gotchas, and patterns
-4. **Validate Early**: Include executable validation commands
-5. **Score Confidence**: Rate PRP 1-10 for one-pass implementation success
+1. **Context Process**: New PRPs must consist of context sections, Context is King!
+2.
 
 ### When Executing PRPs
 
 1. **Load PRP**: Read and understand all context and requirements
-2. **ULTRATHINK**: Create comprehensive plan, break down into todos
+2. **ULTRATHINK**: Create comprehensive plan, break down into todos, use subagents, batch tool etc check prps/ai_docs/
 3. **Execute**: Implement following the blueprint
 4. **Validate**: Run each validation command, fix failures
 5. **Complete**: Ensure all checklist items done
 
 ### Command Usage
 
+- Read the .claude/commands directory
 - Access via `/` prefix in Claude Code
 - Commands are self-documenting with argument placeholders
 - Use parallel creation commands for rapid development
@@ -142,4 +135,4 @@ PRPs/
  pyproject.toml         # Python package configuration
 ```
 
-Remember: This framework is about **one-pass implementation success through comprehensive context**. Every PRP should contain enough context for an AI agent to implement working code without additional research.
+Remember: This framework is about **one-pass implementation success through comprehensive context and validation**. Every PRP should contain the exact context for an AI agent to successfully implement working code in a single pass.

@@ -5,12 +5,15 @@ This file provides comprehensive guidance to Claude Code when working with Astro
 ## Core Development Philosophy
 
 ### KISS (Keep It Simple, Stupid)
+
 Simplicity should be a key goal in design. Choose straightforward solutions over complex ones whenever possible. Simple solutions are easier to understand, maintain, and debug.
 
 ### YAGNI (You Aren't Gonna Need It)
+
 Avoid building functionality on speculation. Implement features only when they are needed, not when you anticipate they might be useful in the future.
 
 ### Design Principles
+
 - **Islands Architecture**: Ship minimal JavaScript, hydrate only what needs interactivity
 - **Performance by Default**: Static-first with selective hydration for optimal performance
 - **Framework Agnostic**: Mix React, Vue, Svelte, and other frameworks in the same project
@@ -20,6 +23,7 @@ Avoid building functionality on speculation. Implement features only when they a
 ## 🤖 AI Assistant Guidelines
 
 ### Context Awareness
+
 - When implementing features, always check existing patterns first
 - Prefer static generation over client-side rendering when possible
 - Use framework-specific components only when interactivity is required
@@ -27,6 +31,7 @@ Avoid building functionality on speculation. Implement features only when they a
 - Understand when to use `.astro` vs framework components
 
 ### Common Pitfalls to Avoid
+
 - Over-hydrating components that could be static
 - Mixing multiple frameworks unnecessarily in single components
 - Ignoring Astro's partial hydration benefits
@@ -34,14 +39,49 @@ Avoid building functionality on speculation. Implement features only when they a
 - Overwriting existing integrations without checking alternatives
 
 ### Workflow Patterns
+
 - Preferably create tests BEFORE implementation (TDD)
 - Use "think hard" for hydration strategy decisions
 - Break complex interactive components into smaller, focused islands
 - Validate framework choice and hydration requirements before implementation
 
+### Search Command Requirements
+
+**CRITICAL**: Always use `rg` (ripgrep) instead of traditional `grep` and `find` commands:
+
+```bash
+# ❌ Don't use grep
+grep -r "pattern" .
+
+# ✅ Use rg instead
+rg "pattern"
+
+# ❌ Don't use find with name
+find . -name "*.ts"
+
+# ✅ Use rg with file filtering
+rg --files | rg "\.ts$"
+# or
+rg --files -g "*.ts"
+```
+
+**Enforcement Rules:**
+
+```
+(
+    r"^grep\b(?!.*\|)",
+    "Use 'rg' (ripgrep) instead of 'grep' for better performance and features",
+),
+(
+    r"^find\s+\S+\s+-name\b",
+    "Use 'rg --files | rg pattern' or 'rg --files -g pattern' instead of 'find -name' for better performance",
+),
+```
+
 ## 🧱 Code Structure & Modularity
 
 ### File and Component Limits
+
 - **Never create a file longer than 500 lines of code.** If approaching this limit, refactor by splitting into modules or helper components.
 - **Astro components should be under 200 lines** for better maintainability.
 - **Functions should be short and focused sub 50 lines** and have a single responsibility.
@@ -50,6 +90,7 @@ Avoid building functionality on speculation. Implement features only when they a
 ## 🚀 Astro 5+ Key Features
 
 ### Content Layer (New in Astro 5)
+
 - **Flexible Content Management**: Load content from any source (files, APIs, CMSs)
 - **Type-Safe Content**: Automatic TypeScript types for all content collections
 - **Performance Boost**: Up to 5x faster builds for Markdown, 2x for MDX
@@ -57,27 +98,30 @@ Avoid building functionality on speculation. Implement features only when they a
 
 ```typescript
 // content/config.ts
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const blog = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     title: z.string(),
     pubDate: z.date(),
     description: z.string(),
     author: z.string(),
-    image: z.object({
-      url: z.string(),
-      alt: z.string()
-    }).optional(),
-    tags: z.array(z.string())
-  })
+    image: z
+      .object({
+        url: z.string(),
+        alt: z.string(),
+      })
+      .optional(),
+    tags: z.array(z.string()),
+  }),
 });
 
 export const collections = { blog };
 ```
 
 ### Server Islands (New in Astro 5)
+
 - **Mixed Static/Dynamic Content**: Combine cached static content with personalized dynamic content
 - **Independent Loading**: Each island loads separately for optimal performance
 - **Custom Caching**: Set custom cache headers and fallback content per island
@@ -95,23 +139,24 @@ export const prerender = false; // Server island
 ```
 
 ### Environment Configuration (astro:env)
+
 - **Type-Safe Environment Variables**: Validation and TypeScript support
 - **Runtime Validation**: Automatic validation at build time
 - **Client/Server Separation**: Clear distinction between public and private variables
 
 ```typescript
 // env.d.ts
-import { defineEnv, envField } from 'astro:env/config';
+import { defineEnv, envField } from "astro:env/config";
 
 export default defineEnv({
   server: {
-    DATABASE_URL: envField.string({ context: 'server', access: 'secret' }),
-    API_SECRET: envField.string({ context: 'server', access: 'secret' })
+    DATABASE_URL: envField.string({ context: "server", access: "secret" }),
+    API_SECRET: envField.string({ context: "server", access: "secret" }),
   },
   client: {
-    PUBLIC_API_URL: envField.string({ context: 'client', access: 'public' }),
-    PUBLIC_SITE_NAME: envField.string({ context: 'client', access: 'public' })
-  }
+    PUBLIC_API_URL: envField.string({ context: "client", access: "public" }),
+    PUBLIC_SITE_NAME: envField.string({ context: "client", access: "public" }),
+  },
 });
 ```
 
@@ -144,6 +189,7 @@ src/
 ## 🎯 TypeScript Configuration (STRICT REQUIREMENTS)
 
 ### MUST Follow Astro TypeScript Templates
+
 ```json
 {
   "extends": "astro/tsconfigs/strict",
@@ -169,6 +215,7 @@ src/
 ```
 
 ### MANDATORY Type Requirements
+
 - **NEVER use `any` type** - use `unknown` if type is truly unknown
 - **MUST use explicit type imports** with `import type { }` syntax
 - **MUST define props interfaces** for all Astro components
@@ -176,6 +223,7 @@ src/
 - **MUST validate content with Zod schemas** in content collections
 
 ### Component Props Typing (MANDATORY)
+
 ```typescript
 // Astro component props
 export interface Props {
@@ -193,7 +241,24 @@ const { title, description, image, class: className } = Astro.props;
 
 ## 📦 Package Management & Dependencies
 
+### MUST Use pnpm (MANDATORY)
+
+**CRITICAL**: Always use pnpm for Astro projects for better performance and dependency management.
+
+```bash
+# Install pnpm globally
+npm install -g pnpm
+# or
+curl -fsSL https://get.pnpm.io/install.sh | sh
+
+# Project setup
+pnpm create astro@latest
+pnpm install
+pnpm dev
+```
+
 ### Essential Astro 5 Dependencies
+
 ```json
 {
   "dependencies": {
@@ -212,47 +277,56 @@ const { title, description, image, class: className } = Astro.props;
 ```
 
 ### Framework Integrations (Add as needed)
+
 ```bash
 # React integration
+pnpm astro add react
+# or
 npx astro add react
 
-# Vue integration  
-npx astro add vue
+# Vue integration
+pnpm astro add vue
 
 # Svelte integration
-npx astro add svelte
+pnpm astro add svelte
 
 # Preact integration
-npx astro add preact
+pnpm astro add preact
 
 # SolidJS integration
-npx astro add solid
+pnpm astro add solid
 
 # Multiple frameworks (framework-agnostic approach)
-npx astro add react vue svelte
+pnpm astro add react vue svelte
 ```
 
 ### Essential Integrations
+
 ```bash
 # Styling and UI
-npx astro add tailwind
-npx astro add mdx
+pnpm astro add tailwind
+pnpm astro add mdx
 
 # Performance and SEO
-npx astro add sitemap
-npx astro add compress
+pnpm astro add sitemap
+pnpm astro add compress
 
 # Content and CMS
-npx astro add @astrojs/content
-npx astro add @astrojs/rss
+pnpm astro add @astrojs/content
+pnpm astro add @astrojs/rss
+
+# Manual package installation when needed
+pnpm add package-name
+pnpm add -D dev-package-name
 ```
 
 ## 🛡️ Data Validation with Zod (MANDATORY FOR CONTENT)
 
 ### Content Collections (REQUIRED Pattern)
+
 ```typescript
 // src/content/config.ts
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const blogSchema = z.object({
   title: z.string(),
@@ -265,28 +339,30 @@ const blogSchema = z.object({
   author: z.object({
     name: z.string(),
     email: z.string().email().optional(),
-    image: z.string().optional()
-  })
+    image: z.string().optional(),
+  }),
 });
 
 const docsSchema = z.object({
   title: z.string(),
   description: z.string(),
-  sidebar: z.object({
-    order: z.number(),
-    label: z.string().optional()
-  }).optional()
+  sidebar: z
+    .object({
+      order: z.number(),
+      label: z.string().optional(),
+    })
+    .optional(),
 });
 
 export const collections = {
-  'blog': defineCollection({ 
-    type: 'content',
-    schema: blogSchema 
+  blog: defineCollection({
+    type: "content",
+    schema: blogSchema,
   }),
-  'docs': defineCollection({ 
-    type: 'content',
-    schema: docsSchema 
-  })
+  docs: defineCollection({
+    type: "content",
+    schema: docsSchema,
+  }),
 };
 
 export type BlogPost = z.infer<typeof blogSchema>;
@@ -294,40 +370,44 @@ export type DocsPage = z.infer<typeof docsSchema>;
 ```
 
 ### API Route Validation
+
 ```typescript
 // src/pages/api/newsletter.ts
-import type { APIRoute } from 'astro';
-import { z } from 'zod';
+import type { APIRoute } from "astro";
+import { z } from "zod";
 
 const subscribeSchema = z.object({
   email: z.string().email(),
-  name: z.string().min(2).max(50)
+  name: z.string().min(2).max(50),
 });
 
 export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.json();
     const validatedData = subscribeSchema.parse(data);
-    
+
     // Process subscription
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return new Response(JSON.stringify({ 
-        error: 'Validation failed', 
-        details: error.errors 
-      }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
-      });
+      return new Response(
+        JSON.stringify({
+          error: "Validation failed",
+          details: error.errors,
+        }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        },
+      );
     }
-    
-    return new Response(JSON.stringify({ error: 'Internal server error' }), {
+
+    return new Response(JSON.stringify({ error: "Internal server error" }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { "Content-Type": "application/json" },
     });
   }
 };
@@ -336,6 +416,7 @@ export const POST: APIRoute = async ({ request }) => {
 ## 🧪 Testing Strategy (VITEST RECOMMENDED)
 
 ### MUST Meet These Testing Standards
+
 - **MINIMUM 80% code coverage** - NO EXCEPTIONS
 - **MUST use Vitest** for unit and component tests (Jest-compatible, Vite-native)
 - **MUST use Astro Container API** for component testing
@@ -343,17 +424,18 @@ export const POST: APIRoute = async ({ request }) => {
 - **MUST mock external dependencies** appropriately
 
 ### Vitest Configuration (MANDATORY)
+
 ```typescript
 // vitest.config.ts
-import { defineConfig } from 'vitest/config';
-import { getViteConfig } from 'astro/config';
+import { defineConfig } from "vitest/config";
+import { getViteConfig } from "astro/config";
 
 export default defineConfig(
   getViteConfig({
     test: {
-      environment: 'happy-dom', // or 'jsdom'
+      environment: "happy-dom", // or 'jsdom'
       coverage: {
-        reporter: ['text', 'json', 'html'],
+        reporter: ["text", "json", "html"],
         threshold: {
           global: {
             branches: 80,
@@ -364,62 +446,65 @@ export default defineConfig(
         },
       },
     },
-  })
+  }),
 );
 ```
 
 ### Component Testing with Container API
+
 ```typescript
 // src/components/__tests__/Card.test.ts
-import { experimental_AstroContainer as AstroContainer } from 'astro/container';
-import { expect, test } from 'vitest';
-import Card from '../Card.astro';
+import { experimental_AstroContainer as AstroContainer } from "astro/container";
+import { expect, test } from "vitest";
+import Card from "../Card.astro";
 
-test('Card component renders correctly', async () => {
+test("Card component renders correctly", async () => {
   const container = await AstroContainer.create();
   const result = await container.renderToString(Card, {
     props: {
-      title: 'Test Title',
-      description: 'Test description'
-    }
+      title: "Test Title",
+      description: "Test description",
+    },
   });
 
-  expect(result).toContain('Test Title');
-  expect(result).toContain('Test description');
+  expect(result).toContain("Test Title");
+  expect(result).toContain("Test description");
 });
 
-test('Card component handles missing props gracefully', async () => {
+test("Card component handles missing props gracefully", async () => {
   const container = await AstroContainer.create();
   const result = await container.renderToString(Card, {
-    props: { title: 'Test Title' }
+    props: { title: "Test Title" },
   });
 
-  expect(result).toContain('Test Title');
-  expect(result).not.toContain('undefined');
+  expect(result).toContain("Test Title");
+  expect(result).not.toContain("undefined");
 });
 ```
 
 ### Integration Testing for API Routes
+
 ```typescript
 // src/pages/api/__tests__/newsletter.test.ts
-import { expect, test } from 'vitest';
+import { expect, test } from "vitest";
 
-test('POST /api/newsletter validates email', async () => {
-  const response = await fetch('/api/newsletter', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: 'invalid-email', name: 'Test' })
+test("POST /api/newsletter validates email", async () => {
+  const response = await fetch("/api/newsletter", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email: "invalid-email", name: "Test" }),
   });
 
   expect(response.status).toBe(400);
   const data = await response.json();
-  expect(data.error).toBe('Validation failed');
+  expect(data.error).toBe("Validation failed");
 });
 ```
 
 ## 🎨 Component Guidelines (ASTRO-SPECIFIC)
 
 ### Astro Component Structure (MANDATORY)
+
 ```astro
 ---
 // src/components/BlogCard.astro
@@ -435,13 +520,13 @@ export interface Props {
   href: string;
 }
 
-const { 
-  title, 
-  description, 
-  pubDate, 
-  image, 
-  tags = [], 
-  href 
+const {
+  title,
+  description,
+  pubDate,
+  image,
+  tags = [],
+  href
 } = Astro.props;
 
 // Server-side logic here
@@ -454,25 +539,25 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
 
 <article class="blog-card">
   {image && (
-    <img 
-      src={image.src} 
+    <img
+      src={image.src}
       alt={image.alt}
       loading="lazy"
       decoding="async"
     />
   )}
-  
+
   <div class="content">
     <h3>
       <a href={href}>{title}</a>
     </h3>
     <p>{description}</p>
-    
+
     <div class="meta">
       <time datetime={pubDate.toISOString()}>
         {formattedDate}
       </time>
-      
+
       {tags.length > 0 && (
         <ul class="tags">
           {tags.map((tag) => (
@@ -492,15 +577,15 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
     overflow: hidden;
     transition: transform 0.2s ease;
   }
-  
+
   .blog-card:hover {
     transform: translateY(-2px);
   }
-  
+
   .content {
     padding: 1rem;
   }
-  
+
   .tags {
     display: flex;
     gap: 0.5rem;
@@ -508,7 +593,7 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
     margin: 0;
     padding: 0;
   }
-  
+
   .tag {
     background: var(--color-accent);
     color: var(--color-accent-text);
@@ -520,6 +605,7 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
 ```
 
 ### Framework Component Integration
+
 ```astro
 ---
 // src/components/InteractiveCounter.astro
@@ -534,9 +620,9 @@ const { initialCount = 0, maxCount = 100 } = Astro.props;
 <!-- Static wrapper with framework island -->
 <div class="counter-wrapper">
   <h3>Interactive Counter</h3>
-  
+
   <!-- React island with hydration directive -->
-  <Counter 
+  <Counter
     client:load
     initialCount={initialCount}
     maxCount={maxCount}
@@ -553,6 +639,7 @@ const { initialCount = 0, maxCount = 100 } = Astro.props;
 ```
 
 ### Hydration Directives (CRITICAL UNDERSTANDING)
+
 ```astro
 <!-- Load immediately -->
 <Component client:load />
@@ -573,6 +660,7 @@ const { initialCount = 0, maxCount = 100 } = Astro.props;
 ## 🔄 Content Management Patterns
 
 ### Content Collection Usage
+
 ```astro
 ---
 // src/pages/blog/[...slug].astro
@@ -593,7 +681,7 @@ const post = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BlogLayout 
+<BlogLayout
   title={post.data.title}
   description={post.data.description}
   pubDate={post.data.pubDate}
@@ -604,32 +692,36 @@ const { Content } = await post.render();
 ```
 
 ### Dynamic Content Loading
+
 ```typescript
 // src/lib/content.ts
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry } from "astro:content";
 
-export async function getBlogPosts(): Promise<CollectionEntry<'blog'>[]> {
-  const posts = await getCollection('blog');
-  
+export async function getBlogPosts(): Promise<CollectionEntry<"blog">[]> {
+  const posts = await getCollection("blog");
+
   return posts
-    .filter(post => !post.data.draft)
+    .filter((post) => !post.data.draft)
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 }
 
-export async function getPostsByTag(tag: string): Promise<CollectionEntry<'blog'>[]> {
+export async function getPostsByTag(
+  tag: string,
+): Promise<CollectionEntry<"blog">[]> {
   const posts = await getBlogPosts();
-  return posts.filter(post => post.data.tags.includes(tag));
+  return posts.filter((post) => post.data.tags.includes(tag));
 }
 
-export async function getFeaturedPosts(): Promise<CollectionEntry<'blog'>[]> {
+export async function getFeaturedPosts(): Promise<CollectionEntry<"blog">[]> {
   const posts = await getBlogPosts();
-  return posts.filter(post => post.data.featured).slice(0, 3);
+  return posts.filter((post) => post.data.featured).slice(0, 3);
 }
 ```
 
 ## 🚀 Performance Optimization (ASTRO-SPECIFIC)
 
 ### Image Optimization (MANDATORY)
+
 ```astro
 ---
 import { Image } from 'astro:assets';
@@ -637,7 +729,7 @@ import heroImage from '../assets/hero.jpg';
 ---
 
 <!-- Optimized images with Astro -->
-<Image 
+<Image
   src={heroImage}
   alt="Hero image description"
   width={800}
@@ -648,7 +740,7 @@ import heroImage from '../assets/hero.jpg';
 />
 
 <!-- Responsive images -->
-<Image 
+<Image
   src={heroImage}
   alt="Responsive hero"
   widths={[400, 800, 1200]}
@@ -658,13 +750,14 @@ import heroImage from '../assets/hero.jpg';
 ```
 
 ### Bundle Optimization
+
 ```typescript
 // astro.config.mjs
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
 export default defineConfig({
   build: {
-    inlineStylesheets: 'auto',
+    inlineStylesheets: "auto",
     splitting: true,
   },
   vite: {
@@ -672,21 +765,22 @@ export default defineConfig({
       rollupOptions: {
         output: {
           manualChunks: {
-            'react-vendor': ['react', 'react-dom'],
-            'vue-vendor': ['vue'],
-            'utils': ['./src/lib/utils.ts']
-          }
-        }
-      }
-    }
+            "react-vendor": ["react", "react-dom"],
+            "vue-vendor": ["vue"],
+            utils: ["./src/lib/utils.ts"],
+          },
+        },
+      },
+    },
   },
   experimental: {
     contentIntellisense: true,
-  }
+  },
 });
 ```
 
 ### Server Islands for Performance
+
 ```astro
 ---
 // src/components/DynamicContent.astro
@@ -719,37 +813,39 @@ const recommendations = await getRecommendations(userPreferences);
 ## 🔐 Security Requirements (MANDATORY)
 
 ### Environment Variables (MUST VALIDATE)
+
 ```typescript
 // src/env.d.ts
-import { envField, defineEnv } from 'astro:env/config';
+import { envField, defineEnv } from "astro:env/config";
 
 export default defineEnv({
   server: {
-    DATABASE_URL: envField.string({ 
-      context: 'server', 
-      access: 'secret',
-      min: 1 
+    DATABASE_URL: envField.string({
+      context: "server",
+      access: "secret",
+      min: 1,
     }),
-    API_SECRET_KEY: envField.string({ 
-      context: 'server', 
-      access: 'secret',
-      min: 32 
+    API_SECRET_KEY: envField.string({
+      context: "server",
+      access: "secret",
+      min: 32,
     }),
   },
   client: {
-    PUBLIC_SITE_URL: envField.string({ 
-      context: 'client', 
-      access: 'public' 
+    PUBLIC_SITE_URL: envField.string({
+      context: "client",
+      access: "public",
     }),
-    PUBLIC_ANALYTICS_ID: envField.string({ 
-      context: 'client', 
-      access: 'public' 
+    PUBLIC_ANALYTICS_ID: envField.string({
+      context: "client",
+      access: "public",
     }),
-  }
+  },
 });
 ```
 
 ### Content Security Policy
+
 ```astro
 ---
 // src/layouts/BaseLayout.astro
@@ -767,7 +863,7 @@ const { title, description } = Astro.props;
   <meta charset="UTF-8" />
   <meta name="description" content={description} />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" 
+  <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';" />
   <title>{title}</title>
 </head>
@@ -780,35 +876,33 @@ const { title, description } = Astro.props;
 ## 💅 Code Style & Quality
 
 ### Astro Configuration (MANDATORY)
+
 ```typescript
 // astro.config.mjs
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
-import react from '@astrojs/react';
-import vue from '@astrojs/vue';
+import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
+import react from "@astrojs/react";
+import vue from "@astrojs/vue";
 
 export default defineConfig({
-  integrations: [
-    tailwind(),
-    react(),
-    vue()
-  ],
+  integrations: [tailwind(), react(), vue()],
   markdown: {
     shikiConfig: {
-      theme: 'github-dark',
-      wrap: true
-    }
+      theme: "github-dark",
+      wrap: true,
+    },
   },
   build: {
-    format: 'directory'
+    format: "directory",
   },
   experimental: {
-    contentIntellisense: true
-  }
+    contentIntellisense: true,
+  },
 });
 ```
 
 ### Prettier Configuration
+
 ```json
 {
   "plugins": ["prettier-plugin-astro"],
@@ -826,6 +920,8 @@ export default defineConfig({
 
 ## 📋 Development Commands
 
+### pnpm Scripts (MANDATORY)
+
 ```json
 {
   "scripts": {
@@ -840,24 +936,53 @@ export default defineConfig({
     "lint": "eslint . --ext .js,.ts,.astro --max-warnings 0",
     "format": "prettier --write \"src/**/*.{astro,js,ts,md,json}\"",
     "format:check": "prettier --check \"src/**/*.{astro,js,ts,md,json}\"",
-    "validate": "npm run check && npm run lint && npm run test:coverage"
+    "validate": "pnpm run check && pnpm run lint && pnpm run test:coverage"
   }
 }
 ```
 
+### pnpm Command Reference
+
+```bash
+# Development
+pnpm dev              # Start development server
+pnpm build            # Build for production
+pnpm preview          # Preview production build
+
+# Code Quality
+pnpm run check        # TypeScript and Astro validation
+pnpm run lint         # ESLint with zero warnings
+pnpm run format       # Format code with Prettier
+pnpm run validate     # Run all quality checks
+
+# Testing
+pnpm test             # Run tests
+pnpm run test:coverage # Run tests with coverage
+
+# Package Management
+pnpm install          # Install dependencies
+pnpm add package      # Add runtime dependency
+pnpm add -D package   # Add dev dependency
+pnpm update           # Update dependencies
+pnpm audit            # Security audit
+pnpm list             # List installed packages
+pnpm outdated         # Check for outdated packages
+```
+
 ## ⚠️ CRITICAL GUIDELINES (MUST FOLLOW ALL)
 
-1. **ENFORCE TypeScript strict mode** - Use `astro/tsconfigs/strict` template
-2. **VALIDATE all content with Zod** - Content collections MUST have schemas
-3. **MINIMUM 80% test coverage** - Use Vitest with Container API
-4. **MUST understand hydration strategy** - Use appropriate client directives
-5. **MAXIMUM 500 lines per file** - Split large components
-6. **MUST use semantic imports** - `import type` for type-only imports
-7. **MUST optimize images** - Use Astro's Image component
-8. **MUST validate environment variables** - Use astro:env for type safety
-9. **NEVER over-hydrate** - Default to static, hydrate only when needed
-10. **MUST use framework components sparingly** - Prefer Astro components for static content
-11. **MUST pass astro check** - Zero TypeScript errors required
+1. **MUST use pnpm** - Never use npm or yarn for package management
+2. **ENFORCE TypeScript strict mode** - Use `astro/tsconfigs/strict` template
+3. **VALIDATE all content with Zod** - Content collections MUST have schemas
+4. **MINIMUM 80% test coverage** - Use Vitest with Container API
+5. **MUST understand hydration strategy** - Use appropriate client directives
+6. **MAXIMUM 500 lines per file** - Split large components
+7. **MUST use semantic imports** - `import type` for type-only imports
+8. **MUST optimize images** - Use Astro's Image component
+9. **MUST validate environment variables** - Use astro:env for type safety
+10. **NEVER over-hydrate** - Default to static, hydrate only when needed
+11. **MUST use framework components sparingly** - Prefer Astro components for static content
+12. **MUST pass astro check** - Zero TypeScript errors required
 
 ## 📋 Pre-commit Checklist (MUST COMPLETE ALL)
 
@@ -877,6 +1002,8 @@ export default defineConfig({
 - [ ] SEO metadata properly configured
 
 ### FORBIDDEN Practices
+
+- **NEVER use npm or yarn** - MUST use pnpm for all package management
 - **NEVER use client:load** without justification - prefer client:visible or client:idle
 - **NEVER skip content validation** - all content MUST have Zod schemas
 - **NEVER ignore hydration impact** - understand JavaScript bundle size
@@ -887,9 +1014,10 @@ export default defineConfig({
 - **NEVER mix concerns** - separate static content from interactive islands
 - **NEVER use any type** - leverage Astro's built-in type safety
 - **NEVER ignore build warnings** - address all build and TypeScript issues
+- **NEVER use npx for regular commands** - use pnpm equivalents when available
 
 ---
 
-*This guide is optimized for Astro 5+ with Islands Architecture and modern web performance.*
-*Focus on minimal JavaScript, optimal hydration, and type-safe content management.*
-*Last updated: January 2025*
+_This guide is optimized for Astro 5+ with Islands Architecture and modern web performance._
+_Focus on minimal JavaScript, optimal hydration, and type-safe content management._
+_Last updated: January 2025_
