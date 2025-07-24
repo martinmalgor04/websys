@@ -443,6 +443,238 @@ When creating implementation PRPs, reference existing code patterns, documentati
 
 ---
 
+## All Available Commands - The Complete Toolbox 🧰
+
+### **Development Commands** 💻
+
+#### **🎯 /prime-core - Load Project Context**
+- **What they do:** Prime Claude with essential project knowledge by reading key files
+- **When to use:** Start of every conversation, after major changes
+- **Example:** `/prime-core`
+- **Result:** Claude understands your project structure and can work effectively
+
+#### **🚀 /onboarding - Create Developer Onboarding**
+- **What they do:** Generate comprehensive onboarding documentation for new developers
+- **When to use:** New team members join, documenting undocumented projects
+- **Example:** `/onboarding`
+- **Result:** Creates ONBOARDING.md and QUICKSTART.md with complete setup guides
+
+#### **💾 /smart-commit or /commit - Smart Git Commits**
+- **What they do:** Analyze changes and create properly formatted commit messages
+- **When to use:** Before committing code, when following commit conventions
+- **Example:** `/commit "fixing authentication bug"`
+- **Result:** Properly formatted commit with conventional commit style
+
+#### **🌿 /new-dev-branch - Create Development Branch**
+- **What they do:** Create a new git branch following team conventions
+- **When to use:** Starting new feature work, creating bugfix branches
+- **Example:** `/new-dev-branch feature/user-profile`
+- **Result:** New branch created with proper naming
+
+#### **🔍 /debug-RCA - Root Cause Analysis**
+- **What they do:** Systematic debugging to find root causes of issues
+- **When to use:** When facing complex bugs, mysterious errors
+- **Example:** `/debug-RCA "users can't login after password reset"`
+- **Result:** Detailed analysis with root cause and fix recommendations
+
+#### **🚀 /create-pr - Create Pull Request**
+- **What they do:** Generate comprehensive PR with description and testing notes
+- **When to use:** After feature completion, ready for code review
+- **Example:** `/create-pr`
+- **Result:** Well-documented PR ready for review
+
+---
+
+### **Code Quality Commands** 🎨
+
+#### **🔧 /refactor-simple - Quick Refactoring Analysis**
+- **What they do:** Scan code for refactoring opportunities (Python-focused)
+- **When to use:** Before merging, cleaning technical debt
+- **Example:** `/refactor-simple`
+- **Result:** Creates refactor_plan.md with prioritized improvements
+
+#### **👀 /review-general - Comprehensive Code Review**
+- **What they do:** Thorough review checking quality, security, performance
+- **When to use:** Before commits, PR reviews, code audits
+- **Example:** `/review-general src/features/authentication`
+- **Result:** Detailed review report in PRPs/code_reviews/
+
+#### **📊 /review-staged-unstaged - Review Git Changes**
+- **What they do:** Review specifically what's staged/unstaged in git
+- **When to use:** Pre-commit review, understanding current changes
+- **Example:** `/review-staged-unstaged`
+- **Result:** Analysis of current git status with recommendations
+
+---
+
+### **Git Operations Commands** 🔀
+
+#### **🛠️ /conflict-resolver-general - Basic Conflict Resolution**
+- **What they do:** Intelligently resolve git merge conflicts
+- **When to use:** After merge conflicts, during rebases
+- **Example:** `/conflict-resolver-general`
+- **Result:** Conflicts resolved with integrity maintained
+
+#### **🧠 /smart-resolver - Advanced Conflict Resolution**
+- **What they do:** Deep analysis conflict resolution with business logic understanding
+- **When to use:** Complex conflicts, critical business logic conflicts
+- **Example:** `/smart-resolver`
+- **Result:** Intelligent resolution with detailed documentation
+
+#### **🎯 /conflict-resolver-specific - Targeted Conflict Resolution**
+- **What they do:** Resolve conflicts in specific files only
+- **When to use:** When you only need to resolve certain files
+- **Example:** `/conflict-resolver-specific src/api/auth.ts`
+- **Result:** Targeted resolution of specified files
+
+---
+
+### **Rapid Development Commands** ⚡
+
+#### **🏃‍♂️ /hackathon-research - Multi-Option Analysis**
+- **What they do:** 15 parallel agents analyze 3 approaches for hackathon challenges
+- **When to use:** Hackathon start, evaluating multiple solutions
+- **Example:** `/hackathon-research "AI-powered code review tool"`
+- **Result:** Comprehensive analysis with best approach recommendation
+
+#### **🎯 /user-story-rapid - Quick User Story Creation**
+- **What they do:** Generate user stories with acceptance criteria rapidly
+- **When to use:** Sprint planning, feature definition
+- **Example:** `/user-story-rapid "user profile management"`
+- **Result:** Complete user stories ready for implementation
+
+#### **⚡ /parallel-prp-creation - Batch PRP Creation**
+- **What they do:** Create multiple PRPs simultaneously using parallel processing
+- **When to use:** Large feature sets, multiple related features
+- **Example:** `/parallel-prp-creation "e-commerce checkout flow"`
+- **Result:** Multiple coordinated PRPs created efficiently
+
+#### **🔍 /prp-analyze-run - Analyze and Execute PRPs**
+- **What they do:** Analyze existing PRPs and optionally execute them
+- **When to use:** Understanding PRP quality, batch execution
+- **Example:** `/prp-analyze-run`
+- **Result:** Analysis report and execution results
+
+#### **✅ /prp-validate - Validate PRP Quality**
+- **What they do:** Check PRPs against quality standards
+- **When to use:** Before execution, quality assurance
+- **Example:** `/prp-validate PRPs/user-auth.md`
+- **Result:** Validation report with improvement suggestions
+
+#### **🚀 /create-base-prp-parallel - Parallel Base PRP Creation**
+- **What they do:** Create comprehensive PRPs using parallel research
+- **When to use:** Complex features needing deep research
+- **Example:** `/create-base-prp-parallel "real-time collaboration"`
+- **Result:** Research-backed comprehensive PRP
+
+#### **📋 /create-planning-parallel - Parallel Planning Creation**
+- **What they do:** Create planning PRDs using parallel analysis
+- **When to use:** Initial feature planning, architecture design
+- **Example:** `/create-planning-parallel "mobile app backend"`
+- **Result:** Comprehensive PRD with multiple perspectives
+
+#### **🏁 /hackathon-prp-parallel - Hackathon-Optimized PRPs**
+- **What they do:** Create rapid implementation PRPs for hackathons
+- **When to use:** Time-constrained development, MVPs
+- **Example:** `/hackathon-prp-parallel "AI chatbot integration"`
+- **Result:** Streamlined PRP optimized for speed
+
+---
+
+### **TypeScript-Specific Commands** 📘
+
+#### **📐 /TS-create-base-prp - TypeScript PRP Creation**
+- **What they do:** Create PRPs optimized for TypeScript projects
+- **When to use:** TypeScript feature development
+- **Example:** `/TS-create-base-prp "type-safe API client"`
+- **Result:** TypeScript-focused implementation PRP
+
+#### **🔨 /TS-execute-base-prp - Execute TypeScript PRPs**
+- **What they do:** Execute PRPs with TypeScript-specific validation
+- **When to use:** Implementing TypeScript features
+- **Example:** `/TS-execute-base-prp PRPs/api-client.md`
+- **Result:** Type-safe implementation with full validation
+
+#### **👀 /TS-review-general - TypeScript Code Review**
+- **What they do:** Review with TypeScript best practices focus
+- **When to use:** TypeScript code reviews
+- **Example:** `/TS-review-general src/components`
+- **Result:** TS-specific review with type safety checks
+
+#### **📊 /TS-review-staged-unstaged - TypeScript Git Review**
+- **What they do:** Review staged/unstaged TS changes
+- **When to use:** Pre-commit TS reviews
+- **Example:** `/TS-review-staged-unstaged`
+- **Result:** TypeScript-focused change analysis
+
+---
+
+## Command Categories Quick Reference 📚
+
+### **For Starting Work:**
+- `/prime-core` - Load project context
+- `/onboarding` - Understand the project
+- `/new-dev-branch` - Create feature branch
+
+### **For Planning Features:**
+- `/prp-planning-create` - Comprehensive planning
+- `/hackathon-research` - Evaluate approaches
+- `/user-story-rapid` - Quick user stories
+
+### **For Implementation:**
+- `/prp-base-create` → `/prp-base-execute` - New features
+- `/prp-spec-create` → `/prp-spec-execute` - Modifications
+- `/prp-task-create` → `/prp-task-execute` - Small tasks
+
+### **For Code Quality:**
+- `/review-general` - Full code review
+- `/refactor-simple` - Find improvements
+- `/debug-RCA` - Fix complex bugs
+
+### **For Git Operations:**
+- `/smart-commit` - Create commits
+- `/conflict-resolver-general` - Resolve conflicts
+- `/create-pr` - Create pull requests
+
+### **For Rapid Development:**
+- `/hackathon-research` - Fast analysis
+- `/parallel-prp-creation` - Batch creation
+- `/task-list-init` - Quick task tracking
+
+---
+
+## Pro Tips for Command Usage 🎯
+
+### **🔄 Command Chaining**
+Many commands work better together:
+```bash
+/prime-core
+/prp-planning-create "feature description"
+/api-contract-define "using PRPs/feature-prd.md"
+/prp-base-create "using both previous files"
+/prp-base-execute PRPs/feature-implementation.md
+/smart-commit "feat: add new feature"
+/create-pr
+```
+
+### **⚡ Parallel Processing**
+Use parallel commands for speed:
+- Research phase: `/hackathon-research`
+- Planning phase: `/create-planning-parallel`
+- Implementation: `/create-base-prp-parallel`
+
+### **🎯 Context is Key**
+Always reference previous outputs:
+- Bad: `/prp-base-create "user auth"`
+- Good: `/prp-base-create "implement auth using PRPs/auth-prd.md and PRPs/contracts/auth-api.md"`
+
+### **🔍 Review Early and Often**
+- Use `/review-staged-unstaged` before every commit
+- Run `/refactor-simple` weekly for code health
+- Apply `/review-general` before PRs
+
+---
+
 ## Remember: You're the Architect, AI is Your Construction Crew 🏗️
 
 - **You decide WHAT to build** (the vision, requirements, business goals)
@@ -453,4 +685,4 @@ This isn't about replacing human creativity - it's about amplifying your ideas w
 
 ---
 
-**Ready to build something amazing? Start with `/prp-planning-create` and watch your ideas come to life!** ✨
+**Ready to build something amazing? Start with `/prime-core`, then `/prp-planning-create` and watch your ideas come to life!** ✨
