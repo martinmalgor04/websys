@@ -1,0 +1,42 @@
+---
+deployment:
+  tasks:
+    # Tarea principal de despliegue - AMBIENTE DE PRUEBAS
+    - export DEPLOYPATH=/home/serviciosysistem/pruebagit
+    
+    # Crear directorios necesarios si no existen
+    - /bin/mkdir -p $DEPLOYPATH/assets
+    - /bin/mkdir -p $DEPLOYPATH/config
+    - /bin/mkdir -p $DEPLOYPATH/includes
+    - /bin/mkdir -p $DEPLOYPATH/templates
+    
+    # Copiar archivos del sitio web (webSyS/)
+    - /bin/cp -R webSyS/* $DEPLOYPATH/
+    
+    # Establecer permisos correctos
+    - /bin/chmod 755 $DEPLOYPATH
+    - /bin/chmod -R 755 $DEPLOYPATH/assets
+    - /bin/chmod -R 755 $DEPLOYPATH/includes
+    - /bin/chmod -R 755 $DEPLOYPATH/templates
+    - /bin/chmod 644 $DEPLOYPATH/*.php
+    - /bin/chmod 644 $DEPLOYPATH/*.html
+    
+    # Permisos especiales para archivos de configuración
+    - /bin/chmod 640 $DEPLOYPATH/config/config.php
+    
+    # Asegurar que .htaccess tenga los permisos correctos
+    - /bin/chmod 644 $DEPLOYPATH/.htaccess
+    
+    # Crear directorio de logs si es necesario
+    - /bin/mkdir -p $DEPLOYPATH/logs
+    - /bin/chmod 755 $DEPLOYPATH/logs
+    
+    # Opcional: Limpiar archivos temporales o de desarrollo
+    - /bin/rm -f $DEPLOYPATH/*.md
+    - /bin/rm -f $DEPLOYPATH/.DS_Store
+    - /bin/rm -rf $DEPLOYPATH/.git
+    - /bin/rm -rf $DEPLOYPATH/.claude
+    
+    # Opcional: Crear archivo de versión con timestamp
+    - echo "Deployed on $(date)" > $DEPLOYPATH/version.txt
+    - /bin/chmod 644 $DEPLOYPATH/version.txt
