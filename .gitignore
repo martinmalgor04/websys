@@ -13,8 +13,9 @@ pyproject.toml
 
 .env
 
-.claude/agents
+.claude/
 claude_md_files/
 PRPs/
 CLAUDE.md
 README-for-DUMMIES.md
+README.md
