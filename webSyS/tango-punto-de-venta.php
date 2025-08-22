@@ -1,7 +1,7 @@
 <?php
 /**
  * Página de Tango Punto de Venta - Refactorizada para usar template unificado
- * Color oficial: #3FAE2A (Pantone 361 C)
+ * Color oficial: #00A8E1 
  * Incluye documentación en español y uso de constantes centralizadas
  */
 
@@ -80,7 +80,7 @@ $vende_online_content = ob_get_clean();
 // Sección Mercado Pago
 ob_start();
 ?>
-<section class="position-relative" style="background: linear-gradient(135deg, #3FAE2A 0%, #2E8B20 100%);">
+<section class="position-relative" style="background: linear-gradient(135deg, #00A8E1 0%,rgb(0, 136, 181) 100%);">
     <div class="container position-relative py-9 py-lg-11">
         <div class="row align-items-center">
             <div class="col-lg-7 text-white mb-5 mb-lg-0" data-aos="fade-right">
@@ -159,7 +159,7 @@ ob_start();
             </div>
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                 <div class="position-relative">
-                    <img src="assets/img/productos/tango-punto-de-venta/Dispositivos desde cPanel.png" alt="Facturador Touchscreen" class="img-fluid rounded-3 shadow-lg">
+                    <img src="assets/img/productos/tango-punto-de-venta/screenshots/Dispositivos desde cPanel.png" alt="Facturador Touchscreen" class="img-fluid rounded-3 shadow-lg">
                 </div>
             </div>
         </div>
@@ -167,12 +167,6 @@ ob_start();
 </section>
 <?php
 $touchscreen_content = ob_get_clean();
-
-// Incluir componente de conectividad
-ob_start();
-require_once('includes/components/card-hover-2.php');
-renderConnectivitySection();
-$connectivity_content = ob_get_clean();
 
 // Incluir Tango Reportes específico para Punto de Venta
 ob_start();
@@ -214,12 +208,18 @@ ob_start();
 <?php
 $reportes_content = ob_get_clean();
 
+// Incluir componente de conectividad
+ob_start();
+require_once('includes/components/card-hover-2.php');
+renderConnectivitySection();
+$connectivity_content = ob_get_clean();
+
 // Contenido HTML personalizado adicional
 $custom_content = $vende_online_content . 
                  $mercado_pago_content . 
                  $touchscreen_content . 
-                 $connectivity_content . 
-                 $reportes_content;
+                 $reportes_content.            
+                 $connectivity_content; 
 
 // FAQ específico para Punto de Venta
 $faq_title = "PREGUNTAS FRECUENTES - TANGO PUNTO DE VENTA";

@@ -31,7 +31,7 @@ function renderNavigationProducts($currentProduct = null, $title = "Conoce nuest
                     <div data-aos="fade-up" data-aos-delay="150">
                         <?php foreach ($products as $slug => $product): ?>
                             <?php if ($slug !== $currentProduct): ?>
-                            <a href="<?= htmlspecialchars($slug) ?>.php" class="btn btn-lg btn-outline-primary hover-lift rounded-pill me-3 mb-3">
+                            <a href="<?= htmlspecialchars($slug) ?>" class="btn btn-lg btn-outline-primary hover-lift rounded-pill me-3 mb-3">
                                 <span><?= htmlspecialchars($product['name']) ?></span>
                             </a>
                             <?php endif; ?>
@@ -70,6 +70,10 @@ function renderTangoProductsNavigation($currentProduct = null) {
         'tango-capital-humano' => [
             'name' => 'Tango Capital Humano',
             'slug' => 'tango-capital-humano'
+        ],
+        'tango-delta' => [
+            'name' => 'Tango Delta 5',
+            'slug' => 'tango-delta'
         ]
     ];
     
@@ -120,7 +124,7 @@ function renderProductsNavigationWithCTA($currentProduct = null, $ctaText = "Ver
                             if ($slug !== $currentProduct && $count < 4): // Mostrar máximo 4 productos
                                 $count++;
                         ?>
-                        <a href="<?= htmlspecialchars($slug) ?>.php" class="btn btn-lg btn-outline-primary hover-lift rounded-pill me-3 mb-3">
+                        <a href="<?= htmlspecialchars($slug) ?>" class="btn btn-lg btn-outline-primary hover-lift rounded-pill me-3 mb-3">
                             <span><?= htmlspecialchars($product['name']) ?></span>
                         </a>
                         <?php 

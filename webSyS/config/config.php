@@ -37,7 +37,7 @@ $tango_products = [
     'punto-venta' => [
         'name' => 'Tango Punto de Venta',
         'slug' => 'tango-punto-de-venta',
-        'color' => '#3FAE2A',
+        'color' => '#00A8E1',
         'logo' => 'LogoPDV.png',
         'icon' => 'icon-Shopping-Cart',
         'short_desc' => 'Tango Punto de Venta administra todas las necesidades de tu negocio. Te ayuda a decidir. Te ayuda a vender. Podés tener información centralizada y por sucursal.',
@@ -64,11 +64,21 @@ $tango_products = [
     'capital-humano' => [
         'name' => 'Tango Capital Humano',
         'slug' => 'tango-capital-humano',
-        'color' => '#28A745',
+        'color' => '#00A8E1',
         'logo' => 'tangocaphumano.png',
         'icon' => 'icon-Users',
         'short_desc' => 'Sistema integral de gestión de recursos humanos. Administra personal, sueldos, capacitación y evaluación de desempeño.',
         'meta_desc' => 'Tango Capital Humano - Software de RRHH integral. Gestión completa de recursos humanos.'
+    ],
+    'delta' => [
+        'name' => 'Tango Delta 5',
+        'slug' => 'tango-delta',
+        'color' => '#2563eb',
+        'logo' => 'Logo Tango Delta 4.svg',
+        'icon' => 'icon-Technology',
+        'short_desc' => 'La nueva versión de Tango ofrece una plataforma personalizable, abierta y conectada, diseñada para acompañar la transformación digital de tu negocio con inteligencia artificial integrada.',
+        'meta_desc' => 'Tango Delta 5 - La nueva generación de software empresarial con IA integrada. Transformación digital para tu negocio.',
+        'features' => ['Inteligencia Artificial', 'API Abierta', 'Personalización Total', 'Conectividad Avanzada']
     ]
 ];
 

@@ -121,7 +121,7 @@ include('includes/head.php');
                         <div class="col-xl-2 col-lg-4 col-md-6 col-10 text-center mb-4" data-aos="fade-up" data-aos-delay="150">
 							<div style="background-color:#F47D30;" class="card card-body py-5 px-4 border-0 shadow-lg hover-lift hover-shadow-xl">
                                 <div class="mb-4 mx-auto width-15x height-15x flex-center position-relative">
-									<img src="assets/img/productos/tango-estudios-contables/LogoEC.png"  class="img-fluid">
+									<img src="assets/img/productos/tango-estudios-contables/logo_ec-blanco01.png"  class="img-fluid">
 								</div>
 								<div class="d-flex align-items-center mb-3 justify-content-center">
 									<a href="tango-estudios-contables.php" class="btn btn-white btn-sm mr-3 me-3">ENTRAR</a>

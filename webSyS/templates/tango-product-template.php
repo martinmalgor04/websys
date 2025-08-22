@@ -71,7 +71,7 @@ include('includes/head.php');
                              title="<?= $product['name'] ?>" 
                              alt="<?= $product['name'] ?>" 
                              class="img-fluid mx-auto" 
-                             style="max-height: 150px;">
+                             style="max-height: 270px;">
                     </div>
                 </div>
             </div>
@@ -99,9 +99,7 @@ include('includes/head.php');
     </section>
     <!--end: Introducción -->
     
-    <?php if (isset($custom_content)): ?>
-        <?= $custom_content ?>
-    <?php endif; ?>
+
     
     <?php if (isset($modules) && count($modules) > 0): ?>
     <!--begin: Módulos -->
@@ -134,11 +132,16 @@ include('includes/head.php');
     </section>
     <!--end: Módulos -->
     <?php endif; ?>
-    
+
+
+    <?php if (isset($custom_content)): ?>
+        <?= $custom_content ?>
+    <?php endif; ?> 
+
     <?php if (isset($partners_after_modules)): ?>
         <?= $partners_after_modules ?>
     <?php endif; ?>
-    
+
     <?php if (isset($faq_items) && count($faq_items) > 0): ?>
         <?php 
         // Configurar FAQ
@@ -147,7 +150,7 @@ include('includes/head.php');
         include('includes/faq-template.php');
         ?>
     <?php endif; ?>
-    
+
     <!--begin: Navegación productos -->
     <section class="position-relative border-bottom overflow-hidden" style="background-color: #E3F2FD">
         <div class="container py-9 py-lg-11 position-relative">
