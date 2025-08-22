@@ -1,4 +1,8 @@
 ---
 deployment:
   tasks:
-    - /bin/echo "deploy ok $(/bin/date)" > /home/serviciosysistem/pruebagit.serviciosysistemas.com.ar/deploy.txt
+    - export SRCDIR=$PWD/webSyS
+    - export DEPLOYPATH=/home/serviciosysistem/public_html/pruebagit
+    - /bin/mkdir -p "$DEPLOYPATH"
+    - /bin/cp -R "$SRCDIR"/* "$DEPLOYPATH"/
+    - /bin/echo "Deployed on $(/bin/date)" > "$DEPLOYPATH"/version.txt
