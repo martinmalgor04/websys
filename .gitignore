@@ -5,6 +5,8 @@ build/
 dist/
 wheels/
 *.egg-info
+pyproject.toml
+.python-version
 
 # Virtual environments
 .venv
@@ -12,3 +14,7 @@ wheels/
 .env
 
 .claude/agents
+claude_md_files/
+PRPs/
+CLAUDE.md
+README-for-DUMMIES.md
