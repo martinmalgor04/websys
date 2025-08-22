@@ -1,0 +1,12 @@
+---
+deployment:
+  tasks:
+    - export SRCDIR=$PWD/webSyS
+    - export DEPLOYPATH=/home/serviciosysistem/pruebagit.serviciosysistemas.com.ar
+    - /bin/mkdir -p "$DEPLOYPATH"
+    - /usr/bin/rsync -av --delete \
+        --exclude ".git" \
+        --exclude ".gitignore" \
+        --exclude "node_modules" \
+        "$SRCDIR"/ "$DEPLOYPATH"/
+    - /bin/echo "Deployed $(/bin/date)" > "$DEPLOYPATH"/version.txt
