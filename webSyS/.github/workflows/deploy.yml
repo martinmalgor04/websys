@@ -1,0 +1,59 @@
+name: Deploy to cPanel
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js (si es necesario)
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Deploy to cPanel via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: /public_html/
+        local-dir: ./
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          .env
+          **/.DS_Store
+          **/Thumbs.db
+          **/*.backup
+          **/*.log
+          .github/**
+          README.md
+          .gitignore
+          .cpanel.yml
+          ecommerce/**
+          php/**
+          Mpago/**
+          sysdesk/**
+          soporte/**
+          pruebagit/**
+          phpspreadsheet/**
+          pdfclientes/**
+          pdfproveedores/**
+          photos/**
+          fondos/**
+          mpdf/**
+          private/logs/*
+          validate-security.php
+          SEGURIDAD.md
+          error_log
+          .well-known/**
+          .htpasswd

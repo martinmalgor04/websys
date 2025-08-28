@@ -1,0 +1,140 @@
+# Configuración de codificación
+AddDefaultCharset UTF-8
+
+# Habilitar motor de reescritura
+RewriteEngine on
+
+# Regla para URLs amigables (ocultar .php)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# Páginas de error personalizadas
+ErrorDocument 400 /error.php
+ErrorDocument 401 /error.php
+ErrorDocument 403 /403.php
+ErrorDocument 404 /404.php
+ErrorDocument 500 /500.php
+
+# Configuración de seguridad
+<Files ~ "\.(htaccess|htpasswd)$">
+    deny from all
+</Files>
+
+<Files ~ "\.(log|txt|md)$">
+    deny from all
+</Files>
+
+# Proteger archivos de configuración
+<Files ~ "config\.php$">
+    deny from all
+</Files>
+
+# Configuración de CGI (comentada por seguridad)
+<Files ~ (\.cgi)>
+    #Options +ExecCGI +FollowSymLinks +SymLinksIfOwnerMatch
+</Files>
+
+# Compresión GZIP
+<IfModule mod_gzip.c>
+    mod_gzip_on Yes
+    mod_gzip_item_include file \.html$
+    mod_gzip_item_include file \.php$
+    mod_gzip_item_include file \.css$
+    mod_gzip_item_include file \.js$
+    mod_gzip_item_include mime ^application/javascript$
+    mod_gzip_item_include mime ^application/x-javascript$
+    mod_gzip_item_include mime ^text/.*
+    mod_gzip_item_include handler ^application/x-httpd-php
+    mod_gzip_item_exclude mime ^image/.*
+</IfModule>
+
+# Compresión Deflate (alternativa a GZIP)
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/xml text/css text/plain
+    AddOutputFilterByType DEFLATE image/svg+xml application/xhtml+xml application/xml
+    AddOutputFilterByType DEFLATE application/rdf+xml application/rss+xml application/atom+xml
+    AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript application/json
+    AddOutputFilterByType DEFLATE application/x-font-ttf application/x-font-otf
+    AddOutputFilterByType DEFLATE font/truetype font/opentype
+</IfModule>
+
+# Configuración de cache
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 5 seconds"
+    
+    # Imágenes
+    ExpiresByType image/x-icon "access plus 2592000 seconds"
+    ExpiresByType image/jpeg "access plus 2592000 seconds"
+    ExpiresByType image/png "access plus 2592000 seconds"
+    ExpiresByType image/gif "access plus 2592000 seconds"
+    ExpiresByType image/webp "access plus 2592000 seconds"
+    ExpiresByType image/svg+xml "access plus 2592000 seconds"
+    
+    # Flash
+    ExpiresByType application/x-shockwave-flash "access plus 2592000 seconds"
+    
+    # CSS y JavaScript
+    ExpiresByType text/css "access plus 604800 seconds"
+    ExpiresByType text/javascript "access plus 216000 seconds"
+    ExpiresByType application/javascript "access plus 216000 seconds"
+    ExpiresByType application/x-javascript "access plus 216000 seconds"
+    
+    # HTML
+    ExpiresByType text/html "access plus 600 seconds"
+    ExpiresByType application/xhtml+xml "access plus 600 seconds"
+    
+    # Fuentes
+    ExpiresByType font/ttf "access plus 2592000 seconds"
+    ExpiresByType font/otf "access plus 2592000 seconds"
+    ExpiresByType font/woff "access plus 2592000 seconds"
+    ExpiresByType font/woff2 "access plus 2592000 seconds"
+</IfModule>
+
+# Headers de cache
+<IfModule mod_headers.c>
+    # Imágenes
+    <FilesMatch "\.(ico|jpe?g|png|gif|webp|svg)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+    
+    # CSS
+    <FilesMatch "\.(css)$">
+        Header set Cache-Control "public, max-age=604800"
+    </FilesMatch>
+    
+    # JavaScript
+    <FilesMatch "\.(js)$">
+        Header set Cache-Control "private, max-age=216000"
+    </FilesMatch>
+    
+    # HTML y PHP
+    <FilesMatch "\.(x?html?|php)$">
+        Header set Cache-Control "private, must-revalidate, max-age=600"
+    </FilesMatch>
+    
+    # Fuentes
+    <FilesMatch "\.(ttf|otf|woff|woff2)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+    
+    # Headers de seguridad
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Deshabilitar ETags para mejor rendimiento
+FileETag None
+
+# Configuración adicional de seguridad
+<IfModule mod_rewrite.c>
+    # Bloquear acceso a archivos sensibles
+    RewriteRule ^(config|includes|templates)/.*$ - [F,L]
+    
+    # Forzar HTTPS (descomentar cuando tengas SSL)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule> 

@@ -1,0 +1,87 @@
+/**
+ * Estilos específicos para la página Tango Delta 5
+ * Servicios y Sistemas SRL
+ */
+
+/* Sección hero principal de Delta */
+.hero-delta-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Overlay de fondo para el hero */
+.hero-background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+/* Contenedor principal del hero con z-index superior */
+.hero-delta-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Título principal del hero con efectos de texto */
+.hero-title {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    line-height: 1.1;
+    color: #ffffff !important;
+}
+
+/* Subtítulo del hero con efectos suaves */
+.hero-subtitle {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Contenedor del elemento visual del hero */
+.hero-visual-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+/* Contenedor del logo del hero */
+.hero-logo-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Logo del hero con efectos y transiciones */
+.hero-logo {
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.3));
+    transition: all 0.3s ease;
+}
+
+/* Efectos hover para el logo del hero */
+.hero-logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.5));
+}
+
+/* Estilos responsive para dispositivos móviles */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+    
+    .hero-delta-section {
+        text-align: center;
+    }
+    
+    .hero-visual-container {
+        min-height: 300px;
+        margin-top: 2rem;
+    }
+}

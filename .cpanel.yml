@@ -2,7 +2,11 @@
 deployment:
   tasks:
     - export SRCDIR=$PWD/webSyS
-    - export DEPLOYPATH=/home/serviciosysistem/public_html/pruebagit
+    - export DEPLOYPATH=/home/serviciosysistem/public_html
     - /bin/mkdir -p "$DEPLOYPATH"
-    - /bin/cp -R "$SRCDIR"/* "$DEPLOYPATH"/
+    
+    # Copiar archivos del sitio web EXCLUYENDO carpetas del e-commerce
+    - /bin/rsync -av --exclude='ecommerce/' --exclude='php/' --exclude='Mpago/' --exclude='sysdesk/' --exclude='soporte/' --exclude='pruebagit/' --exclude='phpspreadsheet/' --exclude='pdfclientes/' --exclude='pdfproveedores/' --exclude='photos/' --exclude='fondos/' --exclude='mpdf/' --exclude='private/logs/*' --exclude='.git*' --exclude='*.backup' --exclude='error_log' --exclude='.well-known/' "$SRCDIR"/ "$DEPLOYPATH"/
+    
+    # Verificar deploy
     - /bin/echo "Deployed on $(/bin/date)" > "$DEPLOYPATH"/version.txt

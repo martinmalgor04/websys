@@ -1,0 +1,3 @@
+# Acceso denegado por seguridad
+Deny from all
+Options -Indexes

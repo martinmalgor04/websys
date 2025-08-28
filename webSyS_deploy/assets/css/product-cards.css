@@ -1,0 +1,264 @@
+/* ===================================
+   PRODUCT CARDS - THEME AWARE STYLING
+   =================================== */
+
+/* CSS Custom Properties para cada producto */
+:root {
+    /* Tango Gestión */
+    --tango-gestion-primary: #00A8E1;
+    --tango-gestion-secondary: #0098d1;
+    
+    /* Tango Punto de Venta */
+    --tango-punto-venta-primary: #00A8E1;
+    --tango-punto-venta-secondary: #0098d1;
+    
+    /* Tango Estudios Contables */
+    --tango-estudios-contables-primary: #F47D30;
+    --tango-estudios-contables-secondary: #e66a1a;
+    
+    /* Tango Restô */
+    --tango-resto-primary: #E31937;
+    --tango-resto-secondary: #c41230;
+    
+    /* Tango Capital Humano */
+    --tango-capital-humano-primary: #00A8E1;
+    --tango-capital-humano-secondary: #0098d1;
+    
+    /* Tango Delta */
+    --tango-delta-primary: #1e40af;
+    --tango-delta-secondary: #1e293b;
+}
+
+/* Dark theme variables */
+[data-bs-theme=dark] {
+    --tango-gestion-primary: #00A8E1;
+    --tango-gestion-secondary: #0098d1;
+    
+    --tango-punto-venta-primary: #00A8E1;
+    --tango-punto-venta-secondary: #0098d1;
+    
+    --tango-estudios-contables-primary: #F47D30;
+    --tango-estudios-contables-secondary: #e66a1a;
+    
+    --tango-resto-primary: #E31937;
+    --tango-resto-secondary: #c41230;
+    
+    --tango-capital-humano-primary: #00A8E1;
+    --tango-capital-humano-secondary: #0098d1;
+    
+    --tango-delta-primary: #3b82f6;
+    --tango-delta-secondary: #1e293b;
+}
+
+/* Product card theme classes */
+.product-card-gestion {
+    background: linear-gradient(135deg, var(--tango-gestion-primary), var(--tango-gestion-secondary));
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.product-card-punto-venta {
+    background: linear-gradient(135deg, var(--tango-punto-venta-primary), var(--tango-punto-venta-secondary));
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.product-card-estudios-contables {
+    background: linear-gradient(135deg, var(--tango-estudios-contables-primary), var(--tango-estudios-contables-secondary));
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.product-card-resto {
+    background: linear-gradient(135deg, var(--tango-resto-primary), var(--tango-resto-secondary));
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.product-card-capital-humano {
+    background: linear-gradient(135deg, var(--tango-capital-humano-primary), var(--tango-capital-humano-secondary));
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.product-card-delta {
+    background: linear-gradient(135deg, var(--tango-delta-primary), var(--tango-delta-secondary));
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+/* Dark mode overrides - mantener colores distintivos */
+[data-bs-theme=dark] .product-card-gestion {
+    background: linear-gradient(135deg, var(--tango-gestion-primary), var(--tango-gestion-secondary)) !important;
+    color: white !important;
+    border: 1px solid var(--bs-border-color);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+[data-bs-theme=dark] .product-card-punto-venta {
+    background: linear-gradient(135deg, var(--tango-punto-venta-primary), var(--tango-punto-venta-secondary)) !important;
+    color: white !important;
+    border: 1px solid var(--bs-border-color);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+[data-bs-theme=dark] .product-card-estudios-contables {
+    background: linear-gradient(135deg, var(--tango-estudios-contables-primary), var(--tango-estudios-contables-secondary)) !important;
+    color: white !important;
+    border: 1px solid var(--bs-border-color);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+[data-bs-theme=dark] .product-card-resto {
+    background: linear-gradient(135deg, var(--tango-resto-primary), var(--tango-resto-secondary)) !important;
+    color: white !important;
+    border: 1px solid var(--bs-border-color);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+[data-bs-theme=dark] .product-card-capital-humano {
+    background: linear-gradient(135deg, var(--tango-capital-humano-primary), var(--tango-capital-humano-secondary)) !important;
+    color: white !important;
+    border: 1px solid var(--bs-border-color);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+[data-bs-theme=dark] .product-card-delta {
+    background: linear-gradient(135deg, var(--tango-delta-primary), var(--tango-delta-secondary)) !important;
+    color: white !important;
+    border: 1px solid var(--bs-border-color);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* Logo theme switching */
+.logo-light {
+    display: block;
+}
+
+.logo-dark {
+    display: none;
+}
+
+[data-bs-theme=dark] .logo-light {
+    display: none;
+}
+
+[data-bs-theme=dark] .logo-dark {
+    display: block;
+}
+
+/* Fallback para logos sin versión blanca */
+[data-bs-theme=dark] .product-card-punto-venta .logo-light,
+[data-bs-theme=dark] .product-card-resto .logo-light,
+[data-bs-theme=dark] .product-card-capital-humano .logo-light {
+    display: block !important;
+    filter: brightness(0) invert(1) !important; /* Convertir a blanco */
+}
+
+[data-bs-theme=dark] .product-card-punto-venta .logo-dark,
+[data-bs-theme=dark] .product-card-resto .logo-dark,
+[data-bs-theme=dark] .product-card-capital-humano .logo-dark {
+    display: none !important;
+}
+
+/* Hover effects for both themes */
+.product-card-gestion:hover,
+.product-card-punto-venta:hover,
+.product-card-estudios-contables:hover,
+.product-card-resto:hover,
+.product-card-capital-humano:hover,
+.product-card-delta:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+[data-bs-theme=dark] .product-card-gestion:hover,
+[data-bs-theme=dark] .product-card-punto-venta:hover,
+[data-bs-theme=dark] .product-card-estudios-contables:hover,
+[data-bs-theme=dark] .product-card-resto:hover,
+[data-bs-theme=dark] .product-card-capital-humano:hover,
+[data-bs-theme=dark] .product-card-delta:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 1rem 3rem rgba(255, 255, 255, 0.175);
+}
+
+/* Focus states for accessibility */
+.product-card-gestion:focus,
+.product-card-punto-venta:focus,
+.product-card-estudios-contables:focus,
+.product-card-resto:focus,
+.product-card-capital-humano:focus,
+.product-card-delta:focus {
+    outline: 2px solid var(--bs-primary);
+    outline-offset: 2px;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .product-card-gestion,
+    .product-card-punto-venta,
+    .product-card-estudios-contables,
+    .product-card-resto,
+    .product-card-capital-humano,
+    .product-card-delta {
+        min-height: 300px !important;
+        margin-bottom: 2rem !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    .product-card-gestion .card-body,
+    .product-card-punto-venta .card-body,
+    .product-card-estudios-contables .card-body,
+    .product-card-resto .card-body,
+    .product-card-capital-humano .card-body,
+    .product-card-delta .card-body {
+        padding: 1.5rem !important;
+    }
+}
+
+/* Asegurar centrado en todos los breakpoints */
+.product-card-gestion,
+.product-card-punto-venta,
+.product-card-estudios-contables,
+.product-card-resto,
+.product-card-capital-humano,
+.product-card-delta {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+/* Centrado específico para elementos internos */
+.product-card-gestion .card-body,
+.product-card-punto-venta .card-body,
+.product-card-estudios-contables .card-body,
+.product-card-resto .card-body,
+.product-card-capital-humano .card-body,
+.product-card-delta .card-body {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .product-card-gestion,
+    .product-card-punto-venta,
+    .product-card-estudios-contables,
+    .product-card-resto,
+    .product-card-capital-humano,
+    .product-card-delta {
+        border: 2px solid currentColor;
+    }
+}
