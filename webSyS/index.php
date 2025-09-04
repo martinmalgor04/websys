@@ -150,7 +150,7 @@ include('includes/head.php');
                             <div class="position-relative bg-light rounded-3 p-4" style="min-height: 400px;">
                                 <!-- Placeholder para imagen/video -->
                                 <div class="d-flex align-items-center justify-content-center h-100 text-muted">
-                                <img src="assets/img/about.png" alt="Equipo de Servicios y Sistemas" style="width:600px;">
+                                <img src="assets/img/about.png" alt="Equipo de Servicios y Sistemas" style="width:500px;">
                                 </div>
                             </div>
                         </div>
