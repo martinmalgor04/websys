@@ -71,17 +71,264 @@
 
 /* Estilos responsive para dispositivos móviles */
 @media (max-width: 768px) {
-    .hero-title {
-        font-size: 2.5rem;
+    /* Hero Section Mobile */
+    .hero-delta-section {
+        min-height: 100vh;
         text-align: center;
+        padding-top: 100px;
+        padding-bottom: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
-    .hero-delta-section {
+    .hero-title {
+        font-size: 2.2rem !important;
         text-align: center;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        margin-top: 0;
+    }
+    
+    .hero-title br {
+        display: none;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
     }
     
     .hero-visual-container {
-        min-height: 300px;
+        min-height: 220px;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-logo {
+        max-height: 150px !important;
+    }
+    
+    /* AI Section Mobile */
+    .display-4 {
+        font-size: 2rem !important;
+    }
+    
+    .lead {
+        font-size: 1rem;
+        text-align: center;
+    }
+    
+    /* Funcionalidades cards mobile */
+    .bg-white.rounded-4 {
+        padding: 2rem !important;
+        margin-bottom: 1.5rem;
+    }
+    
+    .icon-box {
+        width: 50px !important;
+        height: 50px !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .icon-box i {
+        font-size: 1.2rem !important;
+    }
+    
+    /* CTA Section Mobile */
+    .btn-lg {
+        padding: 0.75rem 2rem;
+        font-size: 1rem;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .d-flex.flex-column.flex-sm-row {
+        flex-direction: column !important;
+    }
+    
+    /* Navigation buttons mobile */
+    .btn-outline-primary {
+        margin: 0.25rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Spacing adjustments */
+    .py-9 {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+    
+    .py-lg-11 {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+    
+    .py-0 {
+        padding-top: 4rem !important;
+        padding-bottom: 3rem !important;
+    }
+    
+    .mb-5 {
+        margin-bottom: 2rem !important;
+    }
+    
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+/* Estilos para dispositivos muy pequeños (hasta 480px) */
+@media (max-width: 480px) {
+    .hero-delta-section {
+        padding-top: 90px;
+        padding-bottom: 40px;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem !important;
+        margin-bottom: 1.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        padding: 0 0.5rem;
+        margin-bottom: 1.8rem;
+    }
+    
+    .hero-visual-container {
+        min-height: 180px;
+        margin-top: 1.2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-logo {
+        max-height: 120px !important;
+    }
+    
+    .bg-white.rounded-4 {
+        padding: 1.5rem !important;
+    }
+    
+    .display-4 {
+        font-size: 1.75rem !important;
+    }
+    
+    .display-5 {
+        font-size: 1.5rem !important;
+    }
+    
+    .py-0 {
+        padding-top: 3rem !important;
+        padding-bottom: 2.5rem !important;
+    }
+    
+    .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+}
+
+/* Mejoras para tablets (769px - 992px) */
+@media (min-width: 769px) and (max-width: 992px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .hero-visual-container {
+        min-height: 350px;
+    }
+    
+    .bg-white.rounded-4 {
+        padding: 3rem !important;
+    }
+}
+
+/* Mejoras adicionales para mobile */
+@media (max-width: 768px) {
+    /* Mejorar legibilidad del texto en mobile */
+    .text-white-75 {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+    
+    /* Ajustar el contenedor del hero en mobile */
+    .hero-delta-section .col-lg-6 {
+        margin-bottom: 2rem;
+    }
+    
+    /* Mejorar espaciado en sección de IA */
+    .bg-light.rounded-4 {
+        padding: 2rem !important;
         margin-top: 2rem;
+    }
+    
+    /* Ajustar grid de funcionalidades */
+    .row.g-5 {
+        gap: 1.5rem !important;
+    }
+    
+    /* Mejorar botones de navegación de productos */
+    .btn-outline-primary.hover-lift {
+        margin-bottom: 0.75rem;
+        border-radius: 25px;
+        font-weight: 500;
+    }
+    
+    /* Ajustar títulos de sección */
+    h2.display-4, h2.display-5 {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    
+    /* Mejorar el CTA final */
+    .position-relative.py-9.py-lg-11 {
+        padding: 3rem 0 !important;
+    }
+    
+    .col-xl-8 {
+        padding: 0 1rem;
+    }
+    
+    /* Ajustar imagen del logo en CTA */
+    .d-flex.justify-content-center.mb-4 img {
+        max-height: 60px !important;
+    }
+}
+
+/* Optimizaciones específicas para pantallas muy anchas en mobile (landscape) */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero-delta-section {
+        min-height: 100vh;
+        padding-top: 70px;
+        padding-bottom: 30px;
+        align-items: center;
+    }
+    
+    .hero-title {
+        font-size: 1.9rem !important;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-subtitle {
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-visual-container {
+        min-height: 160px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-logo {
+        max-height: 100px !important;
     }
 }

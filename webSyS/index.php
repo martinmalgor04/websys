@@ -69,45 +69,45 @@ include('includes/head.php');
             <!--begin: Datacenter Section -->
             <section class="position-relative overflow-hidden" style="background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);">
                 <div class="container position-relative py-9 py-lg-11">
-                    <div class="row align-items-center">
-                        <div class="col-lg-7 text-white mb-5 mb-lg-0" data-aos="fade-right">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 text-center text-white mb-5 mb-lg-0" data-aos="fade-up">
                             <h2 class="display-4 fw-bold mb-4">SERVICIOS DE DATACENTER</h2>
                             <p class="lead mb-5">
                                 Alojá tu servidor en nuestra infraestructura de alta disponibilidad y olvidate de los problemas técnicos. 
                                 Seguridad 24/7, respaldo continuo y soporte especializado para tu empresa.
                             </p>
                             
-                            <div class="row mb-5">
-                                <div class="col-md-6 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <i class="bx bx-shield-quarter fs-2 me-3 text-white"></i>
+                            <div class="row justify-content-center mb-5">
+                                <div class="col-md-5 col-lg-4 mb-3 text-center">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <i class="bx bx-shield-quarter fs-1 mb-3 text-white"></i>
                                         <div>
                                             <h6 class="mb-1 text-white">Máxima Seguridad</h6>
                                             <small class="text-white-50">Protección avanzada 24/7</small>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <i class="bx bx-server fs-2 me-3 text-white"></i>
+                                <div class="col-md-5 col-lg-4 mb-3 text-center">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <i class="bx bx-server fs-1 mb-3 text-white"></i>
                                         <div>
                                             <h6 class="mb-1 text-white">Alta Disponibilidad</h6>
                                             <small class="text-white-50">99.9% uptime garantizado</small>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <i class="bx bx-support fs-2 me-3 text-white"></i>
+                                <div class="col-md-5 col-lg-4 mb-3 text-center">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <i class="bx bx-support fs-1 mb-3 text-white"></i>
                                         <div>
                                             <h6 class="mb-1 text-white">Soporte Experto</h6>
                                             <small class="text-white-50">Asistencia especializada</small>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <i class="bx bx-dollar-circle fs-2 me-3 text-white"></i>
+                                <div class="col-md-5 col-lg-4 mb-3 text-center">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <i class="bx bx-dollar-circle fs-1 mb-3 text-white"></i>
                                         <div>
                                             <h6 class="mb-1 text-white">Ahorro de Costos</h6>
                                             <small class="text-white-50">Sin inversión en equipos</small>
@@ -116,18 +116,10 @@ include('includes/head.php');
                                 </div>
                             </div>
                             
-                            <a href="datacenter.php" class="btn btn-white btn-lg rounded-pill px-5 py-3 hover-lift">
-                                <i class="bx bx-info-circle me-2"></i>CONOCER MÁS
-                            </a>
-                        </div>
-                        <div class="col-lg-5" data-aos="fade-left">
-                            <div class="position-relative">
-                                <img src="assets/img/datacenter/datacenter-preview.jpg" alt="Servicios de Datacenter" class="img-fluid rounded-3 shadow-lg">
-                                <div class="position-absolute top-50 start-50 translate-middle">
-                                    <div class="bg-white rounded-circle p-4 shadow-lg">
-                                        <i class="bx bx-server display-4 text-primary"></i>
-                                    </div>
-                                </div>
+                            <div class="text-center">
+                                <a href="datacenter.php" class="btn btn-white btn-lg rounded-pill px-5 py-3 hover-lift">
+                                    <i class="bx bx-info-circle me-2"></i>CONOCER MÁS
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -158,10 +150,7 @@ include('includes/head.php');
                             <div class="position-relative bg-light rounded-3 p-4" style="min-height: 400px;">
                                 <!-- Placeholder para imagen/video -->
                                 <div class="d-flex align-items-center justify-content-center h-100 text-muted">
-                                    <div class="text-center">
-                                        <i class="bx bx-image display-4 mb-3"></i>
-                                        <p>Imagen/Video institucional</p>
-                                    </div>
+                                <img src="assets/img/about.png" alt="Equipo de Servicios y Sistemas" style="width:600px;">
                                 </div>
                             </div>
                         </div>

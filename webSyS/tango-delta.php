@@ -66,13 +66,13 @@ include('includes/head.php');
                     <div class="col-xl-10">
                         <div class="row align-items-center">
                             <!-- Text Content - Left Side -->
-                            <div class="col-lg-6 text-start" data-aos="fade-right">
+                            <div class="col-lg-6 text-start text-center text-lg-start" data-aos="fade-right">
                                 <h1 class="display-3 fw-bold text-white mb-2 hero-title">
                                     LA EVOLUCIÓN<br>
                                     DE TU NEGOCIO CON<br>
                                     <span class="text-warning fw-bold" style="color: #ffc107 !important;">INTELIGENCIA<br>ARTIFICIAL</span>
                                 </h1>
-                                <p class="lead text-white-75 mb-3 hero-subtitle" data-aos="fade-up" data-aos-delay="150">
+                                <p class="lead text-white-75 mb-4 hero-subtitle" data-aos="fade-up" data-aos-delay="150">
                                     Tecnología avanzada y una plataforma cada vez más abierta y flexible.
                                 </p>
                             </div>
@@ -81,7 +81,7 @@ include('includes/head.php');
                             <div class="col-lg-6 text-center" data-aos="fade-left">
                                 <div class="hero-visual-container">
                                     <div class="hero-logo-container">
-                                        <img src="assets/img/productos/tango-delta/delta5isow.webp" alt="Tango Delta 5 Logo" class="img-fluid hero-logo" style="max-height: 200px shadow="fade";">
+                                        <img src="assets/img/productos/tango-delta/delta5isow.webp" alt="Tango Delta 5 Logo" class="img-fluid hero-logo" style="max-height: 200px;">
                                     </div>
                                 </div>
                             </div>
