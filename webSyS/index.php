@@ -7,8 +7,44 @@ require_once('includes/functions.php');
 
 // Configurar página
 $page_title = 'Inicio';
+$meta_description = 'Servicios y Sistemas - Soluciones tecnológicas integrales para empresas en Corrientes, Argentina. Distribuidores oficiales de Tango Software, Datacenter y Gestión IT. Más de 30 años de experiencia.';
+$meta_keywords = 'servicios y sistemas, tango software, erp, datacenter, gestion it, corrientes, argentina, soluciones tecnologicas, software empresarial';
 $body_id = 'home';
-$schema_markup = generateLocalBusinessSchema();
+$canonical_url = SITE_URL;
+
+// FAQs para schema markup
+$faqs = [
+    [
+        'question' => '¿Quiénes somos y cuál es nuestra trayectoria?',
+        'answer' => 'Somos una empresa con más de 30 años de experiencia en el desarrollo de soluciones tecnológicas para la gestión empresarial. Nos caracterizamos por innovar y adaptarnos a las necesidades de negocios de distintos tamaños, integrando sistemas de gestión, ventas, contabilidad y más para brindar un servicio integral y confiable.'
+    ],
+    [
+        'question' => '¿Qué soluciones y servicios ofrecemos?',
+        'answer' => 'Ofrecemos una amplia gama de soluciones tecnológicas para tu empresa: Plataforma Tango (incluye Tango Gestión, Tango Punto de Venta, Tango Estudios Contables y Tango Restô), Insumos Informáticos (computadoras, sistemas de videovigilancia), y Hosting de Servidores (servidores virtuales adaptados con posibilidad de escalabilidad).'
+    ],
+    [
+        'question' => '¿Cómo garantizamos la calidad y seguridad de nuestros sistemas?',
+        'answer' => 'Trabajamos con altos estándares de calidad y utilizamos tecnología de punta para proteger tus datos. Nuestros sistemas cuentan con protocolos de cifrado, autenticación robusta y se alojan en Data Centers con monitoreo 24/7, asegurando disponibilidad y confiabilidad.'
+    ],
+    [
+        'question' => '¿Qué soporte técnico y atención al cliente ofrecen?',
+        'answer' => 'Nuestro equipo de soporte está disponible de forma personalizada y 24/7. Brindamos asesoría técnica, capacitación en la implementación y seguimiento continuo para resolver dudas y optimizar el uso de nuestras soluciones.'
+    ],
+    [
+        'question' => '¿Cómo es el proceso de implementación y capacitación?',
+        'answer' => 'El proceso se realiza en etapas: 1) Diagnóstico y asesoría (evaluamos las necesidades), 2) Diseño y configuración (adaptamos las soluciones), 3) Migración e integración (transferimos datos), 4) Capacitación y soporte continuo (formamos al equipo).'
+    ],
+    [
+        'question' => '¿Qué alianzas estratégicas y certificaciones respaldan nuestras soluciones?',
+        'answer' => 'Contamos con alianzas con proveedores y plataformas reconocidas (como Mercado Pago, Tienda Nube, entre otros), y nuestras soluciones cumplen con normativas y certificaciones internacionales, lo que garantiza su eficiencia y seguridad.'
+    ]
+];
+
+// Schemas múltiples: LocalBusiness y FAQPage
+$schema_markup = [
+    generateLocalBusinessSchema(),
+    generateFAQSchema($faqs)
+];
 
 // Incluir encabezado HTML
 include('includes/head.php');

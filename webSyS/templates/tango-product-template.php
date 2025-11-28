@@ -20,30 +20,17 @@ if (!isset($product_key) || !isset($tango_products[$product_key])) {
 
 $product = $tango_products[$product_key];
 
+// Incluir funciones
+require_once('includes/functions.php');
+
 // Configurar meta tags
 $page_title = $product['name'] . ' - Productos';
 $meta_description = $product['meta_desc'];
+$meta_keywords = strtolower($product['name']) . ', software empresarial, erp, gestion, tango software, corrientes, argentina';
 $canonical_url = SITE_URL . '/' . $product['slug'] . '.php';
 
-// Schema markup
-$schema_markup = [
-    "@context" => "https://schema.org",
-    "@type" => "SoftwareApplication",
-    "name" => $product['name'],
-    "description" => $product['meta_desc'],
-    "applicationCategory" => "BusinessApplication",
-    "operatingSystem" => "Windows",
-    "offers" => [
-        "@type" => "Offer",
-        "price" => "0",
-        "priceCurrency" => "ARS",
-        "availability" => "https://schema.org/InStock",
-        "seller" => [
-            "@type" => "Organization",
-            "name" => SITE_NAME
-        ]
-    ]
-];
+// Schema markup usando la función unificada
+$schema_markup = generateProductSchema($product);
 
 // Incluir head
 include('includes/head.php');

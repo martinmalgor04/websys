@@ -13,28 +13,12 @@ require_once('includes/functions.php');
 // Configurar página
 $page_title = 'Tango Delta 5';
 $meta_description = $tango_products['delta']['meta_desc'];
+$meta_keywords = 'tango delta 5, software empresarial, ia, inteligencia artificial, erp, transformacion digital, corrientes, argentina';
 $canonical_url = SITE_URL . '/tango-delta.php';
 $body_id = 'tango-delta';
 
-// Schema markup específico para Delta
-$schema_markup = [
-    "@context" => "https://schema.org",
-    "@type" => "SoftwareApplication",
-    "name" => $tango_products['delta']['name'],
-    "description" => $tango_products['delta']['meta_desc'],
-    "applicationCategory" => "BusinessApplication",
-    "operatingSystem" => "Windows",
-    "offers" => [
-        "@type" => "Offer",
-        "price" => "0",
-        "priceCurrency" => "ARS",
-        "availability" => "https://schema.org/InStock",
-        "seller" => [
-            "@type" => "Organization",
-            "name" => SITE_NAME
-        ]
-    ]
-];
+// Schema markup usando la función unificada
+$schema_markup = generateProductSchema($tango_products['delta']);
 
 // Incluir encabezado HTML
 include('includes/head.php');

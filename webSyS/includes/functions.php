@@ -179,6 +179,8 @@ function generateLocalBusinessSchema() {
         "@id" => SITE_URL,
         "url" => SITE_URL,
         "telephone" => SITE_PHONE,
+        "email" => SITE_EMAIL,
+        "priceRange" => "$$",
         "address" => [
             "@type" => "PostalAddress",
             "streetAddress" => "San Martín 1180",
@@ -193,21 +195,189 @@ function generateLocalBusinessSchema() {
             "longitude" => -58.8306
         ],
         "openingHoursSpecification" => [
-            "@type" => "OpeningHoursSpecification",
-            "dayOfWeek" => ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens" => "08:00",
-            "closes" => "18:00"
+            [
+                "@type" => "OpeningHoursSpecification",
+                "dayOfWeek" => ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens" => "08:00",
+                "closes" => "13:00"
+            ],
+            [
+                "@type" => "OpeningHoursSpecification",
+                "dayOfWeek" => ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens" => "16:00",
+                "closes" => "20:00"
+            ]
         ],
         "sameAs" => [
-            "https://www.facebook.com/serviciosysistemas",
-            "https://www.instagram.com/serviciosysistemas"
+            "https://www.instagram.com/hardstore.ctes"
         ]
     ];
     
-    return json_encode($schema, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+    return $schema;
 }
 
-// Función isMobile removida - usar media queries CSS en su lugar
+/**
+ * Generar Schema markup para Product (Productos Tango)
+ */
+function generateProductSchema($product) {
+    $schema = [
+        "@context" => "https://schema.org",
+        "@type" => "SoftwareApplication",
+        "name" => $product['name'],
+        "applicationCategory" => "BusinessApplication",
+        "operatingSystem" => "Windows",
+        "description" => isset($product['meta_desc']) ? $product['meta_desc'] : $product['short_desc'],
+        "brand" => [
+            "@type" => "Brand",
+            "name" => "Tango Software"
+        ],
+        "offers" => [
+            "@type" => "Offer",
+            "price" => "0",
+            "priceCurrency" => "ARS",
+            "availability" => "https://schema.org/InStock",
+            "priceSpecification" => [
+                "@type" => "PriceSpecification",
+                "priceCurrency" => "ARS",
+                "price" => "Consultar precio"
+            ],
+            "seller" => [
+                "@type" => "Organization",
+                "name" => SITE_NAME
+            ]
+        ],
+        "provider" => [
+            "@type" => "Organization",
+            "name" => SITE_NAME,
+            "url" => SITE_URL
+        ]
+    ];
+    
+    if (isset($product['logo'])) {
+        $logoPath = SITE_URL . '/assets/img/productos/' . $product['slug'] . '/' . $product['logo'];
+        $schema['image'] = $logoPath;
+    }
+    
+    return $schema;
+}
+
+/**
+ * Generar Schema markup para Service
+ */
+function generateServiceSchema($service_name, $description, $service_type = "TechnologyService") {
+    $schema = [
+        "@context" => "https://schema.org",
+        "@type" => "Service",
+        "serviceType" => $service_type,
+        "name" => $service_name,
+        "description" => $description,
+        "provider" => [
+            "@type" => "LocalBusiness",
+            "name" => SITE_NAME,
+            "telephone" => SITE_PHONE,
+            "email" => SITE_EMAIL,
+            "address" => [
+                "@type" => "PostalAddress",
+                "streetAddress" => "San Martín 1180",
+                "addressLocality" => "Corrientes",
+                "addressRegion" => "Corrientes",
+                "postalCode" => "3400",
+                "addressCountry" => "AR"
+            ]
+        ],
+        "areaServed" => [
+            "@type" => "City",
+            "name" => "Corrientes",
+            "containedInPlace" => [
+                "@type" => "Country",
+                "name" => "Argentina"
+            ]
+        ],
+        "hasOfferCatalog" => [
+            "@type" => "OfferCatalog",
+            "name" => $service_name,
+            "itemListElement" => [
+                [
+                    "@type" => "Offer",
+                    "itemOffered" => [
+                        "@type" => "Service",
+                        "name" => $service_name
+                    ]
+                ]
+            ]
+        ]
+    ];
+    
+    return $schema;
+}
+
+/**
+ * Generar Schema markup para FAQ
+ */
+function generateFAQSchema($faqs) {
+    if (empty($faqs)) {
+        return null;
+    }
+    
+    $schema = [
+        "@context" => "https://schema.org",
+        "@type" => "FAQPage",
+        "mainEntity" => []
+    ];
+    
+    foreach ($faqs as $faq) {
+        $schema['mainEntity'][] = [
+            "@type" => "Question",
+            "name" => $faq['question'],
+            "acceptedAnswer" => [
+                "@type" => "Answer",
+                "text" => $faq['answer']
+            ]
+        ];
+    }
+    
+    return $schema;
+}
+
+/**
+ * Generar Schema markup para BreadcrumbList
+ */
+function generateBreadcrumbSchema($items) {
+    if (empty($items)) {
+        return null;
+    }
+    
+    $schema = [
+        "@context" => "https://schema.org",
+        "@type" => "BreadcrumbList",
+        "itemListElement" => []
+    ];
+    
+    $schema['itemListElement'][] = [
+        "@type" => "ListItem",
+        "position" => 1,
+        "name" => "Inicio",
+        "item" => SITE_URL
+    ];
+    
+    $position = 2;
+    foreach ($items as $item) {
+        $breadcrumbItem = [
+            "@type" => "ListItem",
+            "position" => $position,
+            "name" => $item['label']
+        ];
+        
+        if (isset($item['url'])) {
+            $breadcrumbItem['item'] = $item['url'];
+        }
+        
+        $schema['itemListElement'][] = $breadcrumbItem;
+        $position++;
+    }
+    
+    return $schema;
+}
 
 /**
  * Generar clase CSS para animación AOS con delay
@@ -215,4 +385,4 @@ function generateLocalBusinessSchema() {
 function getAosDelay($index, $base = 50, $increment = 50) {
     return $base + ($index * $increment);
 }
-?> 
+?>

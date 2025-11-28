@@ -1,0 +1,55 @@
+# robots.txt para Servicios y Sistemas
+# Optimizado para motores de búsqueda y modelos de IA
+
+# Permitir todo por defecto
+User-agent: *
+Allow: /
+
+# Directorios restringidos
+Disallow: /private/
+Disallow: /config/
+Disallow: /includes/
+Disallow: /templates/
+
+# Permitir recursos públicos
+Allow: /assets/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.webp$
+Allow: /*.svg$
+
+# Archivo de logs
+Disallow: /logs/
+Disallow: /*.log$
+
+# Archivos de sistema
+Disallow: /.git/
+Disallow: /.env
+Disallow: /README.md
+Disallow: /DEPLOY_INSTRUCTIONS.md
+
+# Bots de IA - Permitir indexación completa
+User-agent: GPTBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Sitemap
+Sitemap: https://serviciosysistemas.com.ar/sitemap.php
+
