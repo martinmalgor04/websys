@@ -17,6 +17,8 @@ define('SITE_YEARS_EXPERIENCE', date('Y') - SITE_YEAR_FOUNDED);
 // URLs de servicios externos
 define('ECOMMERCE_URL', 'https://tienda.serviciosysistemas.com.ar/public/home.php');
 define('SUPPORT_URL', 'https://soporte.serviciosysistemas.com.ar/upload/');
+define('CONTACT_FORM_URL', '#'); 
+define('FORMSUBMIT_EMAIL', 'info@serviciosysistemas.com.ar'); 
 
 // Meta tags por defecto
 define('DEFAULT_META_DESCRIPTION', 'Soluciones tecnológicas integrales para empresas. Distribuidores oficiales de Tango Software. Más de 30 años de experiencia en el NEA.');

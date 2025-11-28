@@ -24,7 +24,7 @@
 							<a class="nav-link" href="datacenter.php">Datacenter</a>
 							<a class="nav-link" href="<?= ECOMMERCE_URL ?>" target="_blank">Nuestro E-Commerce</a>
 							<a class="nav-link" href="<?= SUPPORT_URL ?>"  target="_blank">Soporte</a>
-							<a class="nav-link" href="#!">Contacto</a>
+							<a class="nav-link" href="index.php#contacto">Contacto</a>
 						</nav>
 					</div>
 					<div class="col-lg-2 col-md-3 col-sm-4 mb-7">

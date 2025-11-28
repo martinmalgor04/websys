@@ -354,6 +354,96 @@ include('includes/head.php');
                 </div>
             </section>
             <!--end: FAQ Section -->
+            
+            <!--begin: Contacto Section -->
+            <section id="contacto" class="position-relative bg-body">
+                <div class="container position-relative py-9 py-lg-11">
+                    <div class="row justify-content-center mb-9">
+                        <div class="col-lg-8 text-center">
+                            <h2 class="display-4 mb-4" data-aos="fade-up">Contactanos</h2>
+                            <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
+                                ¿Tenés alguna consulta? Estamos para ayudarte. Completá el formulario y nos pondremos en contacto contigo.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="card card-body py-5 px-4 shadow-lg border-0" data-aos="fade-up" data-aos-delay="150">
+                                <form id="contactForm" method="POST" action="https://formsubmit.co/<?= FORMSUBMIT_EMAIL ?>">
+                                    <!-- Campos ocultos para FormSubmit -->
+                                    <input type="hidden" name="_subject" value="Nueva consulta desde Servicios y Sistemas">
+                                    <input type="hidden" name="_captcha" value="false">
+                                    <input type="hidden" name="_template" value="table">
+                                    <input type="text" name="_honey" style="display:none">
+                                    <!-- Mensaje de estado del formulario -->
+                                    <div id="form-messages" class="mb-4" style="display: none;">
+                                        <div id="success-message" class="alert alert-success" role="alert" style="display: none;">
+                                            <i class="bx bx-check-circle me-2"></i>
+                                            <span></span>
+                                        </div>
+                                        <div id="error-message" class="alert alert-danger" role="alert" style="display: none;">
+                                            <i class="bx bx-error me-2"></i>
+                                            <span></span>
+                                        </div>
+                                        <div id="rate-limit-message" class="alert alert-warning" role="alert" style="display: none;">
+                                            <i class="bx bx-time me-2"></i>
+                                            <span>Demasiados intentos. Por favor esperá un momento antes de enviar nuevamente.</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <label for="nombre" class="form-label fw-bold">Nombre y Apellido *</label>
+                                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <label for="email" class="form-label fw-bold">Email *</label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <label for="telefono" class="form-label fw-bold">Teléfono</label>
+                                            <input type="tel" class="form-control" id="telefono" name="telefono">
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <label for="empresa" class="form-label fw-bold">Empresa</label>
+                                            <input type="text" class="form-control" id="empresa" name="empresa">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label for="asunto" class="form-label fw-bold">Asunto *</label>
+                                        <select class="form-select" id="asunto" name="asunto" required>
+                                            <option value="">Seleccionar asunto</option>
+                                            <option value="CONSULTA GENERAL">Consulta General</option>
+                                            <option value="PRODUCTOS TANGO">Productos Tango</option>
+                                            <option value="DATACENTER">Datacenter</option>
+                                            <option value="GESTIÓN IT">Gestión IT</option>
+                                            <option value="SOPORTE TÉCNICO">Soporte Técnico</option>
+                                            <option value="COTIZACIÓN">Cotización</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label for="mensaje" class="form-label fw-bold">Mensaje o Comentarios *</label>
+                                        <textarea class="form-control" id="mensaje" name="mensaje" rows="5" placeholder="Contanos cómo podemos ayudarte..." required></textarea>
+                                    </div>
+                                    
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 py-3">
+                                            <i class="bx bx-send me-2"></i>ENVIAR CONSULTA
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--end: Contacto Section -->
 
         </main>
 
@@ -362,6 +452,157 @@ include('includes/head.php');
         <!--end:Footer-->
 
         <?php include('includes/script.php');?>
+        
+        <!-- Formulario de contacto con FormSubmit -->
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            if (!form) return;
+            
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // Funciones de utilidad para mostrar mensajes
+            function showMessage(type, message) {
+                const messagesDiv = document.getElementById('form-messages');
+                const successDiv = document.getElementById('success-message');
+                const errorDiv = document.getElementById('error-message');
+                const rateLimitDiv = document.getElementById('rate-limit-message');
+                
+                // Ocultar todos los mensajes
+                successDiv.style.display = 'none';
+                errorDiv.style.display = 'none';
+                rateLimitDiv.style.display = 'none';
+                
+                // Mostrar el mensaje correspondiente
+                messagesDiv.style.display = 'block';
+                
+                if (type === 'success') {
+                    successDiv.querySelector('span').textContent = message;
+                    successDiv.style.display = 'block';
+                } else if (type === 'error') {
+                    errorDiv.querySelector('span').textContent = message;
+                    errorDiv.style.display = 'block';
+                } else if (type === 'rate-limit') {
+                    rateLimitDiv.style.display = 'block';
+                }
+                
+                // Scroll al mensaje
+                messagesDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+            
+            function hideMessages() {
+                document.getElementById('form-messages').style.display = 'none';
+            }
+            
+            function setButtonLoading(loading) {
+                if (loading) {
+                    submitBtn.innerHTML = '<i class="bx bx-loader-alt bx-spin me-2"></i>ENVIANDO...';
+                    submitBtn.disabled = true;
+                } else {
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
+                }
+            }
+            
+            // Validaciones client-side básicas
+            function validateForm() {
+                const nombre = form.nombre.value.trim();
+                const email = form.email.value.trim();
+                const asunto = form.asunto.value;
+                const mensaje = form.mensaje.value.trim();
+                
+                if (nombre.length < 2) {
+                    showMessage('error', 'El nombre debe tener al menos 2 caracteres');
+                    return false;
+                }
+                
+                if (!email || !email.includes('@')) {
+                    showMessage('error', 'Por favor ingresá un email válido');
+                    return false;
+                }
+                
+                if (!asunto) {
+                    showMessage('error', 'Por favor seleccioná un asunto');
+                    return false;
+                }
+                
+                if (mensaje.length < 10) {
+                    showMessage('error', 'El mensaje debe tener al menos 10 caracteres');
+                    return false;
+                }
+                
+                return true;
+            }
+            
+            // Manejo del formulario
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                hideMessages();
+                
+                // Validar formulario
+                if (!validateForm()) {
+                    return;
+                }
+                
+                // Validar que el email esté configurado
+                const formSubmitEmail = '<?= FORMSUBMIT_EMAIL ?>';
+                if (!formSubmitEmail || formSubmitEmail === 'TU_EMAIL@ejemplo.com') {
+                    showMessage('error', 'Error de configuración: Por favor configurá tu email en config/config.php');
+                    return;
+                }
+                
+                setButtonLoading(true);
+                
+                // FormSubmit funciona con submit normal, pero podemos interceptar para mostrar mensajes
+                // Primero validamos, luego permitimos el submit normal
+                const formAction = form.getAttribute('action');
+                if (!formAction || !formAction.includes('formsubmit.co')) {
+                    showMessage('error', 'Error de configuración del formulario');
+                    setButtonLoading(false);
+                    return;
+                }
+                
+                // Preparar datos del formulario
+                const formData = new FormData(this);
+                
+                // Enviar vía FormSubmit usando fetch para mejor control
+                fetch(formAction, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'text/html'
+                    }
+                })
+                .then(response => {
+                    // FormSubmit redirige o devuelve HTML, así que verificamos el status
+                    if (response.ok || response.status === 200 || response.redirected) {
+                        showMessage('success', '¡Gracias por tu consulta! Te contactaremos pronto.');
+                        form.reset();
+                        // Scroll al mensaje de éxito
+                        setTimeout(() => {
+                            document.getElementById('form-messages').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }, 300);
+                    } else {
+                        throw new Error('Error al enviar el formulario');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error FormSubmit:', error);
+                    showMessage('error', 'Error de conexión. Por favor verificá tu internet e intentá nuevamente.');
+                })
+                .finally(() => {
+                    setButtonLoading(false);
+                });
+            });
+            
+            // Limpiar mensajes cuando el usuario empieza a escribir
+            const inputs = form.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('input', hideMessages);
+            });
+        });
+        </script>
     </body>
 
 </html>
