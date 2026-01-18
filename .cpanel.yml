@@ -6,7 +6,7 @@ deployment:
     - /bin/mkdir -p "$DEPLOYPATH"
     
     # Copiar archivos del sitio web EXCLUYENDO carpetas del e-commerce
-    - /bin/rsync -av --exclude='ecommerce/' --exclude='php/' --exclude='Mpago/' --exclude='sysdesk/' --exclude='soporte/' --exclude='pruebagit/' --exclude='phpspreadsheet/' --exclude='pdfclientes/' --exclude='pdfproveedores/' --exclude='photos/' --exclude='fondos/' --exclude='mpdf/' --exclude='private/logs/*' --exclude='.git*' --exclude='*.backup' --exclude='error_log' --exclude='.well-known/' "$SRCDIR"/ "$DEPLOYPATH"/
+    - /bin/rsync -av --exclude='ecommerce/' --exclude='php/' --exclude='Mpago/' --exclude='soporte/' --exclude='pruebagit/' --exclude='phpspreadsheet/' --exclude='pdfclientes/' --exclude='pdfproveedores/' --exclude='photos/' --exclude='fondos/' --exclude='mpdf/' --exclude='private/logs/*' --exclude='.git*' --exclude='*.backup' --exclude='error_log' --exclude='.well-known/' "$SRCDIR"/ "$DEPLOYPATH"/
     
     # Verificar deploy
     - /bin/echo "Deployed on $(/bin/date)" > "$DEPLOYPATH"/version.txt
