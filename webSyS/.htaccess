@@ -4,6 +4,11 @@ AddDefaultCharset UTF-8
 # Habilitar motor de reescritura
 RewriteEngine on
 
+# Subdominio SysDesk - Redirigir a carpeta sysdesk
+RewriteCond %{HTTP_HOST} ^sysdesk\.serviciosysistemas\.com\.ar$ [NC]
+RewriteCond %{REQUEST_URI} !^/sysdesk/
+RewriteRule ^(.*)$ /sysdesk/$1 [L]
+
 # Regla para URLs amigables (ocultar .php)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
