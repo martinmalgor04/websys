@@ -21271,6 +21271,12 @@ header.header-transparent.sticky-fixed.is-fixed .navbar-dark .navbar-fixed-bg {
   position: relative;
   z-index: 1;
 }
+/* Fallback: evita espera visual del primer slide antes de init JS */
+.swiper-classic:not(.swiper-initialized) .swiper-slide:first-child .carousel-layers li {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
 
 @media (min-width: 992px) {
   .swiper-classic {
