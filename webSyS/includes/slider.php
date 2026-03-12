@@ -6,16 +6,19 @@
                     <div class="swiper-wrapper">
                         <!-- slide item -->
                         <div class="swiper-slide">
-                            <img
-                                src="assets/img/slider/1.jpg"
-                                alt=""
-                                class="hero-slide-bg"
-                                width="1920"
-                                height="1000"
-                                fetchpriority="high"
-                                loading="eager"
-                                decoding="async"
-                            >
+                            <picture>
+                                <source srcset="assets/img/slider/1.webp" type="image/webp">
+                                <img
+                                    src="assets/img/slider/1.jpg"
+                                    alt=""
+                                    class="hero-slide-bg"
+                                    width="1920"
+                                    height="1000"
+                                    fetchpriority="high"
+                                    loading="eager"
+                                    decoding="async"
+                                >
+                            </picture>
                             <div class="bg-dark position-absolute start-0 top-0 w-100 h-100 opacity-75"></div>
                             <div class="container-fluid text-white d-flex align-items-center h-100">
                                 <div class="row pt-11 w-100">
@@ -66,7 +69,7 @@
                                     <div class="col-xl-8 col-lg-10 mx-auto text-center">
                                         <picture class="mx-auto mb-4">
                                             <source media="(max-width: 576px)" srcset="assets/img/productos/tango-delta/delta5vw.webp">
-                                            <img src="assets/img/productos/tango-delta/delta5hw.webp" alt="Tango Delta" style="filter: drop-shadow(0 0 10px white); width: 100%; height: auto;">
+                                            <img src="assets/img/productos/tango-delta/delta5hw.webp" alt="Tango Delta" width="1634" height="235" style="filter: drop-shadow(0 0 10px white); width: 100%; height: auto;">
                                         </picture>
                                         <ul class="carousel-layers list-unstyled mb-0 pt-15">
                                             <li data-carousel-layer="fade-start">
@@ -81,15 +84,18 @@
                         </div>
                         <!--Slide 3-->
                         <div class="swiper-slide">
-                            <img
-                                src="assets/img/slider/3.jpg"
-                                alt=""
-                                class="hero-slide-bg"
-                                width="1920"
-                                height="1000"
-                                loading="lazy"
-                                decoding="async"
-                            >
+                            <picture>
+                                <source srcset="assets/img/slider/3.webp" type="image/webp">
+                                <img
+                                    src="assets/img/slider/3.jpg"
+                                    alt=""
+                                    class="hero-slide-bg"
+                                    width="1920"
+                                    height="1000"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </picture>
                             <div class="bg-dark position-absolute start-0 top-0 w-100 h-100 opacity-75"></div>
                             <div class="container-fluid text-white d-flex align-items-center h-100">
                                 <div class="row pt-5 w-100">

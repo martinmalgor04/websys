@@ -19,12 +19,20 @@ function renderProductCard($key, $product, $delay = 0) {
         $logoPath .= $product['logo_folder'] . '/';
     }
     
-    // Logo para tema claro
-    $html .= '<img src="' . $logoPath . $product['logo'] . '" alt="' . $product['name'] . '" class="img-fluid logo-light">';
+    // Logo para tema claro con dimensiones explícitas (evita CLS)
+    $logoLightSrc = $logoPath . $product['logo'];
+    $logoLightSize = @getimagesize($logoLightSrc);
+    $logoLightWidth = $logoLightSize ? (int) $logoLightSize[0] : 300;
+    $logoLightHeight = $logoLightSize ? (int) $logoLightSize[1] : 180;
+    $html .= '<img src="' . $logoLightSrc . '" alt="' . $product['name'] . '" class="img-fluid logo-light" width="' . $logoLightWidth . '" height="' . $logoLightHeight . '" loading="lazy" decoding="async">';
     
     // Logo para tema oscuro (si está disponible)
     if (isset($product['logo_dark'])) {
-        $html .= '<img src="' . $logoPath . $product['logo_dark'] . '" alt="' . $product['name'] . '" class="img-fluid logo-dark">';
+        $logoDarkSrc = $logoPath . $product['logo_dark'];
+        $logoDarkSize = @getimagesize($logoDarkSrc);
+        $logoDarkWidth = $logoDarkSize ? (int) $logoDarkSize[0] : 300;
+        $logoDarkHeight = $logoDarkSize ? (int) $logoDarkSize[1] : 180;
+        $html .= '<img src="' . $logoDarkSrc . '" alt="' . $product['name'] . '" class="img-fluid logo-dark" width="' . $logoDarkWidth . '" height="' . $logoDarkHeight . '" loading="lazy" decoding="async">';
     }
     
     $html .= '</div>';

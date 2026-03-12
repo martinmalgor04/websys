@@ -17,10 +17,13 @@
         </noscript>
         
 		<!-- Swiper Slider - CDN -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+        </noscript>
         
         <!-- Main CSS -->
-        <link href="assets/css/sys_style.css" rel="stylesheet">
+        <link href="assets/css/sys_style.min.css" rel="stylesheet">
         <link rel="preload" href="assets/css/modules/dark-mode.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript>
             <link href="assets/css/modules/dark-mode.css" rel="stylesheet">
@@ -40,7 +43,7 @@
         </noscript>
 
         <!-- LCP hero image preload -->
-        <link rel="preload" href="assets/img/slider/1.jpg" as="image" fetchpriority="high">
+        <link rel="preload" href="assets/img/slider/1.webp" as="image" type="image/webp" fetchpriority="high">
         
         <!-- Script inline para aplicar tema inmediatamente -->
         <script>
