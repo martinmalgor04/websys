@@ -3,8 +3,14 @@
                 <div class="row">
 					<div class="col-lg-3 col-md-6 mb-7">
 						<a class="d-table mb-4" href="#">
-							<img src="assets/img/logo/sys_logo.png" alt="Servicios y Sistemas SRL" class="width-20x h-auto logo-light">
-							<img src="assets/img/logo/sys_logo_w.png" alt="Servicios y Sistemas SRL" class="width-20x h-auto logo-dark">
+							<picture>
+								<source srcset="assets/img/logo/sys_logo.webp" type="image/webp">
+								<img src="assets/img/logo/sys_logo.png" alt="Servicios y Sistemas SRL" class="width-20x h-auto logo-light" width="720" height="87" loading="lazy" decoding="async">
+							</picture>
+							<picture>
+								<source srcset="assets/img/logo/sys_logo_w.webp" type="image/webp">
+								<img src="assets/img/logo/sys_logo_w.png" alt="Servicios y Sistemas SRL" class="width-20x h-auto logo-dark" width="720" height="87" loading="lazy" decoding="async">
+							</picture>
 						</a>
 						<p>San Martín 1180<br>Corrientes, Argentina</p>
 						<p>
@@ -43,20 +49,20 @@
 						<div class="row g-3 align-items-center">
 							<!-- Tango Logo -->
 							<div class="col-6 text-center">
-								<img src="assets/img/partners/footer/tango.png" alt="Tango Software Partner" class="img-fluid" style="max-height: 80px;">
+								<img src="assets/img/partners/footer/tango.png" alt="Tango Software Partner" class="img-fluid" style="max-height: 80px;" width="250" height="83" loading="lazy" decoding="async">
 							</div>
 							<!-- Lenovo Logo -->
 							<div class="col-6 text-center">
-								<img src="assets/img/partners/footer/lenovo.png" alt="Lenovo Partner" class="img-fluid" style="max-height: 80px;">
+								<img src="assets/img/partners/footer/lenovo.png" alt="Lenovo Partner" class="img-fluid" style="max-height: 80px;" width="800" height="267" loading="lazy" decoding="async">
 							</div>
 							<!-- HP Logo -->
 							<div class="col-6 text-center">
-								<img src="assets/img/partners/footer/hp.png" alt="HP Business Partner" class="img-fluid" style="max-height: 160px;">
+								<img src="assets/img/partners/footer/hp.png" alt="HP Business Partner" class="img-fluid" style="max-height: 160px;" width="1024" height="612" loading="lazy" decoding="async">
 							</div>
 							<!-- Sophos Logo -->
 							<div class="col-6 text-center">
-								<img src="assets/img/partners/footer/sophosdark.webp" alt="Sophos Authorized Partner" class="img-fluid partners-light" style="max-height: 180px;">
-								<img src="assets/img/partners/footer/sophos.png" alt="Sophos Authorized Partner" class="img-fluid partners-dark" style="max-height: 80px;">
+								<img src="assets/img/partners/footer/sophosdark.webp" alt="Sophos Authorized Partner" class="img-fluid partners-light" style="max-height: 180px;" width="960" height="640" loading="lazy" decoding="async">
+								<img src="assets/img/partners/footer/sophos.png" alt="Sophos Authorized Partner" class="img-fluid partners-dark" style="max-height: 80px;" width="825" height="342" loading="lazy" decoding="async">
 							</div>
 						</div>
 					</div>

@@ -49,32 +49,6 @@ $schema_markup = [
 // Incluir encabezado HTML
 include('includes/head.php');
 ?>
-		<script type="application/ld+json">
-		{
-		  "@context": "//schema.org",
-		  "@type": "Organization",
-		  "url": "https://serviciosysistemas.com.ar/",
-		  "contactPoint": [{
-			"@type": "ContactPoint",
-			"name": "SERVICIOS & SISTEMAS",
-			"description": "Trabajamos para ofrecer las más creativas soluciones Informáticas para su empresa, proveyendo e integrando el hardware, software, la infraestructura de red y los servicios para diseñar, poner en marcha y dar soporte y servicio en forma integral.",
-			"email": "info@serviciosysistemas.com.ar",
-			"telephone": "+54 379 426022",
-			"contactType": "customer service"
-		  }]
-		}
-		</script>
-		
-		<?php include('includes/link.php');?>
-    </head>
-
-    <body id="home">
-         <!--Preloader Spinner-->
-         <div class="spinner-loader bg-primary text-white">
-            <div class="spinner-grow" role="status">
-            </div>
-            <span class="small d-block ms-2">Cargando...</span>
-        </div>
         <!--Header Start-->
          <?php include('includes/nav.php');?>
         
@@ -186,7 +160,10 @@ include('includes/head.php');
                             <div class="position-relative bg-light rounded-3 p-4" style="min-height: 400px;">
                                 <!-- Placeholder para imagen/video -->
                                 <div class="d-flex align-items-center justify-content-center h-100 text-muted">
-                                <img src="assets/img/about.png" alt="Equipo de Servicios y Sistemas" style="width:500px;">
+                                <picture>
+                                    <source srcset="assets/img/about.webp" type="image/webp">
+                                    <img src="assets/img/about.png" alt="Equipo de Servicios y Sistemas" style="width:500px;" width="848" height="582" loading="lazy" decoding="async">
+                                </picture>
                                 </div>
                             </div>
                         </div>
@@ -197,7 +174,7 @@ include('includes/head.php');
                         <div class="col-lg-4 col-md-6 mb-5" data-aos="fade-up" data-aos-delay="150">
                                                           <div class="mb-4">
                                   <div class="width-15x height-15x rounded-circle bg-white border border-3 border-dark mx-auto d-flex align-items-center justify-content-center mb-3">
-                                     <i class="fi fi-rr-calendar display-2 text-dark"></i>
+                                     <i class="bx bx-calendar display-2 text-dark"></i>
                                   </div>
                                  <h2 class="fw-bold mb-2 text-white" style="font-size: 4rem;">+30</h2>
                                  <h5 class="fw-bold mb-2 text-white">Años de Experiencia</h5>
@@ -207,7 +184,7 @@ include('includes/head.php');
                         <div class="col-lg-4 col-md-6 mb-5" data-aos="fade-up" data-aos-delay="200">
                                                           <div class="mb-4">
                                   <div class="width-15x height-15x rounded-circle bg-white border border-3 border-dark mx-auto d-flex align-items-center justify-content-center mb-3">
-                                     <i class="fi fi-rr-users-alt display-2 text-dark"></i>
+                                     <i class="bx bx-group display-2 text-dark"></i>
                                   </div>
                                  <h2 class="fw-bold mb-2 text-white" style="font-size: 4rem;">+1000</h2>
                                  <h5 class="fw-bold mb-2 text-white">Empresas</h5>
@@ -244,7 +221,13 @@ include('includes/head.php');
                             <?php
                                 $client_images = glob('assets/img/partners/clients/*.{png,jpg,jpeg,webp}', GLOB_BRACE);
                                 foreach ($client_images as $img) {
-                                    echo '<div class="swiper-slide"><div class="d-flex align-items-center justify-content-center"><div class="bg-white rounded-3 p-3"><img src="' . $img . '" alt="" class="img-fluid"></div></div></div>';
+                                    $filename = pathinfo($img, PATHINFO_FILENAME);
+                                    $thumb = 'assets/img/partners/clients/thumbs/' . $filename . '.webp';
+                                    $src = file_exists($thumb) ? $thumb : $img;
+                                    $size = @getimagesize($src);
+                                    $width = $size ? (int) $size[0] : 350;
+                                    $height = $size ? (int) $size[1] : 210;
+                                    echo '<div class="swiper-slide"><div class="d-flex align-items-center justify-content-center"><div class="bg-white rounded-3 p-3"><img src="' . htmlspecialchars($src, ENT_QUOTES, 'UTF-8') . '" alt="" class="img-fluid" width="' . $width . '" height="' . $height . '" loading="lazy" decoding="async"></div></div></div>';
                                 }
                             ?>
                         </div>

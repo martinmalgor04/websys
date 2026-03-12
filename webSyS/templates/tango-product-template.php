@@ -19,6 +19,10 @@ if (!isset($product_key) || !isset($tango_products[$product_key])) {
 }
 
 $product = $tango_products[$product_key];
+$product_logo_path = 'assets/img/productos/' . $product['slug'] . '/' . (isset($product['logo_folder']) ? $product['logo_folder'] . '/' : '') . $product['logo'];
+$product_logo_size = @getimagesize($product_logo_path);
+$product_logo_width = $product_logo_size ? (int) $product_logo_size[0] : 350;
+$product_logo_height = $product_logo_size ? (int) $product_logo_size[1] : 210;
 
 // Incluir funciones
 require_once('includes/functions.php');
@@ -54,10 +58,14 @@ include('includes/head.php');
             <div class="row pt-4">
                 <div class="col-xl-12">
                     <div class="d-flex align-items-center">
-                        <img src="assets/img/productos/<?= $product['slug'] ?>/<?= isset($product['logo_folder']) ? $product['logo_folder'] . '/' : '' ?><?= $product['logo'] ?>" 
+                        <img src="<?= htmlspecialchars($product_logo_path, ENT_QUOTES, 'UTF-8') ?>" 
                              title="<?= $product['name'] ?>" 
                              alt="<?= $product['name'] ?>" 
-                             class="img-fluid mx-auto product-logo-enhanced">
+                             class="img-fluid mx-auto product-logo-enhanced"
+                             width="<?= $product_logo_width ?>"
+                             height="<?= $product_logo_height ?>"
+                             loading="eager"
+                             decoding="async">
                     </div>
                 </div>
             </div>

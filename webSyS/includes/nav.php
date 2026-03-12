@@ -3,8 +3,14 @@
         <div class="navbar-fixed-bg position-absolute"></div>
 			<div class="container position-relative z-1">
 					  <a class="navbar-brand" href="index.php">
-						<img src="assets/img/logo/sys_logo.png" alt="Logo - Servicios y Sistemas" style="width:360px;" class="navbar-brand-sticky">
-						<img src="assets/img/logo/sys_logo_w.png" alt="Logo - Servicios y Sistemas" style="width:360px;" class="navbar-brand-transparent">
+						<picture>
+							<source srcset="assets/img/logo/sys_logo.webp" type="image/webp">
+							<img src="assets/img/logo/sys_logo.png" alt="Logo - Servicios y Sistemas" style="width:360px;" class="navbar-brand-sticky" width="720" height="87" fetchpriority="high" decoding="async">
+						</picture>
+						<picture>
+							<source srcset="assets/img/logo/sys_logo_w.webp" type="image/webp">
+							<img src="assets/img/logo/sys_logo_w.png" alt="Logo - Servicios y Sistemas" style="width:360px;" class="navbar-brand-transparent" width="720" height="87" fetchpriority="high" decoding="async">
+						</picture>
 					  </a>
                     <div class="d-flex align-items-center navbar-no-collapse-items order-lg-last">
                         <button class="navbar-toggler order-last" type="button" data-bs-toggle="collapse"

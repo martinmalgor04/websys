@@ -5,7 +5,17 @@
                     <!-- Swiper wrapper -->
                     <div class="swiper-wrapper">
                         <!-- slide item -->
-                        <div class="swiper-slide" style="background-image:url('assets/img/slider/1.jpg')">
+                        <div class="swiper-slide">
+                            <img
+                                src="assets/img/slider/1.jpg"
+                                alt=""
+                                class="hero-slide-bg"
+                                width="1920"
+                                height="1000"
+                                fetchpriority="high"
+                                loading="eager"
+                                decoding="async"
+                            >
                             <div class="bg-dark position-absolute start-0 top-0 w-100 h-100 opacity-75"></div>
                             <div class="container-fluid text-white d-flex align-items-center h-100">
                                 <div class="row pt-11 w-100">
@@ -37,7 +47,19 @@
                             </div>
                         </div>
                         <!--Slide 2-->
-                        <div class="swiper-slide" style="background-image:url('assets/img/slider/2.png')">
+                        <div class="swiper-slide">
+                            <picture>
+                                <source srcset="assets/img/slider/2.webp" type="image/webp">
+                                <img
+                                    src="assets/img/slider/2.png"
+                                    alt=""
+                                    class="hero-slide-bg"
+                                    width="1920"
+                                    height="1000"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </picture>
                             <div class="bg-dark position-absolute start-0 top-0 w-100 h-100 opacity-50"></div>
                             <div class="container-fluid text-white d-flex align-items-center h-100">
                                 <div class="row pt-11 w-100">
@@ -58,7 +80,16 @@
                             </div>
                         </div>
                         <!--Slide 3-->
-                        <div class="swiper-slide" style="background-image:url('assets/img/slider/3.jpg')">
+                        <div class="swiper-slide">
+                            <img
+                                src="assets/img/slider/3.jpg"
+                                alt=""
+                                class="hero-slide-bg"
+                                width="1920"
+                                height="1000"
+                                loading="lazy"
+                                decoding="async"
+                            >
                             <div class="bg-dark position-absolute start-0 top-0 w-100 h-100 opacity-75"></div>
                             <div class="container-fluid text-white d-flex align-items-center h-100">
                                 <div class="row pt-5 w-100">

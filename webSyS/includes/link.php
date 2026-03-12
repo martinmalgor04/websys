@@ -2,33 +2,45 @@
 		<link rel="icon" href="favicon.ico" type="image/x-icon">
         
 		<!-- Box Icons -->
-        <link rel="stylesheet" href="assets/fonts/boxicons/css/boxicons.min.css">
-        
-		<!-- Flaticon Icons -->
-        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-        
-		<!-- AOS Animations - CDN -->
-        <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-        
-		<!-- Iconsmind Icons -->
-        <link rel="stylesheet" href="assets/fonts/iconsmind/iconsmind.css">
+        <link rel="preload" href="assets/fonts/boxicons/css/boxicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript>
+            <link rel="stylesheet" href="assets/fonts/boxicons/css/boxicons.min.css">
+        </noscript>
+        <link rel="preload" href="assets/fonts/boxicons/fonts/boxicons.woff2" as="font" type="font/woff2" crossorigin>
         
 		<!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400&family=Source+Serif+Pro:ital@0;1&display=swap" rel="stylesheet">
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400&family=Source+Serif+Pro:ital@0;1&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript>
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400&family=Source+Serif+Pro:ital@0;1&display=swap" rel="stylesheet">
+        </noscript>
         
 		<!-- Swiper Slider - CDN -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
         
-		<!-- Prism.js para resaltado de código - CDN -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
         <!-- Main CSS -->
         <link href="assets/css/sys_style.css" rel="stylesheet">
-        <link href="assets/css/modules/dark-mode.css" rel="stylesheet">
+        <link rel="preload" href="assets/css/modules/dark-mode.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript>
+            <link href="assets/css/modules/dark-mode.css" rel="stylesheet">
+        </noscript>
         
         <!-- Product card styling -->
-        <link href="assets/css/product-cards.css" rel="stylesheet">
+        <link rel="preload" href="assets/css/product-cards.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript>
+            <link href="assets/css/product-cards.css" rel="stylesheet">
+        </noscript>
+
+		<!-- AOS Animations - CDN (no crítico para first paint) -->
+        <link rel="preconnect" href="https://unpkg.com" crossorigin>
+        <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript>
+            <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+        </noscript>
+
+        <!-- LCP hero image preload -->
+        <link rel="preload" href="assets/img/slider/1.jpg" as="image" fetchpriority="high">
         
         <!-- Script inline para aplicar tema inmediatamente -->
         <script>

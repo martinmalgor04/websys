@@ -70,13 +70,6 @@
 					
 
 					
-					// Forzar repaint para algunos elementos
-					const elements = document.querySelectorAll('.partners-light, .partners-dark, .logo-light, .logo-dark');
-					elements.forEach(el => {
-						el.style.display = 'none';
-						el.offsetHeight; // Trigger reflow
-						el.style.display = '';
-					});
 				};
 				
 				// Obtener el tema preferido del sistema
@@ -160,10 +153,7 @@
         <script>
             // Asegurar que el spinner se oculte cuando la página esté lista
             document.addEventListener('DOMContentLoaded', function() {
-                // Esperar un poco para que todo termine de cargar
-                setTimeout(function() {
-                    document.body.classList.add('loaded');
-                }, 100);
+                document.body.classList.add('loaded');
             });
             
             // Fallback para navegadores antiguos

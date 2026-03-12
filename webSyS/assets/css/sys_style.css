@@ -21256,9 +21256,20 @@ header.header-transparent.sticky-fixed.is-fixed .navbar-dark .navbar-fixed-bg {
   height: 640px;
 }
 .swiper-classic .swiper-slide {
-  background-position: 50% 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+.swiper-classic .swiper-slide .hero-slide-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.swiper-classic .swiper-slide .container-fluid {
+  position: relative;
+  z-index: 1;
 }
 
 @media (min-width: 992px) {
