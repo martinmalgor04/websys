@@ -160,9 +160,9 @@ include('includes/head.php');
                             <div class="position-relative bg-light rounded-3 p-4" style="min-height: 400px;">
                                 <!-- Placeholder para imagen/video -->
                                 <div class="d-flex align-items-center justify-content-center h-100 text-muted">
-                                <picture>
+                                <picture class="w-100 d-flex justify-content-center">
                                     <source srcset="assets/img/about.webp" type="image/webp">
-                                    <img src="assets/img/about.png" alt="Equipo de Servicios y Sistemas" style="width:500px;" width="848" height="582" loading="lazy" decoding="async">
+                                    <img src="assets/img/about.png" alt="Equipo de Servicios y Sistemas" class="img-fluid rounded-2" style="max-width:500px;width:100%;height:auto;" width="848" height="582" loading="lazy" decoding="async">
                                 </picture>
                                 </div>
                             </div>

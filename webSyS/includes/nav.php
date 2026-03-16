@@ -2,14 +2,14 @@
       <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-link-white">
         <div class="navbar-fixed-bg position-absolute"></div>
 			<div class="container position-relative z-1">
-					  <a class="navbar-brand" href="index.php">
+					  <a class="navbar-brand" href="index.php" style="width:360px;max-width:60vw;">
 						<picture>
 							<source srcset="assets/img/logo/sys_logo.webp" type="image/webp">
-							<img src="assets/img/logo/sys_logo.png" alt="Logo - Servicios y Sistemas" style="width:360px;" class="navbar-brand-sticky" width="720" height="87" fetchpriority="high" decoding="async">
+							<img src="assets/img/logo/sys_logo.png" alt="Logo - Servicios y Sistemas" style="width:100%;height:auto;display:block;" class="navbar-brand-sticky" width="720" height="87" fetchpriority="high" decoding="async">
 						</picture>
 						<picture>
 							<source srcset="assets/img/logo/sys_logo_w.webp" type="image/webp">
-							<img src="assets/img/logo/sys_logo_w.png" alt="Logo - Servicios y Sistemas" style="width:360px;" class="navbar-brand-transparent" width="720" height="87" fetchpriority="high" decoding="async">
+							<img src="assets/img/logo/sys_logo_w.png" alt="Logo - Servicios y Sistemas" style="width:100%;height:auto;display:block;" class="navbar-brand-transparent" width="720" height="87" fetchpriority="high" decoding="async">
 						</picture>
 					  </a>
                     <div class="d-flex align-items-center navbar-no-collapse-items order-lg-last">

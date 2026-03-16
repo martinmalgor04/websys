@@ -15,9 +15,8 @@ $uri = $_SERVER['REQUEST_URI'];
 $path = parse_url($uri, PHP_URL_PATH);
 $clientIP = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 
-// Eliminar slash inicial y limpiar path
-$path = ltrim($path, '/');
-$path = trim($path);
+// Eliminar slashes de bordes y limpiar path
+$path = trim($path, "/ \t\n\r\0\x0B");
 
 // Si no hay path, servir index.php
 if (empty($path) || $path === '/') {
@@ -28,6 +27,7 @@ if (empty($path) || $path === '/') {
 // Whitelist de archivos PHP permitidos (SIN extensión)
 $allowedFiles = [
     'index',
+    'gestion-it',
     'tango-gestion',
     'tango-punto-de-venta', 
     'tango-estudios-contables',
@@ -56,25 +56,6 @@ if (strpos($requestedPath, '..') !== false ||
     SimpleLogger::logSecurityEvent('Intento de path traversal detectado', [
         'ip' => $clientIP,
         'path_solicitado' => $requestedPath,
-        'uri_original' => $uri,
-        'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown'
-    ]);
-    
-    http_response_code(404);
-    include '404.php';
-    return;
-}
-
-// Extraer el primer segmento del path para comparar con whitelist
-$pathSegments = explode('/', $requestedPath);
-$mainPath = $pathSegments[0];
-
-// Validar que el path esté en la whitelist
-if (!in_array($mainPath, $allowedFiles, true)) {
-    // Log del acceso a archivo no permitido
-    SimpleLogger::logSecurityEvent('Acceso a ruta no permitida', [
-        'ip' => $clientIP,
-        'path_solicitado' => $mainPath,
         'uri_original' => $uri,
         'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown'
     ]);
@@ -120,6 +101,40 @@ if (file_exists($staticFile) && is_file($staticFile)) {
         include '404.php';
         return;
     }
+}
+
+// Extraer el primer segmento del path para comparar con whitelist
+$normalizedPath = strtolower(trim($requestedPath, "/ \t\n\r\0\x0B"));
+$pathSegments = explode('/', $normalizedPath);
+$mainPath = $pathSegments[0];
+
+// Alias de rutas amigables para desarrollo local
+$routeAliases = [
+    'inicio' => 'index',
+    'home' => 'index',
+    'productos' => 'index',
+    'gestionit' => 'gestion-it',
+    'gestion-it' => 'gestion-it',
+    'datacenter' => 'datacenter'
+];
+
+if (isset($routeAliases[$mainPath])) {
+    $mainPath = $routeAliases[$mainPath];
+}
+
+// Validar que el path esté en la whitelist
+if (!in_array($mainPath, $allowedFiles, true)) {
+    // Log del acceso a ruta no permitida
+    SimpleLogger::logSecurityEvent('Acceso a ruta no permitida', [
+        'ip' => $clientIP,
+        'path_solicitado' => $mainPath,
+        'uri_original' => $uri,
+        'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown'
+    ]);
+    
+    http_response_code(404);
+    include '404.php';
+    return;
 }
 
 // Buscar archivo PHP correspondiente de la whitelist
