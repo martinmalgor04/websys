@@ -43,7 +43,16 @@
         </noscript>
 
         <!-- LCP hero image preload -->
+        <?php
+        $tswStart  = strtotime('2026-05-13 00:00:00');
+        $tswEnd    = strtotime('2026-05-22 23:59:59');
+        $tswActive = (time() >= $tswStart && time() <= $tswEnd);
+        ?>
+        <?php if ($tswActive): ?>
+        <link rel="preload" href="assets/img/slider/superweek.webp" as="image" type="image/webp" fetchpriority="high">
+        <?php else: ?>
         <link rel="preload" href="assets/img/slider/1.webp" as="image" type="image/webp" fetchpriority="high">
+        <?php endif; ?>
         
         <!-- Script inline para aplicar tema inmediatamente -->
         <script>
