@@ -10,7 +10,7 @@ $tswPreview = $loopback && isset($_GET['superweek_preview']) && $_GET['superweek
 $tswActive  = $tswInDates || $tswLocal || $tswPreview;
 ?>
 <style>
-/* Override height: elimina espacio vacío abajo — 711px = alto exacto del banner superweek */
+/* Override height: 711px = alto exacto del banner superweek */
 .swiper-classic {
     height: 500px;
 }
@@ -19,17 +19,12 @@ $tswActive  = $tswInDates || $tswLocal || $tswPreview;
         height: 711px;
     }
 }
-.swiper-slide--superweek {
+/* SuperWeek: fondo oscuro para camuflar las franjas de contain */
+.swiper-classic .swiper-slide--superweek {
     background-color: #0a1430;
-    background-image: url('assets/img/slider/superweek.jpg');
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
 }
-@supports (background-image: url('x.webp')) {
-    .swiper-slide--superweek {
-        background-image: url('assets/img/slider/superweek.webp');
-    }
+.swiper-classic .swiper-slide--superweek .hero-slide-bg {
+    object-fit: contain;
 }
 </style>
 <!--Hero-->
@@ -45,6 +40,19 @@ $tswActive  = $tswInDates || $tswLocal || $tswPreview;
                                target="_blank" rel="noopener noreferrer"
                                class="d-block w-100 h-100 position-relative text-decoration-none"
                                aria-label="Tango SuperWeek 2026 - 50% OFF + 12 cuotas sin interés">
+                                <picture>
+                                    <source srcset="assets/img/slider/superweek.webp" type="image/webp">
+                                    <img
+                                        src="assets/img/slider/superweek.jpg"
+                                        alt=""
+                                        class="hero-slide-bg"
+                                        width="1920"
+                                        height="711"
+                                        fetchpriority="high"
+                                        loading="eager"
+                                        decoding="async"
+                                    >
+                                </picture>
                                 <div class="container-fluid text-white d-flex align-items-end justify-content-center h-100 position-relative pb-5 pb-lg-7">
                                     <ul class="carousel-layers list-unstyled mb-0 text-center">
                                         <li data-carousel-layer="fade-start">
