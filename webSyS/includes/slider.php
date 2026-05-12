@@ -20,12 +20,16 @@ $tswActive  = $tswInDates || $tswLocal || $tswPreview;
     }
 }
 .swiper-slide--superweek {
-    background: #0a1430;
+    background-color: #0a1430;
+    background-image: url('assets/img/slider/superweek.jpg');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
-.swiper-classic .swiper-slide--superweek .hero-slide-bg {
-    object-fit: cover;
-    object-position: center;
-    background: #0a1430;
+@supports (background-image: url('x.webp')) {
+    .swiper-slide--superweek {
+        background-image: url('assets/img/slider/superweek.webp');
+    }
 }
 </style>
 <!--Hero-->
@@ -41,18 +45,6 @@ $tswActive  = $tswInDates || $tswLocal || $tswPreview;
                                target="_blank" rel="noopener noreferrer"
                                class="d-block w-100 h-100 position-relative text-decoration-none"
                                aria-label="Tango SuperWeek 2026 - 50% OFF + 12 cuotas sin interés">
-                                <picture>
-                                    <source srcset="assets/img/slider/superweek.webp" type="image/webp">
-                                    <img
-                                        src="assets/img/slider/superweek.jpg"
-                                        alt="Tango SuperWeek 2026 - 50% OFF + 12 cuotas sin interés"
-                                        class="hero-slide-bg superweek-bg"
-                                        width="1920" height="711"
-                                        fetchpriority="high"
-                                        loading="eager"
-                                        decoding="async"
-                                    >
-                                </picture>
                                 <div class="container-fluid text-white d-flex align-items-end justify-content-center h-100 position-relative pb-5 pb-lg-7">
                                     <ul class="carousel-layers list-unstyled mb-0 text-center">
                                         <li data-carousel-layer="fade-start">
