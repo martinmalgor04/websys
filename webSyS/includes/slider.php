@@ -38,7 +38,7 @@ $tswActive  = $tswInDates || $tswLocal || $tswPreview;
                                         src="assets/img/slider/superweek.jpg"
                                         alt="Tango SuperWeek 2026 - 50% OFF + 12 cuotas sin interés"
                                         class="hero-slide-bg superweek-bg"
-                                        width="1920" height="711"
+                                        width="1920" height="500"
                                         fetchpriority="high"
                                         loading="eager"
                                         decoding="async"
@@ -185,3 +185,35 @@ $tswActive  = $tswInDates || $tswLocal || $tswPreview;
                 </div>
             </section>
             <!--/.Slider end-->
+<?php if ($tswActive): ?>
+<script>
+(function () {
+    var RATIO = 500 / 1920;
+    var container = document.querySelector('.swiper-classic');
+    if (!container) return;
+
+    function applyHeight() {
+        var swiper = container.swiper;
+        if (!swiper) return;
+        var activeSlide = swiper.slides[swiper.activeIndex];
+        if (activeSlide && activeSlide.classList.contains('swiper-slide--superweek')) {
+            container.style.height = Math.round(container.offsetWidth * RATIO) + 'px';
+        } else {
+            container.style.height = '';
+        }
+    }
+
+    function bindSwiper() {
+        if (container.swiper) {
+            applyHeight();
+            container.swiper.on('slideChange', applyHeight);
+            window.addEventListener('resize', applyHeight, { passive: true });
+        } else {
+            setTimeout(bindSwiper, 50);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', bindSwiper);
+})();
+</script>
+<?php endif; ?>
