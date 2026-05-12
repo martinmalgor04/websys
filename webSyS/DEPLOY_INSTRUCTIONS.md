@@ -42,6 +42,8 @@ FTP_PASSWORD: tu-contraseña-cpanel
 
 ## 🚀 Proceso de Deploy
 
+El workflow de GitHub Actions está en **la raíz del repositorio** (no dentro de `webSyS`): [`.github/workflows/deploy-cpanel.yml`](../.github/workflows/deploy-cpanel.yml). Solo sube el contenido de `webSyS/` a `/public_html/` por FTP.
+
 1. **Hacer cambios** en el código local
 2. **Commit y push** a la rama `main`:
    ```bash

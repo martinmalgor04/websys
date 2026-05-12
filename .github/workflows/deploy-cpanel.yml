@@ -1,0 +1,60 @@
+# Despliega solo la carpeta webSyS al public_html del hosting.
+# Debe vivir en la raíz del repo: GitHub ignora workflows bajo webSyS/.github/
+name: Deploy webSyS to cPanel
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (opcional para futuros builds)
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Deploy webSyS to cPanel via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /public_html/
+          local-dir: ./webSyS/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            .env
+            **/.DS_Store
+            **/Thumbs.db
+            **/*.backup
+            **/*.log
+            README.md
+            .gitignore
+            .cpanel.yml
+            ecommerce/**
+            php/**
+            Mpago/**
+            sysdesk/**
+            soporte/**
+            pruebagit/**
+            phpspreadsheet/**
+            pdfclientes/**
+            pdfproveedores/**
+            photos/**
+            fondos/**
+            mpdf/**
+            private/logs/*
+            validate-security.php
+            SEGURIDAD.md
+            error_log
+            .well-known/**
+            .htpasswd
