@@ -1,7 +1,13 @@
 <?php
 $tswStart  = strtotime('2026-05-13 00:00:00');
 $tswEnd    = strtotime('2026-05-22 23:59:59');
-$tswActive = (time() >= $tswStart && time() <= $tswEnd);
+$tswInDates = (time() >= $tswStart && time() <= $tswEnd);
+$host       = $_SERVER['HTTP_HOST'] ?? '';
+$tswLocal   = (bool) preg_match('/^(localhost|127\.0\.0\.1)(:\d+)?$/i', $host);
+$remote     = $_SERVER['REMOTE_ADDR'] ?? '';
+$loopback   = ($remote === '127.0.0.1' || $remote === '::1');
+$tswPreview = $loopback && isset($_GET['superweek_preview']) && $_GET['superweek_preview'] === '1';
+$tswActive  = $tswInDates || $tswLocal || $tswPreview;
 ?>
 <style>
 .swiper-slide--superweek {
