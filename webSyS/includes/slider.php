@@ -10,11 +10,20 @@ $tswPreview = $loopback && isset($_GET['superweek_preview']) && $_GET['superweek
 $tswActive  = $tswInDates || $tswLocal || $tswPreview;
 ?>
 <style>
+/* Override height: elimina espacio vacío abajo — 711px = alto exacto del banner superweek */
+.swiper-classic {
+    height: 500px;
+}
+@media (min-width: 992px) {
+    .swiper-classic {
+        height: 711px;
+    }
+}
 .swiper-slide--superweek {
     background: #0a1430;
 }
 .swiper-classic .swiper-slide--superweek .hero-slide-bg {
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     background: #0a1430;
 }
@@ -38,7 +47,7 @@ $tswActive  = $tswInDates || $tswLocal || $tswPreview;
                                         src="assets/img/slider/superweek.jpg"
                                         alt="Tango SuperWeek 2026 - 50% OFF + 12 cuotas sin interés"
                                         class="hero-slide-bg superweek-bg"
-                                        width="1920" height="500"
+                                        width="1920" height="711"
                                         fetchpriority="high"
                                         loading="eager"
                                         decoding="async"
