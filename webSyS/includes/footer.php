@@ -85,3 +85,10 @@
             </div>
             <!--container-->
         </footer>
+
+        <?php
+        // Family FAB de contacto rápido (WhatsApp / llamar / email)
+        if (function_exists('cultFamilyFab')) {
+            echo cultFamilyFab();
+        }
+        ?>

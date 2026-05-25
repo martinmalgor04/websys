@@ -77,57 +77,57 @@ include('includes/head.php');
             </section>
 
             <!--begin: Datacenter Section -->
-            <section class="position-relative overflow-hidden" style="background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);">
+            <section class="position-relative overflow-hidden cult-bg-animated-gradient">
                 <div class="container position-relative py-9 py-lg-11">
                     <div class="row justify-content-center">
-                        <div class="col-lg-8 text-center text-white mb-5 mb-lg-0" data-aos="fade-up">
-                            <h2 class="display-4 fw-bold mb-4">SERVICIOS DE DATACENTER</h2>
+                        <div class="col-lg-10 text-center text-white mb-5 mb-lg-0" data-aos="fade-up">
+                            <h2 class="display-4 fw-bold mb-4">SERVICIOS DE <span class="cult-shimmer-text--bright">DATACENTER</span></h2>
                             <p class="lead mb-5">
-                                Alojá tu servidor en nuestra infraestructura de alta disponibilidad y olvidate de los problemas técnicos. 
+                                Alojá tu servidor en nuestra infraestructura de alta disponibilidad y olvidate de los problemas técnicos.
                                 Seguridad 24/7, respaldo continuo y soporte especializado para tu empresa.
                             </p>
-                            
-                            <div class="row justify-content-center mb-5">
-                                <div class="col-md-5 col-lg-4 mb-3 text-center">
-                                    <div class="d-flex flex-column align-items-center">
+
+                            <!-- Stats animadas -->
+                            <div class="cult-stats-row" data-aos="fade-up" data-aos-delay="100">
+                                <?= cultStatNumber('99.9', 'Uptime garantizado', '', '%', true,  'cult-stat-block--light') ?>
+                                <?= cultStatNumber('24/7', 'Monitoreo continuo', '',  '', false, 'cult-stat-block--light') ?>
+                                <?= cultStatNumber('5',    'Latencia máx.',     '<', 'ms', false, 'cult-stat-block--light') ?>
+                                <?= cultStatNumber('30',   'Años de experiencia', '+', '', true,  'cult-stat-block--light') ?>
+                            </div>
+
+                            <div class="row justify-content-center mb-5 g-3">
+                                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                                    <div class="cult-feature-glass d-flex flex-column align-items-center text-center">
                                         <i class="bx bx-shield-quarter fs-1 mb-3 text-white"></i>
-                                        <div>
-                                            <h6 class="mb-1 text-white">Máxima Seguridad</h6>
-                                            <small class="text-white-50">Protección avanzada 24/7</small>
-                                        </div>
+                                        <h6 class="mb-1 text-white">Máxima Seguridad</h6>
+                                        <small class="text-white-50">Protección avanzada 24/7</small>
                                     </div>
                                 </div>
-                                <div class="col-md-5 col-lg-4 mb-3 text-center">
-                                    <div class="d-flex flex-column align-items-center">
+                                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="180">
+                                    <div class="cult-feature-glass d-flex flex-column align-items-center text-center">
                                         <i class="bx bx-server fs-1 mb-3 text-white"></i>
-                                        <div>
-                                            <h6 class="mb-1 text-white">Alta Disponibilidad</h6>
-                                            <small class="text-white-50">99.9% uptime garantizado</small>
-                                        </div>
+                                        <h6 class="mb-1 text-white">Alta Disponibilidad</h6>
+                                        <small class="text-white-50">99.9% uptime garantizado</small>
                                     </div>
                                 </div>
-                                <div class="col-md-5 col-lg-4 mb-3 text-center">
-                                    <div class="d-flex flex-column align-items-center">
+                                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="260">
+                                    <div class="cult-feature-glass d-flex flex-column align-items-center text-center">
                                         <i class="bx bx-support fs-1 mb-3 text-white"></i>
-                                        <div>
-                                            <h6 class="mb-1 text-white">Soporte Experto</h6>
-                                            <small class="text-white-50">Asistencia especializada</small>
-                                        </div>
+                                        <h6 class="mb-1 text-white">Soporte Experto</h6>
+                                        <small class="text-white-50">Asistencia especializada</small>
                                     </div>
                                 </div>
-                                <div class="col-md-5 col-lg-4 mb-3 text-center">
-                                    <div class="d-flex flex-column align-items-center">
+                                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="340">
+                                    <div class="cult-feature-glass d-flex flex-column align-items-center text-center">
                                         <i class="bx bx-dollar-circle fs-1 mb-3 text-white"></i>
-                                        <div>
-                                            <h6 class="mb-1 text-white">Ahorro de Costos</h6>
-                                            <small class="text-white-50">Sin inversión en equipos</small>
-                                        </div>
+                                        <h6 class="mb-1 text-white">Ahorro de Costos</h6>
+                                        <small class="text-white-50">Sin inversión en equipos</small>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="text-center">
-                                <a href="datacenter.php" class="btn btn-white btn-lg rounded-pill px-5 py-3 hover-lift">
+                                <a href="datacenter.php" class="btn btn-white btn-lg rounded-pill px-5 py-3 hover-lift cult-btn-shimmer">
                                     <i class="bx bx-info-circle me-2"></i>CONOCER MÁS
                                 </a>
                             </div>
@@ -173,31 +173,31 @@ include('includes/head.php');
                     <div class="row justify-content-center text-center">
                         <div class="col-lg-4 col-md-6 mb-5" data-aos="fade-up" data-aos-delay="150">
                                                           <div class="mb-4">
-                                  <div class="width-15x height-15x rounded-circle bg-white border border-3 border-dark mx-auto d-flex align-items-center justify-content-center mb-3">
+                                  <div class="width-15x height-15x rounded-circle bg-white border border-3 border-dark mx-auto d-flex align-items-center justify-content-center mb-3 cult-pulse-icon">
                                      <i class="bx bx-calendar display-2 text-dark"></i>
                                   </div>
-                                 <h2 class="fw-bold mb-2 text-white" style="font-size: 4rem;">+30</h2>
+                                 <h2 class="fw-bold mb-2 text-white" style="font-size: 4rem;"><span class="cult-stat-count" data-target="30" data-prefix="+">+30</span></h2>
                                  <h5 class="fw-bold mb-2 text-white">Años de Experiencia</h5>
                                   <p class="text-muted mb-0">proveyendo soluciones tecnológicas inteligentes</p>
                               </div>
                         </div>
                         <div class="col-lg-4 col-md-6 mb-5" data-aos="fade-up" data-aos-delay="200">
                                                           <div class="mb-4">
-                                  <div class="width-15x height-15x rounded-circle bg-white border border-3 border-dark mx-auto d-flex align-items-center justify-content-center mb-3">
+                                  <div class="width-15x height-15x rounded-circle bg-white border border-3 border-dark mx-auto d-flex align-items-center justify-content-center mb-3 cult-pulse-icon">
                                      <i class="bx bx-group display-2 text-dark"></i>
                                   </div>
-                                 <h2 class="fw-bold mb-2 text-white" style="font-size: 4rem;">+1000</h2>
+                                 <h2 class="fw-bold mb-2 text-white" style="font-size: 4rem;"><span class="cult-stat-count" data-target="1000" data-prefix="+">+1000</span></h2>
                                  <h5 class="fw-bold mb-2 text-white">Empresas</h5>
                                   <p class="text-muted mb-0">Con Implementaciones de Tango Software Exitosa</p>
                               </div>
                         </div>
                         <div class="col-lg-4 col-md-6 mb-5" data-aos="fade-up" data-aos-delay="200">
                                                           <div class="mb-4">
-                                  <div class="width-15x height-15x rounded-circle bg-white border border-3 border-dark mx-auto d-flex align-items-center justify-content-center mb-3">
+                                  <div class="width-15x height-15x rounded-circle bg-white border border-3 border-dark mx-auto d-flex align-items-center justify-content-center mb-3 cult-pulse-icon">
                                       <!-- Medalla SVG personalizada -->
                                                                              <img src="assets/img/medalla.svg" alt="Medalla" style="width: 60px; height: 60px;" class="text-dark">
                                   </div>
-                                 <h2 class="fw-bold mb-2 text-white" style="font-size: 4rem;">+5</h2>
+                                 <h2 class="fw-bold mb-2 text-white" style="font-size: 4rem;"><span class="cult-stat-count" data-target="5" data-prefix="+">+5</span></h2>
                                  <h5 class="fw-bold mb-2 text-white">Años Siendo premiados con</h5>
                                  <h6 class="fw-bold text-white">Mejor Proveedor del NEA</h6>
                               </div>
@@ -211,7 +211,7 @@ include('includes/head.php');
                 <div class="container position-relative">
 					<div class="row justify-content-center">
                         <div class="col-12 text-center mb-4" data-aos="fade-up" data-aos-delay="50">
-							<h2 class="display-5 text-center mb-5">Confían en Nosotros</h2>
+							<h2 class="display-5 text-center mb-5">Confían en <span class="cult-shimmer-text">Nosotros</span></h2>
 						</div>
                     </div>
 					<div data-aos="fade-up" class="border rounded-3 text-dark px-5 py-8 py-lg-9 px-lg-9 mb-5 shadow-lg position-relative z-1">
@@ -256,7 +256,7 @@ include('includes/head.php');
                     
                     <div class="row justify-content-center">
                         <div class="col-lg-10">
-                            <div class="accordion" id="faqAccordion" data-aos="fade-up" data-aos-delay="150">
+                            <div class="accordion cult-faq" id="faqAccordion" data-aos="fade-up" data-aos-delay="150">
                                 
                                 <!-- FAQ 1 -->
                                 <div class="accordion-item border-0 shadow-sm mb-3">
@@ -452,7 +452,7 @@ include('includes/head.php');
                                     </div>
                                     
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 py-3">
+                                        <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 py-3 cult-btn-shimmer">
                                             <i class="bx bx-send me-2"></i>ENVIAR CONSULTA
                                         </button>
                                     </div>

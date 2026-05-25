@@ -1,0 +1,563 @@
+/* ================================================================
+   CULT.CSS — Efectos tipo Cult UI para webSyS (Bootstrap 5)
+   Todas las clases usan prefijo `cult-` para no chocar con
+   sys_style.css ni con Bootstrap. Aditivo, no reemplaza nada.
+   ================================================================ */
+
+/* ─── Tokens locales (no chocan con CSS vars de Bootstrap) ─── */
+:root {
+  --cult-primary:        #532fff;
+  --cult-primary-hover:  #7559ff;
+  --cult-primary-light:  #ddd5ff;
+  --cult-cyan:           #5bd6ec;
+  --cult-spring:         cubic-bezier(0.34, 1.56, 0.64, 1);
+  --cult-ease-out:       cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-bs-theme="dark"] {
+  --cult-primary-light: #1a1240;
+}
+
+/* ─── Keyframes ─── */
+@keyframes cult-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes cult-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes cult-gradient-rotate {
+  0%   { background-position:   0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position:   0% 50%; }
+}
+
+@keyframes cult-pulse-ring {
+  0%   { transform: scale(1);    opacity: 0.5; }
+  70%  { transform: scale(1.4);  opacity: 0;   }
+  100% { transform: scale(1.4);  opacity: 0;   }
+}
+
+@keyframes cult-fab-item-in {
+  from { opacity: 0; transform: translateY(0.6rem) scale(0.88); }
+  to   { opacity: 1; transform: translateY(0)      scale(1);    }
+}
+
+@keyframes cult-badge-pop {
+  0%   { transform: scale(0.8);  opacity: 0; }
+  70%  { transform: scale(1.06); }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+/* ─── motion-* web components: display safe ─── */
+motion-tilt,
+motion-reveal,
+motion-parallax {
+  display: inline-block;
+}
+
+/* ─── Shimmer text ─── */
+.cult-shimmer-text {
+  background: linear-gradient(
+    120deg,
+    var(--cult-primary)        0%,
+    var(--cult-primary-hover) 25%,
+    var(--cult-cyan)          50%,
+    var(--cult-primary-hover) 75%,
+    var(--cult-primary)      100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: cult-shimmer 3.5s linear infinite;
+  display: inline-block;
+}
+
+/* Variante para sliders / fondos oscuros (más brillante) */
+.cult-shimmer-text--bright {
+  background: linear-gradient(
+    120deg,
+    #ffffff 0%, #ffe2a8 25%, #ffffff 50%, #ffe2a8 75%, #ffffff 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: cult-shimmer 3.5s linear infinite;
+  display: inline-block;
+}
+
+/* ─── Shimmer button (.btn de Bootstrap + .cult-btn-shimmer) ─── */
+.cult-btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.cult-btn-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.32) 50%,
+    transparent 65%
+  );
+  background-size: 200% 100%;
+  background-position: -200% 0;
+  animation: cult-shimmer 2.8s ease-in-out infinite;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ─── Neumorph button (claro y oscuro) ─── */
+.cult-btn-neumorph {
+  background: #f4f5f6;
+  color: #1a1e30;
+  border: 1px solid #e6e8ec;
+  box-shadow:
+     5px  5px 10px rgba(26, 30, 48, 0.09),
+    -3px -3px  8px rgba(255, 255, 255, 0.75);
+  transition: all 0.3s var(--cult-ease-out);
+}
+
+.cult-btn-neumorph:hover {
+  box-shadow:
+     2px  2px  5px rgba(26, 30, 48, 0.09),
+    -2px -2px  5px rgba(255, 255, 255, 0.75);
+  transform: translateY(-1px);
+  color: var(--cult-primary);
+  border-color: var(--cult-primary);
+}
+
+[data-bs-theme="dark"] .cult-btn-neumorph,
+.cult-btn-neumorph--dark {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+     4px  4px 12px rgba(0, 0, 0, 0.35),
+    -2px -2px  8px rgba(255, 255, 255, 0.04);
+}
+
+[data-bs-theme="dark"] .cult-btn-neumorph:hover,
+.cult-btn-neumorph--dark:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* ─── Stat counter (entra desde abajo + opacidad) ─── */
+.cult-stat-count {
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition:
+    opacity 0.5s var(--cult-ease-out),
+    transform 0.5s var(--cult-ease-out);
+  display: inline-block;
+}
+
+.cult-stat-count.cult-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Stat block (datacenter) ─── */
+.cult-stat-block {
+  text-align: center;
+  min-width: 6rem;
+  padding-inline: 0.5rem;
+}
+
+.cult-stat-block__number {
+  display: block;
+  font-weight: 700;
+  font-size: clamp(2rem, 1.5rem + 1.5vw, 2.75rem);
+  line-height: 1;
+}
+
+.cult-stat-block__label {
+  display: block;
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+  opacity: 0.75;
+}
+
+/* En contenedores oscuros, fuerzan blanco */
+.cult-stat-block--light .cult-stat-block__number,
+.cult-stat-block--light .cult-stat-block__label {
+  color: white;
+}
+
+.cult-stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem 2.5rem;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 2rem;
+}
+
+/* ─── Background animado (datacenter) ─── */
+.cult-bg-animated-gradient {
+  background: linear-gradient(
+    135deg,
+    #0d6efd 0%, #0a58ca 30%, #1f4cd6 55%, #084dab 80%, #0d6efd 100%
+  ) !important;
+  background-size: 300% 300% !important;
+  animation: cult-gradient-rotate 18s ease infinite;
+}
+
+.cult-bg-animated-violet {
+  background: linear-gradient(
+    135deg,
+    #532fff 0%, #3a1fcc 30%, #7340ff 55%, #2211a8 80%, #532fff 100%
+  ) !important;
+  background-size: 300% 300% !important;
+  animation: cult-gradient-rotate 18s ease infinite;
+}
+
+/* ─── Glass feature card (en fondo oscuro/violeta) ─── */
+.cult-feature-glass {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1rem;
+  padding: 1.5rem 1rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    background 0.3s var(--cult-ease-out),
+    border-color 0.3s var(--cult-ease-out),
+    transform 0.3s var(--cult-ease-out);
+  height: 100%;
+}
+
+.cult-feature-glass:hover {
+  background: rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-3px);
+}
+
+/* ─── Pulse ring para iconos circulares (hover) ─── */
+.cult-pulse-icon {
+  position: relative;
+}
+
+.cult-pulse-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid var(--cult-primary);
+  opacity: 0;
+  pointer-events: none;
+  animation: cult-pulse-ring 2.8s ease-out infinite;
+}
+
+/* En sección Nosotros, los círculos ya tienen border y bg, solo agregar ring */
+#nosotros .cult-pulse-icon::before {
+  border-color: rgba(83, 47, 255, 0.5);
+}
+
+/* ─── Texture card decoration (productos destacados) ─── */
+.cult-texture-deco {
+  position: relative;
+}
+
+.cult-texture-deco::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 0% 0%,
+    rgba(255, 255, 255, 0.18),
+    transparent 55%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cult-texture-deco > * { position: relative; z-index: 1; }
+
+/* ─── Card badge (Disponible / Próximamente) ─── */
+.cult-card-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 50rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 5;
+  animation: cult-badge-pop 0.5s var(--cult-spring) both;
+}
+
+.cult-card-badge--available {
+  background: rgba(40, 167, 69, 0.18);
+  color: #1e7e34;
+  border: 1px solid rgba(40, 167, 69, 0.35);
+}
+
+.cult-card-badge--soon {
+  background: rgba(255, 255, 255, 0.7);
+  color: #5f6885;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(4px);
+}
+
+.cult-card-minimal {
+  opacity: 0.72;
+  filter: grayscale(0.25);
+  transition: opacity 0.3s var(--cult-ease-out), filter 0.3s var(--cult-ease-out);
+}
+
+.cult-card-minimal:hover {
+  opacity: 0.92;
+  filter: grayscale(0);
+}
+
+/* ─── Partners marquee (alternativa al Swiper actual) ─── */
+.cult-marquee {
+  display: flex;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+          mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+.cult-marquee__track {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  animation: cult-marquee 28s linear infinite;
+  flex-shrink: 0;
+  padding-inline: 1.5rem;
+}
+
+.cult-marquee:hover .cult-marquee__track { animation-play-state: paused; }
+
+.cult-marquee__track img {
+  height: 2.5rem;
+  width: auto;
+  opacity: 0.4;
+  filter: grayscale(100%);
+  transition: opacity 0.3s var(--cult-ease-out), filter 0.3s var(--cult-ease-out);
+  flex-shrink: 0;
+}
+
+.cult-marquee__track img:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+/* ─── FAQ enhancement (Bootstrap accordion) ─── */
+.cult-faq .accordion-item {
+  position: relative;
+  overflow: visible;
+}
+
+.cult-faq .accordion-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 3px;
+  background: var(--cult-primary);
+  border-radius: 50rem;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s var(--cult-spring);
+}
+
+.cult-faq .accordion-item:has(.accordion-button:not(.collapsed))::before {
+  transform: scaleY(1);
+}
+
+.cult-faq .accordion-button:not(.collapsed) {
+  color: var(--cult-primary) !important;
+  background-color: rgba(83, 47, 255, 0.04) !important;
+}
+
+[data-bs-theme="dark"] .cult-faq .accordion-button:not(.collapsed) {
+  background-color: rgba(83, 47, 255, 0.12) !important;
+}
+
+/* ─── Nav glow al estar fixed (sutil) ─── */
+header.header-transparent.sticky-fixed.is-fixed.cult-nav-glow .navbar {
+  box-shadow:
+    0 4px 24px rgba(83, 47, 255, 0.08),
+    0 1px 0 rgba(83, 47, 255, 0.06) inset !important;
+}
+
+/* ─── Family FAB ─── */
+.cult-fab {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1080;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.cult-fab__trigger {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: var(--cult-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 12px 32px rgba(83, 47, 255, 0.42);
+  transition:
+    transform 0.3s var(--cult-spring),
+    box-shadow 0.3s var(--cult-ease-out),
+    background 0.3s var(--cult-ease-out);
+  order: 2;
+  position: relative;
+  z-index: 1;
+}
+
+.cult-fab__trigger:hover {
+  transform: scale(1.08);
+  box-shadow: 0 16px 40px rgba(83, 47, 255, 0.55);
+}
+
+.cult-fab__trigger i {
+  font-size: 1.5rem;
+  transition: transform 0.3s var(--cult-spring);
+}
+
+.cult-fab[data-open="true"] .cult-fab__trigger {
+  background: #1a1e30;
+}
+
+.cult-fab[data-open="true"] .cult-fab__trigger i {
+  transform: rotate(45deg);
+}
+
+.cult-fab__actions {
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-end;
+  margin-bottom: 0.75rem;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(0.75rem);
+  transition:
+    opacity 0.3s var(--cult-ease-out),
+    transform 0.3s var(--cult-spring);
+}
+
+.cult-fab[data-open="true"] .cult-fab__actions {
+  pointer-events: auto;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cult-fab__action {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  animation: cult-fab-item-in 0.3s var(--cult-ease-out) both;
+}
+
+.cult-fab__action:nth-child(1) { animation-delay: 40ms; }
+.cult-fab__action:nth-child(2) { animation-delay: 90ms; }
+.cult-fab__action:nth-child(3) { animation-delay: 140ms; }
+
+.cult-fab__label {
+  background: white;
+  color: #1a1e30;
+  border: 1px solid #e6e8ec;
+  padding: 0.4rem 0.85rem;
+  border-radius: 50rem;
+  font-size: 0.825rem;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+}
+
+[data-bs-theme="dark"] .cult-fab__label {
+  background: #1a1e30;
+  color: #e6e8ec;
+  border-color: #323951;
+}
+
+.cult-fab__icon-btn {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.18);
+  flex-shrink: 0;
+  transition: transform 0.15s var(--cult-spring);
+  text-decoration: none;
+  color: white;
+}
+
+.cult-fab__icon-btn:hover { transform: scale(1.1); color: white; }
+
+.cult-fab__icon-btn i { font-size: 1.15rem; }
+
+.cult-fab__icon-btn--wa    { background: #25d366; }
+.cult-fab__icon-btn--phone { background: #528ff0; }
+.cult-fab__icon-btn--mail  { background: var(--cult-primary); }
+
+/* ─── Hero grid pattern overlay (decorativo) ─── */
+.cult-hero-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 3rem 3rem;
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 0%, transparent 100%);
+          mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 0%, transparent 100%);
+  z-index: 1;
+}
+
+/* ─── reduced-motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .cult-shimmer-text,
+  .cult-shimmer-text--bright {
+    animation: none;
+    background: var(--cult-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .cult-btn-shimmer::after,
+  .cult-bg-animated-gradient,
+  .cult-bg-animated-violet,
+  .cult-marquee__track,
+  .cult-pulse-icon::before {
+    animation: none !important;
+  }
+
+  .cult-bg-animated-gradient {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%) !important;
+  }
+
+  .cult-bg-animated-violet {
+    background: linear-gradient(135deg, #532fff 0%, #3a1fcc 100%) !important;
+  }
+}

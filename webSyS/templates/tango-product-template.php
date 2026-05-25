@@ -53,19 +53,22 @@ include('includes/head.php');
 <!--Main content-->
 <main class="main-content" id="main-content">
     <!--begin: Header del producto -->
-    <section class="position-relative text-white" style="background-color:<?= $product['color'] ?>;">
-        <div class="container position-relative py-9 py-lg-15">
+    <section class="position-relative text-white overflow-hidden" style="background-color:<?= $product['color'] ?>;">
+        <div class="cult-hero-grid" aria-hidden="true"></div>
+        <div class="container position-relative py-9 py-lg-15" style="z-index:2;">
             <div class="row pt-4">
                 <div class="col-xl-12">
                     <div class="d-flex align-items-center">
-                        <img src="<?= htmlspecialchars($product_logo_path, ENT_QUOTES, 'UTF-8') ?>" 
-                             title="<?= $product['name'] ?>" 
-                             alt="<?= $product['name'] ?>" 
-                             class="img-fluid mx-auto product-logo-enhanced"
-                             width="<?= $product_logo_width ?>"
-                             height="<?= $product_logo_height ?>"
-                             loading="eager"
-                             decoding="async">
+                        <motion-tilt max-tilt="6" speed="400" style="display:block; width:100%;">
+                            <img src="<?= htmlspecialchars($product_logo_path, ENT_QUOTES, 'UTF-8') ?>"
+                                 title="<?= $product['name'] ?>"
+                                 alt="<?= $product['name'] ?>"
+                                 class="img-fluid mx-auto product-logo-enhanced d-block"
+                                 width="<?= $product_logo_width ?>"
+                                 height="<?= $product_logo_height ?>"
+                                 loading="eager"
+                                 decoding="async">
+                        </motion-tilt>
                     </div>
                 </div>
             </div>
@@ -101,24 +104,26 @@ include('includes/head.php');
         <div class="container position-relative py-9 py-lg-11">
             <div class="row mb-9 mb-lg-11 justify-content-between align-items-end">
                 <div class="col-lg-10 col-xl-8 mx-auto text-center">
-                    <h2 class="display-5 mb-0" data-aos="fade-up">Módulos y Funcionalidades</h2>
+                    <h2 class="display-5 mb-0" data-aos="fade-up">Módulos y <span class="cult-shimmer-text">Funcionalidades</span></h2>
                 </div>
             </div>
-            
+
             <div class="row justify-content-center">
                 <?php foreach ($modules as $index => $module): ?>
                 <div class="col-md-6 col-lg-4 text-center mb-4" data-aos="fade-up" data-aos-delay="<?= 50 + ($index * 50) ?>">
-                    <div class="card card-body py-5 px-4 border-0 shadow-lg hover-lift hover-shadow-xl h-100">
-                        <div class="mb-4 position-relative">
-                            <i class="<?= $module['icon'] ?> display-3 text-primary"></i>
+                    <motion-tilt max-tilt="4" speed="400" style="display:block; height:100%;">
+                        <div class="card card-body py-5 px-4 border-0 shadow-lg hover-lift hover-shadow-xl h-100">
+                            <div class="mb-4 position-relative">
+                                <i class="<?= $module['icon'] ?> display-3 text-primary"></i>
+                            </div>
+                            <div class="d-flex align-items-center mb-3 justify-content-center">
+                                <h5 class="mb-0"><?= $module['title'] ?></h5>
+                            </div>
+                            <p class="mb-0 w-lg-75 mx-auto">
+                                <?= $module['description'] ?>
+                            </p>
                         </div>
-                        <div class="d-flex align-items-center mb-3 justify-content-center">
-                            <h5 class="mb-0"><?= $module['title'] ?></h5>
-                        </div>
-                        <p class="mb-0 w-lg-75 mx-auto">
-                            <?= $module['description'] ?>
-                        </p>
-                    </div>
+                    </motion-tilt>
                 </div>
                 <?php endforeach; ?>
             </div>

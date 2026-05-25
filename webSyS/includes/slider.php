@@ -87,7 +87,7 @@ $tswActive  = $tswInDates;
                                             </li>
 											<li data-carousel-layer="fade-start">
                                                 <h2 class="display-3 mb-3">
-                                                    A LA MEDIDA DE TU NEGOCIO
+                                                    A LA <span class="cult-shimmer-text--bright">MEDIDA</span> DE TU NEGOCIO
                                                 </h2>
                                             </li>
                                             <li data-carousel-layer="fade-end">
@@ -159,7 +159,7 @@ $tswActive  = $tswInDates;
                                         <ul class="carousel-layers list-unstyled mb-0">
                                             <li data-carousel-layer="fade-start">
                                                 <h2 class="display-3 mb-3">
-                                                    GESTIÓN INTEGRAL DE TU INFORMÁTICA
+                                                    GESTIÓN <span class="cult-shimmer-text--bright">INTEGRAL</span> DE TU INFORMÁTICA
                                                 </h2>
                                             </li>
                                             <li data-carousel-layer="fade-end">

@@ -35,16 +35,17 @@ initSecurity();
 
         <main class="main-content" id="main-content">
             <!--begin: Header -->
-            <section class="position-relative text-white" style="background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);">
-                <div class="container position-relative py-9 py-lg-15">
+            <section class="position-relative text-white overflow-hidden cult-bg-animated-gradient">
+                <div class="cult-hero-grid" aria-hidden="true"></div>
+                <div class="container position-relative py-9 py-lg-15" style="z-index:2;">
                     <div class="row align-items-center">
                         <div class="col-lg-8 text-center mx-auto">
-                            <h1 class="display-3 mb-4 fw-bold" data-aos="fade-up">DATACENTER</h1>
+                            <h1 class="display-3 mb-4 fw-bold" data-aos="fade-up">DATA<span class="cult-shimmer-text--bright">CENTER</span></h1>
                             <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">
                                 Alojá tu servidor en nuestra infraestructura de alta disponibilidad y olvidate de los problemas técnicos
                             </p>
                             <div data-aos="fade-up" data-aos-delay="200">
-                                <a href="#contacto" class="btn btn-white btn-lg rounded-pill px-5 py-3">
+                                <a href="#contacto" class="btn btn-white btn-lg rounded-pill px-5 py-3 cult-btn-shimmer">
                                     <i class="bx bx-phone me-2"></i>CONTACTANOS
                                 </a>
                             </div>

@@ -4,28 +4,43 @@
  * Servicios y Sistemas SRL
  */
 
+// Cult UI helpers (cultStatNumber, cultMarquee, cultFamilyFab, cultBadge)
+require_once(__DIR__ . '/cult-components.php');
+
 /**
  * Generar tarjeta de producto para la página de inicio
  */
 function renderProductCard($key, $product, $delay = 0) {
-    $html = '<div class="col-xl-2 col-lg-4 col-md-6 col-10 text-center mb-4" data-aos="fade-up" data-aos-delay="' . $delay . '">';
-    // Reemplazar estilo inline con clase CSS
-    $html .= '<div class="card card-body py-5 px-4 border-0 shadow-lg hover-lift hover-shadow-xl product-card-' . $key . '">';
+    // Producto disponible / próximamente (config opcional 'available' en site config; por defecto true)
+    $isAvailable = !isset($product['available']) || $product['available'] !== false;
+    $minimalCls  = $isAvailable ? '' : ' cult-card-minimal';
+
+    $html  = '<div class="col-xl-2 col-lg-4 col-md-6 col-10 text-center mb-4" data-aos="fade-up" data-aos-delay="' . $delay . '">';
+    $html .= '<motion-tilt max-tilt="6" speed="400" style="display:block;">';
+    $html .= '<div class="card card-body py-5 px-4 border-0 shadow-lg hover-lift hover-shadow-xl product-card-' . $key . ' cult-texture-deco position-relative' . $minimalCls . '">';
+
+    // Badge "Disponible" / "Próximamente"
+    if (function_exists('cultBadge')) {
+        $html .= $isAvailable
+            ? cultBadge('Disponible', 'available')
+            : cultBadge('Próximamente', 'soon');
+    }
+
     $html .= '<div class="mb-4 mx-auto width-15x height-15x flex-center position-relative">';
-    
+
     // Determinar la ruta del logo
     $logoPath = 'assets/img/productos/' . $product['slug'] . '/';
     if (isset($product['logo_folder'])) {
         $logoPath .= $product['logo_folder'] . '/';
     }
-    
+
     // Logo para tema claro con dimensiones explícitas (evita CLS)
     $logoLightSrc = $logoPath . $product['logo'];
     $logoLightSize = @getimagesize($logoLightSrc);
     $logoLightWidth = $logoLightSize ? (int) $logoLightSize[0] : 300;
     $logoLightHeight = $logoLightSize ? (int) $logoLightSize[1] : 180;
     $html .= '<img src="' . $logoLightSrc . '" alt="' . $product['name'] . '" class="img-fluid logo-light" width="' . $logoLightWidth . '" height="' . $logoLightHeight . '" loading="lazy" decoding="async">';
-    
+
     // Logo para tema oscuro (si está disponible)
     if (isset($product['logo_dark'])) {
         $logoDarkSrc = $logoPath . $product['logo_dark'];
@@ -34,15 +49,20 @@ function renderProductCard($key, $product, $delay = 0) {
         $logoDarkHeight = $logoDarkSize ? (int) $logoDarkSize[1] : 180;
         $html .= '<img src="' . $logoDarkSrc . '" alt="' . $product['name'] . '" class="img-fluid logo-dark" width="' . $logoDarkWidth . '" height="' . $logoDarkHeight . '" loading="lazy" decoding="async">';
     }
-    
+
     $html .= '</div>';
     $html .= '<div class="d-flex align-items-center mb-3 justify-content-center">';
-    $html .= '<a href="' . $product['slug'] . '.php" class="btn btn-white btn-sm mr-3 me-3">ENTRAR</a>';
+    if ($isAvailable) {
+        $html .= '<a href="' . $product['slug'] . '.php" class="btn btn-white btn-sm mr-3 me-3 cult-btn-shimmer">ENTRAR</a>';
+    } else {
+        $html .= '<span class="btn btn-light btn-sm mr-3 me-3 disabled">EN DESARROLLO</span>';
+    }
     $html .= '</div>';
     $html .= '<p class="mb-0 w-lg-75 mx-auto text-white">' . $product['short_desc'] . '</p>';
     $html .= '</div>';
+    $html .= '</motion-tilt>';
     $html .= '</div>';
-    
+
     return $html;
 }
 

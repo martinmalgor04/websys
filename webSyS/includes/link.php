@@ -35,6 +35,15 @@
             <link href="assets/css/product-cards.css" rel="stylesheet">
         </noscript>
 
+        <!-- Cult UI styles (efectos shimmer, neumorph, marquee, FAB, animated counters) -->
+        <link rel="preload" href="assets/css/cult.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript>
+            <link href="assets/css/cult.css" rel="stylesheet">
+        </noscript>
+
+        <!-- motion-components: web components con spring physics (progressive enhancement) -->
+        <script type="module" src="https://unpkg.com/motion-components@latest" crossorigin></script>
+
 		<!-- AOS Animations - CDN (no crítico para first paint) -->
         <link rel="preconnect" href="https://unpkg.com" crossorigin>
         <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">

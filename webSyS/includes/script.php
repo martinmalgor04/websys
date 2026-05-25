@@ -4,6 +4,7 @@
         <!-- Scripts principales -->
         <script src="assets/js/sys.bundle.min.js" defer></script>
         <script src="assets/js/sys-forms.js" defer></script>
+        <script src="assets/js/cult.js" defer></script>
         
 		<!-- Swiper Slider - CDN -->
         <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
