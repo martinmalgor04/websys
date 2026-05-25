@@ -1,0 +1,26 @@
+@layer utilities {
+  .text-xs  { font-size: var(--text-xs); }
+  .text-sm  { font-size: var(--text-sm); }
+  .text-lg  { font-size: var(--text-lg); }
+  .text-xl  { font-size: var(--text-xl); }
+  .text-secondary { color: var(--color-text-secondary); }
+  .text-tertiary  { color: var(--color-text-tertiary); }
+  .text-primary   { color: var(--color-primary); }
+
+  .font-display { font-family: var(--font-display); }
+  .font-bold    { font-weight: 700; }
+  .font-medium  { font-weight: 500; }
+
+  .leading-relaxed { line-height: var(--leading-relaxed); }
+  .leading-normal  { line-height: var(--leading-normal); }
+
+  .mb-4  { margin-bottom: var(--space-4); }
+  .mb-6  { margin-bottom: var(--space-6); }
+  .mb-8  { margin-bottom: var(--space-8); }
+  .mb-12 { margin-bottom: var(--space-12); }
+
+  .img-rounded { border-radius: var(--radius-xl); }
+  .about-img   { border-radius: var(--radius-xl); width: 100%; }
+
+  .content-auto { content-visibility: auto; }
+}
