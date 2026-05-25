@@ -4,7 +4,8 @@
         <!-- Scripts principales -->
         <script src="assets/js/sys.bundle.min.js" defer></script>
         <script src="assets/js/sys-forms.js" defer></script>
-        <script src="assets/js/cult.js" defer></script>
+        <?php $cultJsVer = file_exists(__DIR__ . '/../assets/js/cult.js') ? @filemtime(__DIR__ . '/../assets/js/cult.js') : time(); ?>
+        <script src="assets/js/cult.js?v=<?= $cultJsVer ?>" defer></script>
         
 		<!-- Swiper Slider - CDN -->
         <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>

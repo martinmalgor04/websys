@@ -36,9 +36,10 @@
         </noscript>
 
         <!-- Cult UI styles (efectos shimmer, neumorph, marquee, FAB, animated counters) -->
-        <link rel="preload" href="assets/css/cult.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <?php $cultVer = file_exists(__DIR__ . '/../assets/css/cult.css') ? @filemtime(__DIR__ . '/../assets/css/cult.css') : time(); ?>
+        <link rel="preload" href="assets/css/cult.css?v=<?= $cultVer ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript>
-            <link href="assets/css/cult.css" rel="stylesheet">
+            <link href="assets/css/cult.css?v=<?= $cultVer ?>" rel="stylesheet">
         </noscript>
 
         <!-- motion-components: web components con spring physics (progressive enhancement) -->
