@@ -183,7 +183,7 @@ try {
     $autoMessage .= "- Empresa: " . $empresa . "\n";
     $autoMessage .= "- Fecha: " . date('d/m/Y H:i') . "\n\n";
     $autoMessage .= "Si tenés alguna consulta urgente, podés contactarnos directamente:\n";
-    $autoMessage .= "- Teléfono: +54 3794 426022\n";
+        $autoMessage .= "- Teléfono: +54 3794 426022\n";
     $autoMessage .= "- Email: info@serviciosysistemas.com.ar\n";
     $autoMessage .= "- Sitio web: https://serviciosysistemas.com.ar\n\n";
     $autoMessage .= "Saludos cordiales,\n";
@@ -217,6 +217,6 @@ try {
         'ip_hash' => $ipHash
     ]);
     
-    respondError('Error interno del servidor. Por favor contactanos directamente al +54 3794 426022', 500);
+        respondError('Error interno del servidor. Por favor contactanos directamente al +54 3794 426022', 500);
 }
 ?>

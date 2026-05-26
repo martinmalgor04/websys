@@ -20560,11 +20560,11 @@ header.header-transparent.sticky-fixed.is-fixed .navbar .navbar-fixed-bg {
 header.header-transparent.sticky-fixed.is-fixed .navbar-light .navbar-fixed-bg {
   background-color: var(--bs-body-bg);
 }
-header.header-transparent.sticky-fixed.is-fixed .navbar-light.navbar-link-white .navbar-brand > .navbar-brand-transparent {
+header.header-transparent.sticky-fixed.is-fixed .navbar-light.navbar-link-white .navbar-brand .navbar-brand-transparent {
   opacity: 0;
   visibility: hidden;
 }
-header.header-transparent.sticky-fixed.is-fixed .navbar-light.navbar-link-white .navbar-brand > .navbar-brand-sticky {
+header.header-transparent.sticky-fixed.is-fixed .navbar-light.navbar-link-white .navbar-brand .navbar-brand-sticky {
   opacity: 1;
   visibility: visible;
 }

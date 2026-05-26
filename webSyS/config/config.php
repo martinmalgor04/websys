@@ -10,6 +10,8 @@ define('SITE_URL', 'https://serviciosysistemas.com.ar');
 define('SITE_EMAIL', 'info@serviciosysistemas.com.ar');
 define('SITE_EMAIL_VENTAS', 'daniel@serviciosysistemas.com.ar');
 define('SITE_PHONE', '+54 3794 426022');
+/** Número de WhatsApp (celular); puede diferir del teléfono de línea para llamadas */
+define('SITE_WHATSAPP', '5493794235110');
 define('SITE_ADDRESS', 'San Martín 1180, Corrientes, Argentina');
 define('SITE_YEAR_FOUNDED', 1993);
 define('SITE_YEARS_EXPERIENCE', date('Y') - SITE_YEAR_FOUNDED);

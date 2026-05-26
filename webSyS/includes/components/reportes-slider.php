@@ -7,6 +7,112 @@
  */
 
 /**
+ * Renderizar sección Tango Reportes con estilo cult-*.
+ * Layout split: izquierda mockup, derecha features + sistemas compatibles.
+ * Reemplaza visualmente a renderTangoReportesSlider() en páginas modernizadas.
+ *
+ * @param array $opts {
+ *   @type string $eyebrow  Texto eyebrow superior.
+ *   @type string $title    Título principal.
+ *   @type string $shimmer  Fragmento shimmer del título.
+ *   @type string $subtitle Subtítulo / lead.
+ *   @type array  $features Lista de features (strings).
+ *   @type array  $systems  Sistemas compatibles [['name','class']].
+ *   @type string $image    Ruta de la imagen/mockup.
+ *   @type string $image_alt Alt de la imagen.
+ *   @type string $bg       Clase de background (default: bg-body).
+ *   @type string $size     'default' | 'large' | 'compact' — escala visual (imagen y tipografía).
+ * }
+ * @return void
+ */
+function renderCultTangoReportes(array $opts = []) {
+    $eyebrow  = $opts['eyebrow']  ?? 'Tango Reportes';
+    $title    = $opts['title']    ?? 'La información de tus empresas';
+    $shimmer  = $opts['shimmer']  ?? 'desde donde estés';
+    $subtitle = $opts['subtitle'] ?? 'Centralizá indicadores, ventas, sueldos y stock de todas tus empresas. Compartí informes con socios y contadores en un par de clics.';
+    $features = $opts['features'] ?? [
+        'Informes de Ventas, Sueldos y Stock de Tango Gestión, Punto de Venta y Restô.',
+        'Análisis por empresa, sucursal o grupo de empresas.',
+        'Indicadores, grillas e informes pivot multidimensional.',
+        'Exportación directa a Excel.',
+        'Compartí informes con permisos granulares.',
+        'Acceso desde cualquier navegador y dispositivo.',
+    ];
+    $systems = $opts['systems'] ?? [
+        ['name' => 'TANGO GESTIÓN',          'class' => 'bg-primary'],
+        ['name' => 'TANGO PUNTO DE VENTA',   'class' => 'bg-primary'],
+        ['name' => 'TANGO ESTUDIOS CONTABLES','class' => 'bg-warning text-dark'],
+        ['name' => 'TANGO RESTÔ',            'class' => 'bg-danger'],
+    ];
+    $image    = $opts['image']     ?? 'assets/img/productos/tango-estudios-contables/IMAGEN NEXO.png';
+    $imageAlt = $opts['image_alt'] ?? 'Tango Reportes - Vista del panel de indicadores';
+    $bg            = $opts['bg']            ?? 'bg-white cult-section--white';
+    $size          = $opts['size']          ?? 'default';
+    $product_color = $opts['product_color']  ?? '';
+    $scoped_class  = $product_color !== '' ? ' cult-product-scoped' : '';
+    $scoped_style  = ($product_color !== '' && function_exists('cultProductMeshStyle'))
+        ? cultProductMeshStyle($product_color)
+        : '';
+    $is_large      = $size === 'large';
+    $is_compact    = $size === 'compact';
+    $section_extra = $is_large ? ' cult-reportes--large' : ($is_compact ? ' cult-reportes--compact' : '');
+    $img_col       = $is_large ? 'col-lg-7 col-xl-7' : ($is_compact ? 'col-lg-5' : 'col-lg-6');
+    $text_col      = $is_large ? 'col-lg-5 col-xl-5' : ($is_compact ? 'col-lg-7' : 'col-lg-6');
+    $title_class   = $is_large
+        ? 'cult-display cult-reportes__title mb-4'
+        : ($is_compact ? 'cult-display cult-display--lg mb-3' : 'cult-display cult-display--xl mb-3');
+    ?>
+    <section class="position-relative overflow-hidden cult-reportes<?= $section_extra ?><?= $scoped_class ?> <?= htmlspecialchars($bg) ?>"
+             <?= $scoped_style ? 'style="' . $scoped_style . '"' : '' ?>>
+        <div class="container position-relative cult-reportes__container">
+            <div class="row align-items-center cult-reportes__row">
+                <div class="<?= $img_col ?> cult-reportes__visual" data-aos="fade-up">
+                    <img src="<?= htmlspecialchars($image) ?>"
+                         alt="<?= htmlspecialchars($imageAlt) ?>"
+                         class="cult-reportes__image img-fluid rounded-4"
+                         loading="lazy"
+                         decoding="async">
+                </div>
+
+                <div class="<?= $text_col ?> cult-reportes__content" data-aos="fade-up" data-aos-delay="100">
+                    <?php if ($eyebrow): ?>
+                    <span class="cult-section-eyebrow cult-reportes__eyebrow text-start"><?= htmlspecialchars($eyebrow) ?></span>
+                    <?php endif; ?>
+                    <h2 class="<?= $title_class ?> cult-headline-on-light">
+                        <span class="cult-headline-on-light__base"><?= htmlspecialchars($title) ?></span><?php if ($shimmer): ?>
+                        <span class="cult-headline-on-light__accent"> <?= htmlspecialchars($shimmer) ?></span><?php endif; ?>
+                    </h2>
+                    <?php if ($subtitle): ?>
+                    <p class="cult-reportes__lead lead text-muted mb-4"><?= htmlspecialchars($subtitle) ?></p>
+                    <?php endif; ?>
+
+                    <ul class="list-unstyled mb-4 cult-check-list cult-reportes__features">
+                        <?php foreach ($features as $feature): ?>
+                        <li class="d-flex align-items-start mb-2">
+                            <i class="bx bx-check-circle text-success me-2 cult-reportes__check flex-shrink-0" aria-hidden="true"></i>
+                            <span><?= htmlspecialchars($feature) ?></span>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
+
+                    <?php if (!empty($systems)): ?>
+                    <h6 class="cult-reportes__systems-label fw-bold mb-3 text-uppercase text-muted">Sistemas compatibles</h6>
+                    <div class="d-flex flex-wrap gap-2 cult-reportes__badges">
+                        <?php foreach ($systems as $sys): ?>
+                        <span class="badge cult-reportes__badge <?= htmlspecialchars($sys['class']) ?> px-3 py-2 rounded-pill">
+                            <?= htmlspecialchars($sys['name']) ?>
+                        </span>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php
+}
+
+/**
  * Renderizar slider de Tango Reportes con características predefinidas
  * @param string $title Título de la sección (default: "TANGO REPORTES")
  * @param string $subtitle Subtítulo de la sección

@@ -126,12 +126,152 @@
     });
   }
 
+  /* ── Custom select (reemplaza dropdown nativo del OS) ──────── */
+  function initCustomSelects() {
+    var wraps = document.querySelectorAll('.cult-form-select-wrap');
+    if (!wraps.length) return;
+
+    wraps.forEach(function (wrap) {
+      if (wrap.dataset.cultSelectInit === 'true') return;
+
+      var select = wrap.querySelector('select.form-select');
+      if (!select || select.multiple) return;
+
+      wrap.dataset.cultSelectInit = 'true';
+      select.classList.add('cult-form-select-native');
+      select.tabIndex = -1;
+
+      var trigger = document.createElement('button');
+      trigger.type = 'button';
+      trigger.className = 'cult-form-select-trigger';
+      trigger.setAttribute('aria-haspopup', 'listbox');
+      trigger.setAttribute('aria-expanded', 'false');
+      if (select.id) trigger.setAttribute('aria-labelledby', select.id + '-label');
+
+      var valueEl = document.createElement('span');
+      valueEl.className = 'cult-form-select-value';
+      trigger.appendChild(valueEl);
+
+      var chevron = document.createElement('i');
+      chevron.className = 'bx bx-chevron-down cult-form-select-chevron';
+      chevron.setAttribute('aria-hidden', 'true');
+      trigger.appendChild(chevron);
+
+      var menu = document.createElement('ul');
+      menu.className = 'cult-form-select-menu';
+      menu.setAttribute('role', 'listbox');
+      menu.hidden = true;
+
+      var options = [];
+      Array.prototype.forEach.call(select.options, function (opt, index) {
+        var item = document.createElement('li');
+        item.className = 'cult-form-select-option';
+        item.setAttribute('role', 'option');
+        item.dataset.value = opt.value;
+        item.textContent = opt.textContent;
+        item.tabIndex = -1;
+        if (opt.disabled) {
+          item.setAttribute('aria-disabled', 'true');
+          item.classList.add('is-disabled');
+        }
+        menu.appendChild(item);
+        options.push({ el: item, native: opt, index: index });
+      });
+
+      wrap.appendChild(trigger);
+      wrap.appendChild(menu);
+
+      function currentOption() {
+        for (var i = 0; i < options.length; i++) {
+          if (options[i].native.selected) return options[i];
+        }
+        return options[0];
+      }
+
+      function syncDisplay() {
+        var cur = currentOption();
+        if (!cur) return;
+        valueEl.textContent = cur.native.textContent;
+        valueEl.classList.toggle('is-placeholder', !cur.native.value);
+        options.forEach(function (o) {
+          var on = o.native.selected;
+          o.el.classList.toggle('is-selected', on);
+          o.el.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+      }
+
+      function setOpen(open) {
+        wrap.classList.toggle('is-open', open);
+        trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        menu.hidden = !open;
+        if (open) {
+          var sel = menu.querySelector('.cult-form-select-option.is-selected');
+          if (sel) sel.scrollIntoView({ block: 'nearest' });
+        }
+      }
+
+      function choose(option) {
+        if (!option || option.native.disabled) return;
+        select.selectedIndex = option.index;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+        syncDisplay();
+        setOpen(false);
+        trigger.focus();
+      }
+
+      trigger.addEventListener('click', function (e) {
+        e.preventDefault();
+        setOpen(!wrap.classList.contains('is-open'));
+      });
+
+      menu.addEventListener('click', function (e) {
+        var item = e.target.closest('.cult-form-select-option');
+        if (!item || item.classList.contains('is-disabled')) return;
+        for (var i = 0; i < options.length; i++) {
+          if (options[i].el === item) {
+            choose(options[i]);
+            break;
+          }
+        }
+      });
+
+      trigger.addEventListener('keydown', function (e) {
+        var idx = select.selectedIndex;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (!wrap.classList.contains('is-open')) {
+            setOpen(true);
+            return;
+          }
+          var next = e.key === 'ArrowDown' ? idx + 1 : idx - 1;
+          while (next >= 0 && next < options.length && options[next].native.disabled) {
+            next += e.key === 'ArrowDown' ? 1 : -1;
+          }
+          if (next >= 0 && next < options.length) choose(options[next]);
+        } else if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setOpen(!wrap.classList.contains('is-open'));
+        } else if (e.key === 'Escape') {
+          setOpen(false);
+        }
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!wrap.contains(e.target)) setOpen(false);
+      });
+
+      select.addEventListener('change', syncDisplay);
+      syncDisplay();
+    });
+  }
+
   /* ── Init ──────────────────────────────────────────────────── */
   function init() {
     initCounters();
     initNavGlow();
     initFab();
     initSpotlight();
+    initCustomSelects();
   }
 
   if (document.readyState === 'loading') {

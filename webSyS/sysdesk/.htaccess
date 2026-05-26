@@ -1,13 +1,9 @@
 # SysDesk - Configuración de subdominio
 # sysdesk.serviciosysistemas.com.ar
 
-# Configuración de codificación
 AddDefaultCharset UTF-8
 
-# Habilitar motor de reescritura
 RewriteEngine on
-
-# Archivo index por defecto
 DirectoryIndex index.php
 
 # URLs amigables (ocultar .php)
@@ -18,28 +14,48 @@ RewriteRule ^(.*)$ $1.php [L]
 # No indexar en buscadores
 Header set X-Robots-Tag "noindex, nofollow"
 
+# Compresión Brotli / Gzip
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
 # Headers de seguridad
 <IfModule mod_headers.c>
-    Header always set X-Content-Type-Options nosniff
-    Header always set X-Frame-Options SAMEORIGIN
-    Header always set X-XSS-Protection "1; mode=block"
+  Header always set X-Content-Type-Options nosniff
+  Header always set X-Frame-Options SAMEORIGIN
+  Header always set X-XSS-Protection "1; mode=block"
+
+  <FilesMatch "\.(css|js|woff2|webp|avif|svg|png|jpe?g|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html|php)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
 </IfModule>
 
 # Proteger archivos sensibles
 <Files ~ "\.(htaccess|htpasswd|log|txt|md)$">
-    deny from all
+  deny from all
 </Files>
 
 # Permitir descarga de ejecutables
 <Files ~ "\.(exe)$">
-    ForceType application/octet-stream
-    Header set Content-Disposition attachment
+  ForceType application/octet-stream
+  Header set Content-Disposition attachment
 </Files>
 
-# Cache para assets
+# Cache para assets estáticos
 <IfModule mod_expires.c>
-    ExpiresActive On
-    ExpiresByType image/png "access plus 1 month"
-    ExpiresByType image/jpeg "access plus 1 month"
-    ExpiresByType image/gif "access plus 1 month"
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
 </IfModule>

@@ -18,16 +18,27 @@ if (!isset($faq_subtitle)) {
     $faq_subtitle = "Resolvemos las dudas más comunes sobre este producto";
 }
 
+if (!isset($faq_use_cult)) {
+    $faq_use_cult = false;
+}
+
 // Generar ID único para el accordion
 $accordion_id = 'faqAccordion' . uniqid();
 ?>
 
 <!--begin: FAQ Section -->
-<section class="position-relative bg-gradient-light overflow-hidden">
+<section class="position-relative <?= $faq_use_cult ? 'bg-body' : 'bg-gradient-light' ?> overflow-hidden">
     <div class="container position-relative py-9 py-lg-11">
         <div class="row justify-content-center mb-9">
             <div class="col-lg-8 text-center">
-                <h2 class="display-4 mb-4" data-aos="fade-up"><?= htmlspecialchars($faq_title) ?></h2>
+                <?php if ($faq_use_cult): ?>
+                    <span class="cult-section-eyebrow">FAQ</span>
+                    <h2 class="cult-display cult-display--xl mb-4" data-aos="fade-up">
+                        <?= htmlspecialchars($faq_title) ?>
+                    </h2>
+                <?php else: ?>
+                    <h2 class="display-4 mb-4" data-aos="fade-up"><?= htmlspecialchars($faq_title) ?></h2>
+                <?php endif; ?>
                 <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
                     <?= htmlspecialchars($faq_subtitle) ?>
                 </p>
@@ -36,7 +47,7 @@ $accordion_id = 'faqAccordion' . uniqid();
         
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <div class="accordion" id="<?= $accordion_id ?>" data-aos="fade-up" data-aos-delay="150">
+                <div class="accordion <?= $faq_use_cult ? 'cult-faq' : '' ?>" id="<?= $accordion_id ?>" data-aos="fade-up" data-aos-delay="150">
                     
                     <?php if (isset($faq_items) && is_array($faq_items)): ?>
                         <?php foreach ($faq_items as $index => $faq): ?>

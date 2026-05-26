@@ -1,0 +1,366 @@
+/* SysDesk landing — layout + componentes (complementa cult.css) */
+
+/* ─── Layout base (no depende de sys_style.css) ─────────────── */
+.sd-container {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 1.5rem);
+}
+
+.sd-section {
+  padding-block: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+.sd-section__header {
+  text-align: center;
+  max-width: 40rem;
+  margin-inline: auto;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.sd-section__header .lead {
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  line-height: 1.65;
+}
+
+/* ─── Iconos SVG ─────────────────────────────────────────────── */
+.sd-icon {
+  display: inline-block;
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.15em;
+  flex-shrink: 0;
+}
+
+.sd-icon--lg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.btn .sd-icon {
+  margin-right: 0.35rem;
+}
+
+/* ─── Reveal ─────────────────────────────────────────────────── */
+.sd-reveal {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sd-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sd-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ─── Hero ───────────────────────────────────────────────────── */
+.sd-hero {
+  min-height: auto;
+  padding-block: clamp(3rem, 8vw, 5rem);
+}
+
+.sd-hero__logo {
+  width: min(100%, 16rem);
+  height: auto;
+  filter: drop-shadow(0 0 2rem rgba(255, 255, 255, 0.15));
+}
+
+.sd-hero__lede {
+  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 34rem;
+  margin-inline: auto;
+  line-height: 1.65;
+}
+
+.sd-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.25rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.875rem;
+}
+
+.sd-hero__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.sd-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+/* ─── Pasos (cards claras, legibles) ─────────────────────────── */
+.sd-section--muted {
+  background: var(--cult-ink-50, #f7f9ff);
+}
+
+[data-bs-theme="dark"] .sd-section--muted {
+  background: var(--cult-ink-900, #060e1f);
+}
+
+.sd-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 991.98px) {
+  .sd-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .sd-steps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sd-step-card {
+  background: #fff;
+  border: 1px solid rgba(13, 110, 253, 0.12);
+  border-radius: var(--cult-r-xl, 1.75rem);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  height: 100%;
+  box-shadow: var(--cult-shadow-sm, 0 2px 8px rgba(13, 110, 253, 0.06));
+  transition: transform 0.3s var(--cult-ease, ease), box-shadow 0.3s ease;
+}
+
+[data-bs-theme="dark"] .sd-step-card {
+  background: var(--cult-ink-800, #0c1530);
+  border-color: rgba(91, 214, 236, 0.15);
+}
+
+.sd-step-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--cult-shadow-md, 0 8px 24px rgba(13, 110, 253, 0.1));
+}
+
+.sd-step-card__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--cult-blue, #0d6efd) 0%, var(--cult-cyan, #5bd6ec) 100%);
+  box-shadow: 0 6px 16px rgba(13, 110, 253, 0.35);
+}
+
+.sd-step-card__title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--cult-ink-800, #0c1530);
+}
+
+[data-bs-theme="dark"] .sd-step-card__title {
+  color: #fff;
+}
+
+.sd-step-card__text {
+  font-size: 0.875rem;
+  color: var(--cult-ink-500, #4a557a);
+  margin: 0;
+  line-height: 1.6;
+}
+
+[data-bs-theme="dark"] .sd-step-card__text {
+  color: var(--cult-ink-300, #9ba3bd);
+}
+
+/* ─── Features ───────────────────────────────────────────────── */
+.sd-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 991.98px) {
+  .sd-features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .sd-features {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sd-feature {
+  text-align: center;
+  padding: 1.35rem 1rem;
+  border-radius: var(--cult-r-lg, 1.25rem);
+  border: 1px solid rgba(13, 110, 253, 0.1);
+  background: #fff;
+  transition: transform 0.3s var(--cult-ease, ease), box-shadow 0.3s ease;
+}
+
+[data-bs-theme="dark"] .sd-feature {
+  background: var(--cult-ink-800, #0c1530);
+  border-color: rgba(91, 214, 236, 0.12);
+}
+
+.sd-feature:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--cult-shadow-md, 0 8px 24px rgba(13, 110, 253, 0.1));
+}
+
+.sd-feature__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 0.75rem;
+  border-radius: var(--cult-r-md, 0.875rem);
+  background: rgba(13, 110, 253, 0.1);
+  color: var(--cult-blue, #0d6efd);
+}
+
+[data-bs-theme="dark"] .sd-feature__icon {
+  background: rgba(13, 110, 253, 0.18);
+  color: var(--cult-cyan, #5bd6ec);
+}
+
+.sd-feature__title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  font-size: 0.925rem;
+}
+
+.sd-feature__text {
+  font-size: 0.825rem;
+  color: var(--cult-ink-500, #4a557a);
+  margin: 0;
+}
+
+[data-bs-theme="dark"] .sd-feature__text {
+  color: var(--cult-ink-300, #9ba3bd);
+}
+
+/* ─── Partners / CTA ─────────────────────────────────────────── */
+.sd-section--white {
+  background: #fff;
+}
+
+[data-bs-theme="dark"] .sd-section--white {
+  background: var(--cult-ink-900, #060e1f);
+}
+
+.sd-partners-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cult-ink-400, #717a99);
+  margin-bottom: 1.25rem;
+}
+
+.sd-partners-wrap {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  padding: 1.25rem;
+  border-radius: var(--cult-r-xl, 1.75rem);
+  background: var(--cult-ink-50, #f7f9ff);
+  border: 1px solid rgba(13, 110, 253, 0.08);
+  overflow: hidden;
+}
+
+[data-bs-theme="dark"] .sd-partners-wrap {
+  background: var(--cult-ink-800, #0c1530);
+  border-color: rgba(91, 214, 236, 0.12);
+}
+
+.sd-partners-wrap .cult-marquee--partners {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+          mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+/* ─── Footer ─────────────────────────────────────────────────── */
+.sd-footer {
+  border-top: 1px solid rgba(13, 110, 253, 0.1);
+  background: var(--cult-ink-50, #f7f9ff);
+}
+
+[data-bs-theme="dark"] .sd-footer {
+  background: var(--cult-ink-900, #060e1f);
+  border-color: rgba(91, 214, 236, 0.1);
+}
+
+.sd-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.sd-footer__logo {
+  height: 2.25rem;
+  width: auto;
+}
+
+.sd-footer__contact {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .sd-footer__contact {
+    text-align: right;
+  }
+}
+
+/* ─── Back to top ────────────────────────────────────────────── */
+.sd-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cult-blue, #0d6efd) 0%, var(--cult-blue-deep, #0a58ca) 100%);
+  color: #fff;
+  box-shadow: var(--cult-shadow-md, 0 4px 16px rgba(13, 110, 253, 0.2));
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.5rem);
+  transition: opacity 0.3s, visibility 0.3s, transform 0.3s ease;
+  text-decoration: none;
+}
+
+.sd-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.sd-to-top:hover {
+  color: #fff;
+  transform: translateY(-2px);
+}

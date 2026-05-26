@@ -34,34 +34,61 @@ initSecurity();
         <!--Main content-->
 
         <main class="main-content" id="main-content">
-            <!--begin: Header -->
-            <section class="position-relative text-white overflow-hidden cult-bg-animated-gradient">
+
+            <!-- 1. Hero -->
+            <section class="position-relative text-white overflow-hidden cult-mesh-bg cult-mesh-bg--blue cult-page-header">
                 <div class="cult-hero-grid" aria-hidden="true"></div>
+                <div class="cult-blob cult-blob--cyan cult-decoration" style="top:-8%; right:-5%; opacity:0.35;" aria-hidden="true"></div>
+                <div class="cult-blob cult-blob--violet cult-decoration" style="bottom:-12%; left:-8%; opacity:0.25;" aria-hidden="true"></div>
                 <div class="container position-relative py-9 py-lg-15" style="z-index:2;">
                     <div class="row align-items-center">
-                        <div class="col-lg-8 text-center mx-auto">
-                            <h1 class="display-3 mb-4 fw-bold" data-aos="fade-up">DATA<span class="cult-shimmer-text--bright">CENTER</span></h1>
-                            <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">
+                        <div class="col-lg-10 text-center mx-auto">
+                            <span class="cult-eyebrow cult-eyebrow--light mb-4 d-inline-flex" data-aos="fade-up">
+                                <i class="bx bx-server" aria-hidden="true"></i>
+                                Hosting y servidores
+                            </span>
+                            <h1 class="cult-display cult-display--hero mb-4" data-aos="fade-up" data-aos-delay="50">
+                                Data<span class="cult-shimmer-text--bright">center</span>
+                            </h1>
+                            <p class="lead mb-5 mx-auto" style="max-width: 38rem; opacity: 0.85;" data-aos="fade-up" data-aos-delay="100">
                                 Alojá tu servidor en nuestra infraestructura de alta disponibilidad y olvidate de los problemas técnicos
                             </p>
-                            <div data-aos="fade-up" data-aos-delay="200">
-                                <a href="#contacto" class="btn btn-white btn-lg rounded-pill px-5 py-3 cult-btn-shimmer">
-                                    <i class="bx bx-phone me-2"></i>CONTACTANOS
+
+                            <div class="cult-stats-row mb-5" data-aos="fade-up" data-aos-delay="150">
+                                <?= cultStatNumber('99.9', 'Uptime garantizado', '', '%', true,  'cult-stat-block--light') ?>
+                                <?= cultStatNumber('24/7', 'Monitoreo continuo', '',  '', false, 'cult-stat-block--light') ?>
+                                <?= cultStatNumber('5',    'Latencia máx.',     '<', 'ms', false, 'cult-stat-block--light') ?>
+                                <?= cultStatNumber('30',   'Años de experiencia', '+', '', true,  'cult-stat-block--light') ?>
+                            </div>
+
+                            <div class="d-flex flex-wrap justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                                <a href="#contacto" class="btn cult-btn-glass btn-lg cult-btn-shimmer">
+                                    <i class="bx bx-phone me-2"></i>Solicitar consulta
+                                </a>
+                                <a href="#beneficios" class="btn cult-btn-glass btn-lg">
+                                    <i class="bx bx-down-arrow-alt me-2"></i>Ver beneficios
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <!--end: Header -->
-            
-            <!--begin: ¿Qué es un Datacenter? -->
+
+            <!-- 2. ¿Qué es un Datacenter? -->
             <section class="overflow-hidden bg-body position-relative">
                 <div class="container position-relative py-9 py-lg-11">
                     <div class="row justify-content-center">
-                        <div class="col-lg-10 text-center mb-9">
-                            <h2 class="display-4 mb-5" data-aos="fade-up">¿QUÉ ES UN DATACENTER?</h2>
-                            <div class="card card-body py-5 px-4 border-0 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                        <div class="col-lg-10 text-center mb-5">
+                            <span class="cult-section-eyebrow" data-aos="fade-up">Concepto</span>
+                            <h2 class="cult-display cult-display--xl mb-0" data-aos="fade-up" data-aos-delay="50">
+                                ¿Qué es un <span class="cult-gradient-text">Datacenter</span>?
+                            </h2>
+                        </div>
+                        <div class="col-lg-9" data-aos="fade-up" data-aos-delay="100">
+                            <div class="cult-callout-card text-center">
+                                <div class="cult-callout-card__icon">
+                                    <i class="bx bx-chip" aria-hidden="true"></i>
+                                </div>
                                 <p class="lead mb-0">
                                     Un datacenter es una granja de servidores de alto rendimiento que alberga sistemas de TI críticos. Gracias a la climatización, la energía de respaldo y las medidas de seguridad avanzadas, garantiza que tus datos y aplicaciones estén siempre protegidos y disponibles, sin la necesidad de gestionar tu propio servidor físico y todo lo que ello implica.
                                 </p>
@@ -70,359 +97,160 @@ initSecurity();
                     </div>
                 </div>
             </section>
-            <!--end: ¿Qué es un Datacenter? -->
 
-            <!--begin: ¿Por qué elegir? -->
-            <section class="position-relative bg-gradient-light">
+            <!-- 3. Por qué elegir — 4 pilares -->
+            <section id="beneficios" class="position-relative bg-body">
                 <div class="container position-relative py-9 py-lg-11">
                     <div class="row justify-content-center mb-9">
                         <div class="col-lg-8 text-center">
-                            <h2 class="display-4 mb-4" data-aos="fade-up">¿POR QUÉ ELEGIR UN SERVIDOR ALOJADO?</h2>
+                            <span class="cult-section-eyebrow" data-aos="fade-up">Beneficios</span>
+                            <h2 class="cult-display cult-display--xl mb-4" data-aos="fade-up" data-aos-delay="50">
+                                ¿Por qué elegir un <span class="cult-gradient-text">servidor alojado</span>?
+                            </h2>
                         </div>
                     </div>
-                    
-                    <div class="row">
-                        <!--begin: Ahorro de costos -->
-                        <div class="col-lg-6 col-md-6 mb-5" data-aos="fade-up" data-aos-delay="50">
-                            <div class="card card-body py-5 px-4 border-0 shadow-lg hover-lift hover-shadow-xl h-100">
-                                <div class="mb-4 position-relative">
-                                    <i class="bx bx-dollar-circle display-3 text-success"></i>
-                                </div>
-                                <h5 class="mb-3 fw-bold text-success">Ahorro de costos</h5>
-                                <p class="mb-0">
-                                    Despedite de la inversión en equipos, mantenimiento y energía. Optimizá tus gastos con un plan de hosting a tu medida.
-                                </p>
-                            </div>
-                        </div>
-                        <!--end: Ahorro de costos -->
 
-                        <!--begin: Máxima seguridad -->
-                        <div class="col-lg-6 col-md-6 mb-5" data-aos="fade-up" data-aos-delay="100">
-                            <div class="card card-body py-5 px-4 border-0 shadow-lg hover-lift hover-shadow-xl h-100">
-                                <div class="mb-4 position-relative">
-                                    <i class="bx bx-shield-quarter display-3 text-primary"></i>
+                    <div class="row g-4">
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="50">
+                            <motion-tilt max-tilt="5" speed="400" style="display:block;height:100%;">
+                                <div class="cult-pillar-card h-100">
+                                    <i class="bx bx-dollar-circle cult-pillar-card__icon text-success" aria-hidden="true"></i>
+                                    <h3 class="cult-pillar-card__title">Ahorro de costos</h3>
+                                    <p class="cult-pillar-card__text">Despedite de la inversión en equipos, mantenimiento y energía. Optimizá tus gastos con un plan de hosting a tu medida.</p>
                                 </div>
-                                <h5 class="mb-3 fw-bold text-primary">Máxima seguridad</h5>
-                                <p class="mb-0">
-                                    Nuestra vigilancia 24/7, sistemas de acceso controlado y respaldo continuo protegen tus datos en todo momento.
-                                </p>
-                            </div>
+                            </motion-tilt>
                         </div>
-                        <!--end: Máxima seguridad -->
-
-                        <!--begin: Disponibilidad garantizada -->
-                        <div class="col-lg-6 col-md-6 mb-5" data-aos="fade-up" data-aos-delay="150">
-                            <div class="card card-body py-5 px-4 border-0 shadow-lg hover-lift hover-shadow-xl h-100">
-                                <div class="mb-4 position-relative">
-                                    <i class="bx bx-time-five display-3 text-warning"></i>
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                            <motion-tilt max-tilt="5" speed="400" style="display:block;height:100%;">
+                                <div class="cult-pillar-card h-100">
+                                    <i class="bx bx-shield-quarter cult-pillar-card__icon text-primary" aria-hidden="true"></i>
+                                    <h3 class="cult-pillar-card__title">Máxima seguridad</h3>
+                                    <p class="cult-pillar-card__text">Nuestra vigilancia 24/7, sistemas de acceso controlado y respaldo continuo protegen tus datos en todo momento.</p>
                                 </div>
-                                <h5 class="mb-3 fw-bold text-warning">Disponibilidad garantizada</h5>
-                                <p class="mb-0">
-                                    Con redundancia en energía, clima y conectividad, tu servidor está siempre en línea.
-                                </p>
-                            </div>
+                            </motion-tilt>
                         </div>
-                        <!--end: Disponibilidad garantizada -->
-
-                        <!--begin: Soporte especializado -->
-                        <div class="col-lg-6 col-md-6 mb-5" data-aos="fade-up" data-aos-delay="200">
-                            <div class="card card-body py-5 px-4 border-0 shadow-lg hover-lift hover-shadow-xl h-100">
-                                <div class="mb-4 position-relative">
-                                    <i class="bx bx-support display-3 text-info"></i>
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
+                            <motion-tilt max-tilt="5" speed="400" style="display:block;height:100%;">
+                                <div class="cult-pillar-card h-100">
+                                    <i class="bx bx-time-five cult-pillar-card__icon text-warning" aria-hidden="true"></i>
+                                    <h3 class="cult-pillar-card__title">Disponibilidad garantizada</h3>
+                                    <p class="cult-pillar-card__text">Con redundancia en energía, clima y conectividad, tu servidor está siempre en línea.</p>
                                 </div>
-                                <h5 class="mb-3 fw-bold text-info">Soporte especializado</h5>
-                                <p class="mb-0">
-                                    Un equipo de expertos se ocupa de monitoreo, actualizaciones y asistencia técnica.
-                                </p>
-                            </div>
+                            </motion-tilt>
                         </div>
-                        <!--end: Soporte especializado -->
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                            <motion-tilt max-tilt="5" speed="400" style="display:block;height:100%;">
+                                <div class="cult-pillar-card h-100">
+                                    <i class="bx bx-support cult-pillar-card__icon text-info" aria-hidden="true"></i>
+                                    <h3 class="cult-pillar-card__title">Soporte especializado</h3>
+                                    <p class="cult-pillar-card__text">Un equipo de expertos se ocupa de monitoreo, actualizaciones y asistencia técnica.</p>
+                                </div>
+                            </motion-tilt>
+                        </div>
                     </div>
                 </div>
             </section>
-            <!--end: ¿Por qué elegir? -->
 
-            <!--begin: Comparación -->
-            <section class="overflow-hidden bg-body position-relative">
-                <div class="container position-relative py-9 py-lg-11">
-                    <div class="row justify-content-center mb-9">
-                        <div class="col-lg-8 text-center">
-                            <h2 class="display-4 mb-4" data-aos="fade-up">SERVIDOR LOCAL VS DATACENTER</h2>
-                            <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
+            <!-- 4. Local vs Datacenter -->
+            <section class="position-relative overflow-hidden cult-mesh-bg cult-mesh-bg--blue">
+                <div class="cult-hero-grid" aria-hidden="true"></div>
+                <div class="container position-relative py-9 py-lg-11" style="z-index:2;">
+                    <div class="cult-vs">
+                        <div class="cult-vs__header text-white">
+                            <span class="cult-section-eyebrow cult-section-eyebrow--light" data-aos="fade-up">Comparativa</span>
+                            <h2 class="cult-display cult-display--xl mb-2 text-white" data-aos="fade-up" data-aos-delay="50">
+                                Servidor Local vs <span class="cult-shimmer-text--bright">Datacenter</span>
+                            </h2>
+                            <p class="lead mx-auto mb-0" style="max-width:36rem; opacity:0.8;" data-aos="fade-up" data-aos-delay="100">
                                 Compará las ventajas de alojar tu servidor en nuestro datacenter
                             </p>
+                            <div class="cult-vs__chip" aria-hidden="true">VS</div>
                         </div>
-                    </div>
-                    
-                    <div class="row justify-content-center">
-                        <div class="col-lg-12">
-                            <div class="table-responsive" data-aos="fade-up" data-aos-delay="150">
-                                <table class="table table-lg">
-                                    <thead class="table-primary">
-                                        <tr>
-                                            <th scope="col" class="text-center py-4">Aspecto</th>
-                                            <th scope="col" class="text-center py-4">
-                                                <i class="bx bx-desktop text-danger fs-2 d-block mb-2"></i>
-                                                Servidor Local
-                                            </th>
-                                            <th scope="col" class="text-center py-4">
-                                                <i class="bx bx-cloud text-success fs-2 d-block mb-2"></i>
-                                                Servidor en Datacenter
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="fw-bold">Inversión Inicial</td>
-                                            <td class="text-danger">Alta (compra de hardware, instalación, infraestructura)</td>
-                                            <td class="text-success">Baja (planes de hosting y recursos escalables según necesidad)</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold">Seguridad</td>
-                                            <td class="text-warning">La seguridad dependerá de la inversión inicial y los sistemas que se implementen</td>
-                                            <td class="text-success">Múltiples capas de seguridad con firewall y conexión exclusiva con monitoreo 24/7</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold">Personal</td>
-                                            <td class="text-danger">Personal Interno a cargo de la organización con costo adicional</td>
-                                            <td class="text-success">Equipo que 24/7 se ocupa de soporte, reparaciones, actualizaciones y backups</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold">Escalabilidad</td>
-                                            <td class="text-warning">Limitada al espacio y capacidad del hardware</td>
-                                            <td class="text-success">Inmediata: podés sumar recursos (RAM, CPU, almacenamiento) sin comprar equipos nuevos</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold">Disponibilidad</td>
-                                            <td class="text-danger">Suele verse afectada por cortes de energía o internet</td>
-                                            <td class="text-success">Redundancia en energía, clima, conectividad y soporte, asegurando un alto nivel de disponibilidad (uptime)</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold">Mantenimiento</td>
-                                            <td class="text-danger">Mantenimiento continuo, reemplazo de equipos, insumos</td>
-                                            <td class="text-success">Costos fijos y previsibles, sin necesidad de grandes inversiones en infraestructura</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+
+                        <?php
+                        $vs_rows = [
+                            ['icon' => 'bx bx-wallet',       'label' => 'Inversión Inicial',   'local' => 'Alta (compra de hardware, instalación, infraestructura)',                          'dc' => 'Baja (planes de hosting y recursos escalables según necesidad)'],
+                            ['icon' => 'bx bx-shield',        'label' => 'Seguridad',           'local' => 'La seguridad dependerá de la inversión inicial y los sistemas que se implementen', 'dc' => 'Múltiples capas de seguridad con firewall y conexión exclusiva con monitoreo 24/7'],
+                            ['icon' => 'bx bx-group',         'label' => 'Personal',            'local' => 'Personal interno a cargo de la organización con costo adicional',                  'dc' => 'Equipo que 24/7 se ocupa de soporte, reparaciones, actualizaciones y backups'],
+                            ['icon' => 'bx bx-trending-up',   'label' => 'Escalabilidad',       'local' => 'Limitada al espacio y capacidad del hardware',                                     'dc' => 'Inmediata: podés sumar recursos (RAM, CPU, almacenamiento) sin comprar equipos nuevos'],
+                            ['icon' => 'bx bx-check-shield',  'label' => 'Disponibilidad',      'local' => 'Suele verse afectada por cortes de energía o internet',                            'dc' => 'Redundancia en energía, clima, conectividad y soporte, asegurando un alto nivel de uptime'],
+                            ['icon' => 'bx bx-wrench',        'label' => 'Mantenimiento',       'local' => 'Mantenimiento continuo, reemplazo de equipos, insumos',                          'dc' => 'Costos fijos y previsibles, sin necesidad de grandes inversiones en infraestructura'],
+                        ];
+                        foreach ($vs_rows as $i => $row):
+                        ?>
+                        <div class="cult-vs__row" data-aos="fade-up" data-aos-delay="<?= 50 + ($i * 40) ?>">
+                            <div class="cult-vs__label">
+                                <i class="<?= $row['icon'] ?> text-info" aria-hidden="true"></i>
+                                <?= htmlspecialchars($row['label'], ENT_QUOTES, 'UTF-8') ?>
+                            </div>
+                            <div class="cult-vs__side cult-vs__side--bad">
+                                <i class="bx bx-x-circle text-danger" aria-hidden="true"></i>
+                                <span><?= htmlspecialchars($row['local'], ENT_QUOTES, 'UTF-8') ?></span>
+                            </div>
+                            <div class="cult-vs__divider" aria-hidden="true">·</div>
+                            <div class="cult-vs__side cult-vs__side--good">
+                                <i class="bx bx-check-circle text-success" aria-hidden="true"></i>
+                                <span><?= htmlspecialchars($row['dc'], ENT_QUOTES, 'UTF-8') ?></span>
                             </div>
                         </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </section>
-            <!--end: Comparación -->
 
-            <!--begin: Cómo empezar -->
-            <section class="position-relative" style="background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%);">
-                <div class="container position-relative py-9 py-lg-11">
+            <!-- 5. Cómo empezar -->
+            <section class="position-relative overflow-hidden cult-mesh-bg cult-mesh-bg--blue">
+                <div class="cult-hero-grid" aria-hidden="true"></div>
+                <div class="container position-relative py-9 py-lg-11" style="z-index:2;">
                     <div class="row justify-content-center mb-9">
                         <div class="col-lg-8 text-center text-white">
-                            <h2 class="display-4 mb-4" data-aos="fade-up">¿CÓMO EMPEZAR?</h2>
+                            <span class="cult-section-eyebrow cult-section-eyebrow--light" data-aos="fade-up">Proceso</span>
+                            <h2 class="cult-display cult-display--xl mb-0 text-white" data-aos="fade-up" data-aos-delay="50">
+                                ¿Cómo <span class="cult-shimmer-text--bright">empezar</span>?
+                            </h2>
                         </div>
                     </div>
-                    
-                    <div class="row">
-                        <!--begin: Paso 1 -->
-                        <div class="col-lg-3 col-md-6 text-center mb-5" data-aos="fade-up" data-aos-delay="50">
-                            <div class="card card-body py-5 px-4 border-0 shadow-lg h-100">
-                                <div class="mb-4 position-relative">
-                                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mx-auto" style="width: 80px; height: 80px;">
-                                        <span class="fs-2 fw-bold">1</span>
-                                    </div>
-                                </div>
-                                <h5 class="mb-3 fw-bold text-primary">Contactanos</h5>
-                                <p class="mb-0">
-                                    Conversá con nuestro equipo para evaluar las necesidades de tu negocio y definir la mejor configuración de servidor.
-                                </p>
+
+                    <div class="cult-steps" data-aos="fade-up" data-aos-delay="100">
+                        <div class="cult-steps__rail" aria-hidden="true"></div>
+
+                        <div class="cult-step">
+                            <div class="cult-step__card">
+                                <div class="cult-step__num">1</div>
+                                <h3 class="cult-step__title">Contactanos</h3>
+                                <p class="cult-step__text">Conversá con nuestro equipo para evaluar las necesidades de tu negocio y definir la mejor configuración de servidor.</p>
                             </div>
                         </div>
-                        <!--end: Paso 1 -->
-
-                        <!--begin: Paso 2 -->
-                        <div class="col-lg-3 col-md-6 text-center mb-5" data-aos="fade-up" data-aos-delay="100">
-                            <div class="card card-body py-5 px-4 border-0 shadow-lg h-100">
-                                <div class="mb-4 position-relative">
-                                    <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center mx-auto" style="width: 80px; height: 80px;">
-                                        <span class="fs-2 fw-bold">2</span>
-                                    </div>
-                                </div>
-                                <h5 class="mb-3 fw-bold text-success">Diseño de la solución</h5>
-                                <p class="mb-0">
-                                    Te asesoramos sobre el tipo de servidor, capacidad, seguridad y planes de soporte que se ajusten a tus objetivos.
-                                </p>
+                        <div class="cult-step">
+                            <div class="cult-step__card">
+                                <div class="cult-step__num">2</div>
+                                <h3 class="cult-step__title">Diseño de la solución</h3>
+                                <p class="cult-step__text">Te asesoramos sobre el tipo de servidor, capacidad, seguridad y planes de soporte que se ajusten a tus objetivos.</p>
                             </div>
                         </div>
-                        <!--end: Paso 2 -->
-
-                        <!--begin: Paso 3 -->
-                        <div class="col-lg-3 col-md-6 text-center mb-5" data-aos="fade-up" data-aos-delay="150">
-                            <div class="card card-body py-5 px-4 border-0 shadow-lg h-100">
-                                <div class="mb-4 position-relative">
-                                    <div class="rounded-circle bg-warning text-white d-flex align-items-center justify-content-center mx-auto" style="width: 80px; height: 80px;">
-                                        <span class="fs-2 fw-bold">3</span>
-                                    </div>
-                                </div>
-                                <h5 class="mb-3 fw-bold text-warning">Implementación</h5>
-                                <p class="mb-0">
-                                    Migramos tus datos y aplicaciones al datacenter de manera ágil y segura, minimizando cualquier interrupción en tus operaciones.
-                                </p>
+                        <div class="cult-step">
+                            <div class="cult-step__card">
+                                <div class="cult-step__num">3</div>
+                                <h3 class="cult-step__title">Implementación</h3>
+                                <p class="cult-step__text">Migramos tus datos y aplicaciones al datacenter de manera ágil y segura, minimizando cualquier interrupción en tus operaciones.</p>
                             </div>
                         </div>
-                        <!--end: Paso 3 -->
-
-                        <!--begin: Paso 4 -->
-                        <div class="col-lg-3 col-md-6 text-center mb-5" data-aos="fade-up" data-aos-delay="200">
-                            <div class="card card-body py-5 px-4 border-0 shadow-lg h-100">
-                                <div class="mb-4 position-relative">
-                                    <div class="rounded-circle bg-info text-white d-flex align-items-center justify-content-center mx-auto" style="width: 80px; height: 80px;">
-                                        <span class="fs-2 fw-bold">4</span>
-                                    </div>
-                                </div>
-                                <h5 class="mb-3 fw-bold text-info">Monitoreo y soporte</h5>
-                                <p class="mb-0">
-                                    Una vez en marcha, monitoreamos tu infraestructura y te brindamos soporte para garantizar un rendimiento óptimo.
-                                </p>
-                            </div>
-                        </div>
-                        <!--end: Paso 4 -->
-                    </div>
-                </div>
-            </section>
-            <!--end: Cómo empezar -->
-
-            <!--begin: Formulario de Contacto -->
-            <section id="contacto" class="overflow-hidden bg-body position-relative">
-                <div class="container position-relative py-9 py-lg-11">
-                    <div class="row justify-content-center mb-9">
-                        <div class="col-lg-8 text-center">
-                            <h2 class="display-4 mb-4" data-aos="fade-up">CONTACTANOS</h2>
-                            <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
-                                Completá el formulario y nos pondremos en contacto para diseñar la solución perfecta para tu empresa
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="card card-body py-5 px-4 shadow-lg border-0" data-aos="fade-up" data-aos-delay="150">
-                                <form id="datacenterForm" method="POST" action="enviar-datacenter.php">
-                                    <!-- Formulario seguro con protección CSRF -->
-                                    <?php echo CSRFProtection::getTokenField('contact_form'); ?>
-                                    
-                                    <!-- Mensaje de estado del formulario -->
-                                    <div id="form-messages" class="mb-4" style="display: none;">
-                                        <div id="success-message" class="alert alert-success" role="alert" style="display: none;">
-                                            <i class="bx bx-check-circle me-2"></i>
-                                            <span></span>
-                                        </div>
-                                        <div id="error-message" class="alert alert-danger" role="alert" style="display: none;">
-                                            <i class="bx bx-error me-2"></i>
-                                            <span></span>
-                                        </div>
-                                        <div id="rate-limit-message" class="alert alert-warning" role="alert" style="display: none;">
-                                            <i class="bx bx-time me-2"></i>
-                                            <span>Demasiados intentos. Por favor esperá un momento antes de enviar nuevamente.</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-6 mb-4">
-                                            <label for="nombre" class="form-label fw-bold">Nombre y Apellido *</label>
-                                            <input type="text" class="form-control" id="nombre" name="nombre" required>
-                                        </div>
-                                        <div class="col-md-6 mb-4">
-                                            <label for="email" class="form-label fw-bold">Email *</label>
-                                            <input type="email" class="form-control" id="email" name="email" required>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-6 mb-4">
-                                            <label for="telefono" class="form-label fw-bold">Teléfono</label>
-                                            <input type="tel" class="form-control" id="telefono" name="telefono">
-                                        </div>
-                                        <div class="col-md-6 mb-4">
-                                            <label for="empresa" class="form-label fw-bold">Empresa</label>
-                                            <input type="text" class="form-control" id="empresa" name="empresa">
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-6 mb-4">
-                                            <label for="puesto" class="form-label fw-bold">Puesto / Cargo</label>
-                                            <input type="text" class="form-control" id="puesto" name="puesto">
-                                        </div>
-                                        <div class="col-md-6 mb-4">
-                                            <label for="asunto" class="form-label fw-bold">Asunto *</label>
-                                            <select class="form-select" id="asunto" name="asunto" required>
-                                                <option value="">Seleccionar asunto</option>
-                                                <option value="DATACENTER">DATACENTER</option>
-                                                <option value="INFRAESTRUCTURA">INFRAESTRUCTURA</option>
-                                                <option value="TANGO">TANGO</option>
-                                                <option value="SOPORTE TÉCNICO">SOPORTE TÉCNICO</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <label for="mensaje" class="form-label fw-bold">Mensaje o Comentarios</label>
-                                        <textarea class="form-control" id="mensaje" name="mensaje" rows="5" placeholder="Contanos sobre tus necesidades específicas de infraestructura..."></textarea>
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <label class="form-label fw-bold">¿Cómo te enteraste de nosotros?</label>
-                                        <div class="row">
-                                            <div class="col-6 col-md-3 mb-2">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="como_se_entero" id="redes" value="REDES SOCIALES">
-                                                    <label class="form-check-label" for="redes">
-                                                        REDES SOCIALES
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-md-3 mb-2">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="como_se_entero" id="boca" value="BOCA EN BOCA">
-                                                    <label class="form-check-label" for="boca">
-                                                        BOCA EN BOCA
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-md-3 mb-2">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="como_se_entero" id="google" value="GOOGLE">
-                                                    <label class="form-check-label" for="google">
-                                                        GOOGLE
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-md-3 mb-2">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="como_se_entero" id="local" value="EN EL LOCAL">
-                                                    <label class="form-check-label" for="local">
-                                                        EN EL LOCAL
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="text-center">
-                                        <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 py-3">
-                                            <i class="bx bx-send me-2"></i>ENVIAR CONSULTA
-                                        </button>
-                                    </div>
-                                </form>
+                        <div class="cult-step">
+                            <div class="cult-step__card">
+                                <div class="cult-step__num">4</div>
+                                <h3 class="cult-step__title">Monitoreo y soporte</h3>
+                                <p class="cult-step__text">Una vez en marcha, monitoreamos tu infraestructura y te brindamos soporte para garantizar un rendimiento óptimo.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <!--end: Formulario de Contacto -->
 
             <?php
             // FAQ específico para Datacenter
-            $faq_title = "PREGUNTAS FRECUENTES - DATACENTER";
+            $faq_title = "Preguntas frecuentes — Datacenter";
             $faq_subtitle = "Resolvemos las dudas más comunes sobre nuestros servicios de datacenter y hosting";
+            $faq_use_cult = true;
             
             $faq_items = [
                 [
@@ -503,6 +331,122 @@ initSecurity();
             // Incluir el template FAQ
             include('includes/faq-template.php');
             ?>
+
+            <!-- 7. Formulario de Contacto -->
+            <section id="contacto" class="bg-body position-relative">
+                <div class="container position-relative py-9 py-lg-11">
+                    <div class="row justify-content-center mb-9">
+                        <div class="col-lg-8 text-center">
+                            <span class="cult-section-eyebrow" data-aos="fade-up">Contacto</span>
+                            <h2 class="cult-display cult-display--xl mb-4" data-aos="fade-up" data-aos-delay="50">
+                                Hablemos de tu <span class="cult-gradient-text">infraestructura</span>
+                            </h2>
+                            <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
+                                Completá el formulario y nos pondremos en contacto para diseñar la solución perfecta para tu empresa
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="cult-form-card py-5 px-4 px-lg-5" data-aos="fade-up" data-aos-delay="150">
+                                <form id="datacenterForm" class="cult-form" method="POST" action="enviar-datacenter.php">
+                                    <?php echo CSRFProtection::getTokenField('contact_form'); ?>
+
+                                    <div id="form-messages" class="mb-4" style="display: none;">
+                                        <div id="success-message" class="alert alert-success" role="alert" style="display: none;">
+                                            <i class="bx bx-check-circle me-2"></i>
+                                            <span></span>
+                                        </div>
+                                        <div id="error-message" class="alert alert-danger" role="alert" style="display: none;">
+                                            <i class="bx bx-error me-2"></i>
+                                            <span></span>
+                                        </div>
+                                        <div id="rate-limit-message" class="alert alert-warning" role="alert" style="display: none;">
+                                            <i class="bx bx-time me-2"></i>
+                                            <span>Demasiados intentos. Por favor esperá un momento antes de enviar nuevamente.</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <label for="nombre" class="form-label fw-bold">Nombre y Apellido *</label>
+                                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <label for="email" class="form-label fw-bold">Email *</label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <label for="telefono" class="form-label fw-bold">Teléfono</label>
+                                            <input type="tel" class="form-control" id="telefono" name="telefono">
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <label for="empresa" class="form-label fw-bold">Empresa</label>
+                                            <input type="text" class="form-control" id="empresa" name="empresa">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <label for="puesto" class="form-label fw-bold">Puesto / Cargo</label>
+                                            <input type="text" class="form-control" id="puesto" name="puesto">
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <label for="asunto" class="form-label fw-bold">Asunto *</label>
+                                            <div class="cult-form-select-wrap">
+                                                <select class="form-select" id="asunto" name="asunto" required>
+                                                    <option value="">Seleccionar asunto</option>
+                                                    <option value="DATACENTER">Datacenter</option>
+                                                    <option value="INFRAESTRUCTURA">Infraestructura</option>
+                                                    <option value="TANGO">Tango</option>
+                                                    <option value="SOPORTE TÉCNICO">Soporte técnico</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="mensaje" class="form-label fw-bold">Mensaje o Comentarios</label>
+                                        <textarea class="form-control" id="mensaje" name="mensaje" rows="5" placeholder="Contanos sobre tus necesidades específicas de infraestructura..."></textarea>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label fw-bold">¿Cómo te enteraste de nosotros?</label>
+                                        <div class="cult-form-radio-group">
+                                            <label class="cult-form-radio-chip">
+                                                <input type="radio" name="como_se_entero" value="REDES SOCIALES">
+                                                <span>Redes sociales</span>
+                                            </label>
+                                            <label class="cult-form-radio-chip">
+                                                <input type="radio" name="como_se_entero" value="BOCA EN BOCA">
+                                                <span>Boca en boca</span>
+                                            </label>
+                                            <label class="cult-form-radio-chip">
+                                                <input type="radio" name="como_se_entero" value="GOOGLE">
+                                                <span>Google</span>
+                                            </label>
+                                            <label class="cult-form-radio-chip">
+                                                <input type="radio" name="como_se_entero" value="EN EL LOCAL">
+                                                <span>En el local</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" class="btn cult-btn-primary btn-lg cult-btn-shimmer px-5 py-3">
+                                            <i class="bx bx-send me-2"></i>Enviar consulta
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
         </main>
 

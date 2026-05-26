@@ -58,7 +58,15 @@ include('includes/head.php');
             <?php include('includes/slider.php');?>
             <section id="product" class="overflow-hidden bg-body position-relative">
                 <div class="container position-relative py-9 py-lg-11">
-                    <h2 class="display-4 text-center mb-5">Productos</h2>
+                    <div class="text-center mb-7" data-aos="fade-up">
+                        <span class="cult-section-eyebrow">Plataforma Tango</span>
+                        <h2 class="cult-display cult-display--xl mb-3">
+                            Software que <span class="cult-shimmer-text">se adapta</span><br>a tu empresa
+                        </h2>
+                        <p class="lead text-muted mx-auto" style="max-width: 38rem;">
+                            Cinco soluciones integradas, una sola plataforma para gestionar todo tu negocio
+                        </p>
+                    </div>
                     <div class="row justify-content-center">
                         <?php 
                         // Usar orden definido en configuración
@@ -77,12 +85,19 @@ include('includes/head.php');
             </section>
 
             <!--begin: Datacenter Section -->
-            <section class="position-relative overflow-hidden cult-bg-animated-gradient">
-                <div class="container position-relative py-9 py-lg-11">
+            <section class="position-relative overflow-hidden cult-mesh-bg cult-mesh-bg--blue">
+                <div class="cult-hero-grid" aria-hidden="true"></div>
+                <div class="container position-relative py-9 py-lg-11" style="z-index:2;">
                     <div class="row justify-content-center">
                         <div class="col-lg-10 text-center text-white mb-5 mb-lg-0" data-aos="fade-up">
-                            <h2 class="display-4 fw-bold mb-4">SERVICIOS DE <span class="cult-shimmer-text--bright">DATACENTER</span></h2>
-                            <p class="lead mb-5">
+                            <span class="cult-eyebrow cult-eyebrow--light mb-4 d-inline-flex">
+                                <i class="bx bx-server" aria-hidden="true"></i>
+                                Infraestructura propia
+                            </span>
+                            <h2 class="cult-display cult-display--xl mb-4 text-white">
+                                Servicios de <span class="cult-shimmer-text--bright">Datacenter</span>
+                            </h2>
+                            <p class="lead mb-5 mx-auto" style="max-width: 42rem; opacity: 0.85;">
                                 Alojá tu servidor en nuestra infraestructura de alta disponibilidad y olvidate de los problemas técnicos.
                                 Seguridad 24/7, respaldo continuo y soporte especializado para tu empresa.
                             </p>
@@ -127,8 +142,8 @@ include('includes/head.php');
                             </div>
 
                             <div class="text-center">
-                                <a href="datacenter.php" class="btn btn-white btn-lg rounded-pill px-5 py-3 hover-lift cult-btn-shimmer">
-                                    <i class="bx bx-info-circle me-2"></i>CONOCER MÁS
+                                <a href="datacenter.php" class="btn cult-btn-glass btn-lg cult-btn-shimmer">
+                                    <i class="bx bx-info-circle me-2"></i>Conocer más sobre nuestro datacenter
                                 </a>
                             </div>
                         </div>
@@ -142,7 +157,13 @@ include('includes/head.php');
                 <div class="container position-relative py-9 py-lg-11">
 					<div class="row justify-content-center align-items-center mb-9">
                         <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="50">
-							<h2 class="display-4 mb-4">NOSOTROS</h2>
+                            <span class="cult-eyebrow mb-4 d-inline-flex">
+                                <i class="bx bx-buildings" aria-hidden="true"></i>
+                                Nosotros
+                            </span>
+							<h2 class="cult-display cult-display--xl mb-4">
+                                Más de 30 años <span class="cult-gradient-text">acompañando</span> empresas
+                            </h2>
 							<p class="lead mb-4">
                                 Somos Servicios y Sistemas, una empresa que busca revolucionar empresas y negocios a través de soluciones tecnológicas creativas. Con más de 30 años en la industria, contamos con amplia experiencia y un equipo que se forma continuamente para brindar el mejor servicio al cliente.
 							</p>
@@ -169,38 +190,46 @@ include('includes/head.php');
                         </div>
                     </div>
                     
-                    <!-- Métricas -->
-                    <div class="row justify-content-center text-center">
-                        <div class="col-lg-4 col-md-6 mb-5" data-aos="fade-up" data-aos-delay="150">
-                                                          <div class="mb-4">
-                                  <div class="width-15x height-15x rounded-circle bg-white border border-3 border-dark mx-auto d-flex align-items-center justify-content-center mb-3 cult-pulse-icon">
-                                     <i class="bx bx-calendar display-2 text-dark"></i>
-                                  </div>
-                                 <h2 class="fw-bold mb-2 text-white" style="font-size: 4rem;"><span class="cult-stat-count" data-target="30" data-prefix="+">+30</span></h2>
-                                 <h5 class="fw-bold mb-2 text-white">Años de Experiencia</h5>
-                                  <p class="text-muted mb-0">proveyendo soluciones tecnológicas inteligentes</p>
-                              </div>
+                    <!-- Métricas — rediseñadas estilo cult hero stats -->
+                    <div class="cult-mesh-bg cult-mesh-bg--blue position-relative overflow-hidden p-4 p-lg-5" style="border-radius: var(--cult-r-2xl);">
+                        <div class="cult-hero-grid" aria-hidden="true"></div>
+                        <div class="row justify-content-center text-center g-4 position-relative" style="z-index:2;">
+                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
+                            <div class="cult-stat-hero">
+                                <div class="cult-stat-hero__icon">
+                                    <i class="bx bx-calendar" aria-hidden="true"></i>
+                                </div>
+                                <div class="cult-stat-hero__number">
+                                    <span class="cult-stat-count" data-target="30" data-prefix="+">+30</span>
+                                </div>
+                                <div class="cult-stat-hero__title">Años de Experiencia</div>
+                                <p class="cult-stat-hero__subtitle">Proveyendo soluciones tecnológicas inteligentes</p>
+                            </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 mb-5" data-aos="fade-up" data-aos-delay="200">
-                                                          <div class="mb-4">
-                                  <div class="width-15x height-15x rounded-circle bg-white border border-3 border-dark mx-auto d-flex align-items-center justify-content-center mb-3 cult-pulse-icon">
-                                     <i class="bx bx-group display-2 text-dark"></i>
-                                  </div>
-                                 <h2 class="fw-bold mb-2 text-white" style="font-size: 4rem;"><span class="cult-stat-count" data-target="1000" data-prefix="+">+1000</span></h2>
-                                 <h5 class="fw-bold mb-2 text-white">Empresas</h5>
-                                  <p class="text-muted mb-0">Con Implementaciones de Tango Software Exitosa</p>
-                              </div>
+                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                            <div class="cult-stat-hero">
+                                <div class="cult-stat-hero__icon">
+                                    <i class="bx bx-group" aria-hidden="true"></i>
+                                </div>
+                                <div class="cult-stat-hero__number">
+                                    <span class="cult-stat-count" data-target="1000" data-prefix="+">+1000</span>
+                                </div>
+                                <div class="cult-stat-hero__title">Empresas</div>
+                                <p class="cult-stat-hero__subtitle">Con implementaciones de Tango Software exitosas</p>
+                            </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 mb-5" data-aos="fade-up" data-aos-delay="200">
-                                                          <div class="mb-4">
-                                  <div class="width-15x height-15x rounded-circle bg-white border border-3 border-dark mx-auto d-flex align-items-center justify-content-center mb-3 cult-pulse-icon">
-                                      <!-- Medalla SVG personalizada -->
-                                                                             <img src="assets/img/medalla.svg" alt="Medalla" style="width: 60px; height: 60px;" class="text-dark">
-                                  </div>
-                                 <h2 class="fw-bold mb-2 text-white" style="font-size: 4rem;"><span class="cult-stat-count" data-target="5" data-prefix="+">+5</span></h2>
-                                 <h5 class="fw-bold mb-2 text-white">Años Siendo premiados con</h5>
-                                 <h6 class="fw-bold text-white">Mejor Proveedor del NEA</h6>
-                              </div>
+                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="250">
+                            <div class="cult-stat-hero">
+                                <div class="cult-stat-hero__icon">
+                                    <i class="bx bx-medal" aria-hidden="true"></i>
+                                </div>
+                                <div class="cult-stat-hero__number">
+                                    <span class="cult-stat-count" data-target="5" data-prefix="+">+5</span>
+                                </div>
+                                <div class="cult-stat-hero__title">Años premiados</div>
+                                <p class="cult-stat-hero__subtitle">como <span class="cult-stat-hero__highlight">Mejor Proveedor del NEA</span></p>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -210,33 +239,45 @@ include('includes/head.php');
             <section class="position-relative">
                 <div class="container position-relative">
 					<div class="row justify-content-center">
-                        <div class="col-12 text-center mb-4" data-aos="fade-up" data-aos-delay="50">
-							<h2 class="display-5 text-center mb-5">Confían en <span class="cult-shimmer-text">Nosotros</span></h2>
+                        <div class="col-12 text-center mb-5" data-aos="fade-up" data-aos-delay="50">
+                            <span class="cult-section-eyebrow">Clientes</span>
+							<h2 class="cult-display cult-display--xl">Confían en <span class="cult-shimmer-text">Nosotros</span></h2>
+                            <p class="lead text-muted mx-auto mt-3" style="max-width: 36rem;">
+                                Empresas del NEA argentino que crecieron con nuestras soluciones
+                            </p>
 						</div>
                     </div>
-					<div data-aos="fade-up" class="border rounded-3 text-dark px-5 py-8 py-lg-9 px-lg-9 mb-5 shadow-lg position-relative z-1">
-                    <!--Swiper thumbnails-->
-                    <div class="swiper-container position-relative overflow-hidden swiper-partners">
-                        <div class="swiper-wrapper pb-5">
-                            <?php
-                                $client_images = glob('assets/img/partners/clients/*.{png,jpg,jpeg,webp}', GLOB_BRACE);
-                                foreach ($client_images as $img) {
-                                    $filename = pathinfo($img, PATHINFO_FILENAME);
-                                    $thumb = 'assets/img/partners/clients/thumbs/' . $filename . '.webp';
-                                    $src = file_exists($thumb) ? $thumb : $img;
-                                    $size = @getimagesize($src);
-                                    $width = $size ? (int) $size[0] : 350;
-                                    $height = $size ? (int) $size[1] : 210;
-                                    echo '<div class="swiper-slide"><div class="d-flex align-items-center justify-content-center"><div class="bg-white rounded-3 p-3"><img src="' . htmlspecialchars($src, ENT_QUOTES, 'UTF-8') . '" alt="" class="img-fluid" width="' . $width . '" height="' . $height . '" loading="lazy" decoding="async"></div></div></div>';
+					<div data-aos="fade-up" class="cult-partners-shell text-dark px-4 py-6 py-lg-7 px-lg-6 mb-5 position-relative z-1">
+                    <?php
+                        $marqueeItems = [];
+                        // Logos con wordmark claro / blanco — necesitan tarjeta oscura
+                        $darkCardLogos = ['logo', 'logodemonte', 'electrolineas', 'shonko-sa_li1'];
+                        $logoLabels = ['logo' => 'Santander'];
+                        $client_images = glob('assets/img/partners/clients/*.{png,jpg,jpeg,webp}', GLOB_BRACE);
+                        if ($client_images) {
+                            sort($client_images);
+                            foreach ($client_images as $img) {
+                                $filename = pathinfo($img, PATHINFO_FILENAME);
+                                $thumb = 'assets/img/partners/clients/thumbs/' . $filename . '.webp';
+                                // Usar original en logos problemáticos para mejor legibilidad
+                                $src = (in_array($filename, $darkCardLogos, true) || !file_exists($thumb))
+                                    ? $img
+                                    : $thumb;
+                                $size = @getimagesize($src);
+                                $item = [
+                                    'src'    => $src,
+                                    'alt'    => $logoLabels[$filename] ?? ucwords(str_replace(['-', '_'], ' ', $filename)),
+                                    'width'  => $size ? (int) $size[0] : 350,
+                                    'height' => $size ? (int) $size[1] : 210,
+                                ];
+                                if (in_array($filename, $darkCardLogos, true)) {
+                                    $item['card_class'] = 'cult-marquee__card--dark';
                                 }
-                            ?>
-                        </div>
-
-                        <!--Pagination-->
-                        <div class="swiper-pagination swiper-partners-pagination bottom-0 position-relative pt-4">
-                        </div>
-                    </div>
-                    <!-- / Swiper thumbnails-->
+                                $marqueeItems[] = $item;
+                            }
+                        }
+                        echo cultMarquee($marqueeItems, 'partners');
+                    ?>
                     </div>
                 </div>
             </section>
@@ -245,10 +286,13 @@ include('includes/head.php');
             <!--begin: FAQ Section -->
             <section class="position-relative bg-gradient-light overflow-hidden">
                 <div class="container position-relative py-9 py-lg-11">
-                    <div class="row justify-content-center mb-9">
-                        <div class="col-lg-8 text-center">
-                            <h2 class="display-4 mb-4" data-aos="fade-up">PREGUNTAS FRECUENTES</h2>
-                            <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
+                    <div class="row justify-content-center mb-7">
+                        <div class="col-lg-8 text-center" data-aos="fade-up">
+                            <span class="cult-section-eyebrow">FAQ</span>
+                            <h2 class="cult-display cult-display--xl mb-3">
+                                Preguntas <span class="cult-gradient-text">frecuentes</span>
+                            </h2>
+                            <p class="lead text-muted">
                                 Resolvemos las dudas más comunes sobre nuestros servicios y soluciones tecnológicas
                             </p>
                         </div>
@@ -377,10 +421,13 @@ include('includes/head.php');
             <!--begin: Contacto Section -->
             <section id="contacto" class="position-relative bg-body">
                 <div class="container position-relative py-9 py-lg-11">
-                    <div class="row justify-content-center mb-9">
-                        <div class="col-lg-8 text-center">
-                            <h2 class="display-4 mb-4" data-aos="fade-up">Contactanos</h2>
-                            <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
+                    <div class="row justify-content-center mb-7">
+                        <div class="col-lg-8 text-center" data-aos="fade-up">
+                            <span class="cult-section-eyebrow">Contacto</span>
+                            <h2 class="cult-display cult-display--xl mb-3">
+                                Hablemos de tu <span class="cult-gradient-text">próximo proyecto</span>
+                            </h2>
+                            <p class="lead text-muted">
                                 ¿Tenés alguna consulta? Estamos para ayudarte. Completá el formulario y nos pondremos en contacto contigo.
                             </p>
                         </div>
@@ -388,8 +435,8 @@ include('includes/head.php');
                     
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
-                            <div class="card card-body py-5 px-4 shadow-lg border-0" data-aos="fade-up" data-aos-delay="150">
-                                <form id="contactForm" method="POST" action="https://formsubmit.co/<?= FORMSUBMIT_EMAIL ?>">
+                            <div class="cult-form-card card card-body py-5 px-4 px-lg-5" data-aos="fade-up" data-aos-delay="150">
+                                <form id="contactForm" class="cult-form" method="POST" action="https://formsubmit.co/<?= FORMSUBMIT_EMAIL ?>">
                                     <!-- Campos ocultos para FormSubmit -->
                                     <input type="hidden" name="_subject" value="Nueva consulta desde Servicios y Sistemas">
                                     <input type="hidden" name="_captcha" value="false">
@@ -435,15 +482,17 @@ include('includes/head.php');
                                     
                                     <div class="mb-4">
                                         <label for="asunto" class="form-label fw-bold">Asunto *</label>
-                                        <select class="form-select" id="asunto" name="asunto" required>
-                                            <option value="">Seleccionar asunto</option>
-                                            <option value="CONSULTA GENERAL">Consulta General</option>
-                                            <option value="PRODUCTOS TANGO">Productos Tango</option>
-                                            <option value="DATACENTER">Datacenter</option>
-                                            <option value="GESTIÓN IT">Gestión IT</option>
-                                            <option value="SOPORTE TÉCNICO">Soporte Técnico</option>
-                                            <option value="COTIZACIÓN">Cotización</option>
-                                        </select>
+                                        <div class="cult-form-select-wrap">
+                                            <select class="form-select" id="asunto" name="asunto" required>
+                                                <option value="">Seleccionar asunto</option>
+                                                <option value="CONSULTA GENERAL">Consulta General</option>
+                                                <option value="PRODUCTOS TANGO">Productos Tango</option>
+                                                <option value="DATACENTER">Datacenter</option>
+                                                <option value="GESTIÓN IT">Gestión IT</option>
+                                                <option value="SOPORTE TÉCNICO">Soporte Técnico</option>
+                                                <option value="COTIZACIÓN">Cotización</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     
                                     <div class="mb-4">
@@ -452,8 +501,8 @@ include('includes/head.php');
                                     </div>
                                     
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 py-3 cult-btn-shimmer">
-                                            <i class="bx bx-send me-2"></i>ENVIAR CONSULTA
+                                        <button type="submit" class="btn cult-btn-primary cult-btn-shimmer">
+                                            <i class="bx bx-send me-2"></i>Enviar consulta
                                         </button>
                                     </div>
                                 </form>

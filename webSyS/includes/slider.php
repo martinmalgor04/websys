@@ -24,6 +24,9 @@ $tswActive  = $tswInDates;
 </style>
 <!--Hero-->
 <section class="position-relative bg-dark overflow-hidden">
+                <!-- Cult overlay decorativo (no interfiere con el Swiper) -->
+                <div class="cult-hero-overlay" aria-hidden="true"></div>
+
                 <!-- Swiper slider -->
                 <div class="swiper-container swiper-classic">
                     <!-- Swiper wrapper -->
@@ -76,27 +79,28 @@ $tswActive  = $tswInDates;
                                 >
                             </picture>
                             <div class="bg-dark position-absolute start-0 top-0 w-100 h-100 opacity-75"></div>
-                            <div class="container-fluid text-white d-flex align-items-center h-100">
+                            <div class="container-fluid text-white d-flex align-items-center h-100" style="position:relative; z-index:2;">
                                 <div class="row pt-11 w-100">
                                     <div class="col-xl-8 col-lg-10 mx-auto text-center">
                                         <ul class="carousel-layers list-unstyled mb-0">
                                             <li data-carousel-layer="fade-end">
-                                                <p class="lead mb-4 mb-lg-5">
+                                                <span class="cult-eyebrow cult-eyebrow--light mb-4 d-inline-flex">
+                                                    <i class="bx bx-cloud" aria-hidden="true"></i>
                                                     SOLUCIONES CLOUD
-                                                </p>
+                                                </span>
                                             </li>
 											<li data-carousel-layer="fade-start">
-                                                <h2 class="display-3 mb-3">
-                                                    A LA <span class="cult-shimmer-text--bright">MEDIDA</span> DE TU NEGOCIO
+                                                <h2 class="cult-display cult-display--hero mb-4">
+                                                    A LA <span class="cult-shimmer-text--bright">MEDIDA</span><br>DE TU NEGOCIO
                                                 </h2>
                                             </li>
                                             <li data-carousel-layer="fade-end">
-                                                <p class="lead mb-4 mb-lg-5">
+                                                <p class="lead mb-4 mb-lg-5 mx-auto" style="max-width: 38rem; opacity: 0.88;">
                                                     Hospeda tu servidor de manera segura y escalable, con soporte 24/7 y tecnología de vanguardia
                                                 </p>
                                             </li>
                                             <li data-carousel-layer="fade-start">
-                                                <a href="datacenter.php" class="btn btn-outline-white btn-lg">
+                                                <a href="datacenter.php" class="btn cult-btn-glass btn-lg cult-btn-shimmer">
                                                     Conocé nuestro Datacenter
                                                 </a>
                                             </li>
@@ -105,7 +109,7 @@ $tswActive  = $tswInDates;
                                 </div>
                             </div>
                         </div>
-                        <!--Slide 2-->
+                        <!--Slide 2 - Tango Delta 5-->
                         <div class="swiper-slide">
                             <picture>
                                 <source srcset="assets/img/slider/2.webp" type="image/webp">
@@ -119,18 +123,30 @@ $tswActive  = $tswInDates;
                                     decoding="async"
                                 >
                             </picture>
-                            <div class="bg-dark position-absolute start-0 top-0 w-100 h-100 opacity-50"></div>
-                            <div class="container-fluid text-white d-flex align-items-center h-100">
-                                <div class="row pt-11 w-100">
+                            <div class="bg-dark position-absolute start-0 top-0 w-100 h-100 opacity-75"></div>
+                            <div class="container-fluid text-white d-flex align-items-center h-100" style="position:relative; z-index:2;">
+                                <div class="row pt-5 w-100">
                                     <div class="col-xl-8 col-lg-10 mx-auto text-center">
-                                        <picture class="mx-auto mb-4">
-                                            <source media="(max-width: 576px)" srcset="assets/img/productos/tango-delta/delta5vw.webp">
-                                            <img src="assets/img/productos/tango-delta/delta5hw.webp" alt="Tango Delta" width="1634" height="235" style="filter: drop-shadow(0 0 10px white); width: 100%; height: auto;">
-                                        </picture>
-                                        <ul class="carousel-layers list-unstyled mb-0 pt-15">
+                                        <ul class="carousel-layers list-unstyled mb-0">
+                                            <li data-carousel-layer="fade-end">
+                                                <span class="cult-eyebrow cult-eyebrow--light mb-4 d-inline-flex">
+                                                    <i class="bx bx-chip" aria-hidden="true"></i>
+                                                    NUEVA VERSIÓN · IA INTEGRADA
+                                                </span>
+                                            </li>
                                             <li data-carousel-layer="fade-start">
-                                                <a href="tango-delta.php" class="btn btn-white btn-lg">
-                                                    LA ÚLTIMA VERSIÓN DE TANGO SOFTWARE
+                                                <h2 class="cult-display cult-display--hero mb-4">
+                                                    TANGO <span class="cult-shimmer-text--bright">DELTA 5</span><br>EVOLUCIONÁ CON IA
+                                                </h2>
+                                            </li>
+                                            <li data-carousel-layer="fade-end">
+                                                <p class="lead mb-4 mb-lg-5 mx-auto" style="max-width: 38rem; opacity: 0.88;">
+                                                    Analizá datos en lenguaje natural, automatizá tareas y transformá tu gestión con inteligencia artificial integrada
+                                                </p>
+                                            </li>
+                                            <li data-carousel-layer="fade-start">
+                                                <a href="tango-delta.php" class="btn cult-btn-glass btn-lg cult-btn-shimmer">
+                                                    Descubrí Tango Delta 5
                                                 </a>
                                             </li>
                                         </ul>
@@ -153,25 +169,31 @@ $tswActive  = $tswInDates;
                                 >
                             </picture>
                             <div class="bg-dark position-absolute start-0 top-0 w-100 h-100 opacity-75"></div>
-                            <div class="container-fluid text-white d-flex align-items-center h-100">
+                            <div class="container-fluid text-white d-flex align-items-center h-100" style="position:relative; z-index:2;">
                                 <div class="row pt-5 w-100">
                                     <div class="col-xl-8 col-lg-10 mx-auto text-center">
                                         <ul class="carousel-layers list-unstyled mb-0">
+                                            <li data-carousel-layer="fade-end">
+                                                <span class="cult-eyebrow cult-eyebrow--light mb-4 d-inline-flex">
+                                                    <i class="bx bx-server" aria-hidden="true"></i>
+                                                    GESTIÓN IT
+                                                </span>
+                                            </li>
                                             <li data-carousel-layer="fade-start">
-                                                <h2 class="display-3 mb-3">
-                                                    GESTIÓN <span class="cult-shimmer-text--bright">INTEGRAL</span> DE TU INFORMÁTICA
+                                                <h2 class="cult-display cult-display--hero mb-4">
+                                                    GESTIÓN <span class="cult-shimmer-text--bright">INTEGRAL</span><br>DE TU INFORMÁTICA
                                                 </h2>
                                             </li>
                                             <li data-carousel-layer="fade-end">
-                                                <p class="lead mb-4 mb-lg-5">
+                                                <p class="lead mb-4 mb-lg-5 mx-auto" style="max-width: 38rem; opacity: 0.88;">
                                                     Deja en nuestras manos la administración y soporte de toda tu infraestructura IT
                                                 </p>
                                             </li>
-                                                                        <li data-carousel-layer="fade-start">
-                                <a href="gestion-it.php" class="btn btn-outline-white btn-lg">
-                                    Conocé nuestra Gestión IT
-                                </a>
-                            </li>
+                                            <li data-carousel-layer="fade-start">
+                                                <a href="gestion-it.php" class="btn cult-btn-glass btn-lg cult-btn-shimmer">
+                                                    Conocé nuestra Gestión IT
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

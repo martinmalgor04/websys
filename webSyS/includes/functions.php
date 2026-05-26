@@ -19,11 +19,9 @@ function renderProductCard($key, $product, $delay = 0) {
     $html .= '<motion-tilt max-tilt="6" speed="400" style="display:block;">';
     $html .= '<div class="card card-body py-5 px-4 border-0 shadow-lg hover-lift hover-shadow-xl product-card-' . $key . ' cult-texture-deco position-relative' . $minimalCls . '">';
 
-    // Badge "Disponible" / "Próximamente"
-    if (function_exists('cultBadge')) {
-        $html .= $isAvailable
-            ? cultBadge('Disponible', 'available')
-            : cultBadge('Próximamente', 'soon');
+    // Badge solo para productos no disponibles
+    if (!$isAvailable && function_exists('cultBadge')) {
+        $html .= cultBadge('Próximamente', 'soon');
     }
 
     $html .= '<div class="mb-4 mx-auto width-15x height-15x flex-center position-relative">';
@@ -51,11 +49,11 @@ function renderProductCard($key, $product, $delay = 0) {
     }
 
     $html .= '</div>';
-    $html .= '<div class="d-flex align-items-center mb-3 justify-content-center">';
+    $html .= '<div class="d-flex align-items-center mb-3 justify-content-center w-100">';
     if ($isAvailable) {
-        $html .= '<a href="' . $product['slug'] . '.php" class="btn btn-white btn-sm mr-3 me-3 cult-btn-shimmer">ENTRAR</a>';
+        $html .= '<a href="' . $product['slug'] . '.php" class="btn btn-white btn-sm cult-btn-shimmer">ENTRAR</a>';
     } else {
-        $html .= '<span class="btn btn-light btn-sm mr-3 me-3 disabled">EN DESARROLLO</span>';
+        $html .= '<span class="btn btn-light btn-sm disabled">EN DESARROLLO</span>';
     }
     $html .= '</div>';
     $html .= '<p class="mb-0 w-lg-75 mx-auto text-white">' . $product['short_desc'] . '</p>';
@@ -144,8 +142,12 @@ function formatPhoneForWhatsApp($phone) {
  * Generar enlace de WhatsApp
  */
 function generateWhatsAppLink($message = '', $phone = null) {
-    if (!$phone && defined('SITE_PHONE')) {
-        $phone = SITE_PHONE;
+    if (!$phone) {
+        if (defined('SITE_WHATSAPP')) {
+            $phone = SITE_WHATSAPP;
+        } elseif (defined('SITE_PHONE')) {
+            $phone = SITE_PHONE;
+        }
     }
     
     $phone = formatPhoneForWhatsApp($phone);

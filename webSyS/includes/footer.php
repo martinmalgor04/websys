@@ -1,4 +1,4 @@
-<footer id="footer" class="bg-body footer position-relative">
+<footer id="footer" class="bg-body footer cult-footer position-relative">
             <div class="container pt-9 pt-lg-11 pb-5 position-relative z-1">
                 <div class="row">
 					<div class="col-lg-3 col-md-6 mb-7">
@@ -15,7 +15,7 @@
 						<p>San Martín 1180<br>Corrientes, Argentina</p>
 						<p>
 							<span class="text-body-secondary">Teléfono:</span>
-							<a href="tel:543794426022">+54 3794 426022</a>
+							<a href="tel:543794426022"><?= htmlspecialchars(SITE_PHONE, ENT_QUOTES, 'UTF-8') ?></a>
 						</p>
 						<p class="text-body-secondary mb-0">
 							<span class="text-body-secondary">Email:</span> 

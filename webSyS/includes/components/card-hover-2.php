@@ -48,6 +48,92 @@ function renderCardHover2($title, $description, $buttonText, $buttonIcon, $backg
 }
 
 /**
+ * Renderizar sección de conectividad con estilo cult-*.
+ * Reemplaza visualmente a renderConnectivitySection() en páginas modernizadas
+ * sin romper compatibilidad con productos que siguen usando la versión legacy.
+ *
+ * @param string $title    Título de la sección.
+ * @param string $eyebrow  Texto del eyebrow.
+ * @param string $subtitle       Lead opcional bajo el título.
+ * @param string $product_color  Color HEX oficial del producto (opcional).
+ * @return void
+ */
+function renderCultConnectivitySection($title = "Tu Tango, conectado", $eyebrow = "Conectividad total", $subtitle = "Operá desde cualquier lugar y mantené sincronizadas sucursales, depósitos y puntos de venta.", $product_color = '') {
+    $items = [
+        [
+            'title'    => 'Tango Connect',
+            'subtitle' => 'Accedé a tu Tango desde cualquier dispositivo y navegador, sin instalar nada.',
+            'icon'     => 'bx bx-mobile-alt',
+            'cta'      => 'Conocer Tango Connect',
+            'href'     => 'https://www.tangonexo.com/connect/',
+        ],
+        [
+            'title'    => 'TangoNet',
+            'subtitle' => 'Automatizá la transferencia de información entre sucursales, depósitos y casa central.',
+            'icon'     => 'bx bx-network-chart',
+            'cta'      => 'Conocer TangoNet',
+            'href'     => 'https://www.tangonexo.com/tangonet/',
+        ],
+    ];
+
+    $mesh_class = 'cult-mesh-bg cult-mesh-bg--blue text-white';
+    $mesh_style = '';
+    if ($product_color !== '' && function_exists('cultProductMeshStyle')) {
+        $mesh_class = function_exists('cultProductMeshClass') ? cultProductMeshClass() : 'cult-mesh-bg cult-mesh-bg--product text-white';
+        $mesh_style = cultProductMeshStyle($product_color);
+    }
+    $blob_style = $product_color !== '' && function_exists('cultNormalizeHex')
+        ? 'top:-15%; left:-8%; opacity:0.3; background:' . htmlspecialchars(cultNormalizeHex($product_color), ENT_QUOTES, 'UTF-8') . ';'
+        : 'top:-15%; left:-8%; opacity:0.25;';
+    ?>
+    <section class="position-relative overflow-hidden <?= htmlspecialchars($mesh_class, ENT_QUOTES, 'UTF-8') ?>"
+             <?= $mesh_style ? 'style="' . $mesh_style . '"' : '' ?>>
+        <div class="cult-hero-grid" aria-hidden="true"></div>
+        <span class="cult-blob" style="<?= $blob_style ?>" aria-hidden="true"></span>
+
+        <div class="container position-relative py-9 py-lg-11">
+            <div class="row justify-content-center mb-7 mb-lg-9">
+                <div class="col-lg-9 text-center">
+                    <?php if ($eyebrow): ?>
+                    <span class="cult-section-eyebrow cult-section-eyebrow--light" data-aos="fade-up">
+                        <?= htmlspecialchars($eyebrow) ?>
+                    </span>
+                    <?php endif; ?>
+                    <h2 class="cult-display cult-display--xl mb-3 text-white" data-aos="fade-up" data-aos-delay="50">
+                        <?= htmlspecialchars($title) ?>
+                    </h2>
+                    <?php if ($subtitle): ?>
+                    <p class="lead mx-auto" style="max-width: 42rem; opacity: 0.85;" data-aos="fade-up" data-aos-delay="100">
+                        <?= htmlspecialchars($subtitle) ?>
+                    </p>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <div class="row justify-content-center g-4">
+                <?php foreach ($items as $i => $item): ?>
+                <div class="col-md-6 col-lg-5" data-aos="fade-up" data-aos-delay="<?= 100 + ($i * 100) ?>">
+                    <div class="cult-feature-glass d-flex flex-column h-100 p-4 p-lg-5">
+                        <i class="<?= htmlspecialchars($item['icon']) ?> fs-1 mb-3" aria-hidden="true"></i>
+                        <h3 class="h4 text-white mb-2"><?= htmlspecialchars($item['title']) ?></h3>
+                        <p class="text-white-50 mb-4 flex-grow-1"><?= htmlspecialchars($item['subtitle']) ?></p>
+                        <a href="<?= htmlspecialchars($item['href']) ?>"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn cult-btn-glass cult-btn-shimmer align-self-start">
+                            <?= htmlspecialchars($item['cta']) ?>
+                            <i class="bx bx-right-arrow-alt ms-1" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <?php
+}
+
+/**
  * Renderizar sección completa de conectividad con TangoNet y Tango Connect
  * @param string $sectionTitle Título de la sección (default: "Conectividad Total")
  * @param string $sectionBg Background de la sección (default: gradiente)
