@@ -6,6 +6,9 @@ AddDefaultCharset UTF-8
 RewriteEngine on
 DirectoryIndex index.php
 
+# Instalador: no reescribir descargas estáticas
+RewriteRule ^assets/downloads/ - [L]
+
 # URLs amigables (ocultar .php)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f

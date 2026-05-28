@@ -20,7 +20,7 @@ $meta_description = 'Descargá SysDesk, nuestra herramienta de soporte remoto pa
 $meta_keywords    = 'sysdesk, soporte remoto, asistencia técnica, servicios y sistemas';
 $body_id          = 'sysdesk';
 $canonical_url    = 'https://sysdesk.serviciosysistemas.com.ar';
-$download_url     = $local_assets . 'downloads/SysDesk.exe';
+$download_url     = 'download.php';
 $og_image         = $canonical_url . '/' . $local_assets . 'img/sysdeskw.webp';
 
 $root             = $is_subdomain ? dirname(__DIR__) : realpath(__DIR__ . '/..');
@@ -140,8 +140,7 @@ header('X-Robots-Tag: noindex, nofollow');
 
                     <div class="sd-cta-row mb-4">
                         <a href="<?= htmlspecialchars($download_url) ?>"
-                           class="btn cult-btn-primary cult-btn-shimmer btn-lg px-5"
-                           download>
+                           class="btn cult-btn-primary cult-btn-shimmer btn-lg px-5">
                             <?= sd_icon('download') ?> Descargar SysDesk
                         </a>
                         <a href="#como-usar" class="btn cult-btn-glass btn-lg px-5">
@@ -237,8 +236,7 @@ header('X-Robots-Tag: noindex, nofollow');
                     Descargá SysDesk ahora y conectate con nuestro equipo técnico en segundos.
                 </p>
                 <a href="<?= htmlspecialchars($download_url) ?>"
-                   class="btn cult-btn-primary cult-btn-shimmer btn-lg px-5"
-                   download>
+                   class="btn cult-btn-primary cult-btn-shimmer btn-lg px-5">
                     <?= sd_icon('download') ?> Descargar SysDesk
                 </a>
             </div>
