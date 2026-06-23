@@ -131,7 +131,7 @@ function formatPhoneForWhatsApp($phone) {
     $phone = preg_replace('/[^0-9]/', '', $phone);
     
     // Si no empieza con código de país, agregar Argentina
-    if (!str_starts_with($phone, '54')) {
+    if (strpos($phone, '54') !== 0) {
         $phone = '54' . $phone;
     }
     
