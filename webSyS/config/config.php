@@ -119,4 +119,3 @@ function getCurrentYear() {
 }
 
 // Función getWhatsAppLink removida - usar generateWhatsAppLink() de functions.php
-?> 

@@ -415,4 +415,4 @@ function generateBreadcrumbSchema($items) {
 function getAosDelay($index, $base = 50, $increment = 50) {
     return $base + ($index * $increment);
 }
-?>
+
