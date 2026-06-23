@@ -167,7 +167,10 @@ function handleFatalError() {
         // En producción, mostrar página de error genérica
         if (isProduction() && !headers_sent()) {
             http_response_code(500);
-            include_once('500.php');
+            $errorPage = dirname(__DIR__) . '/500.php';
+            if (is_file($errorPage)) {
+                include_once($errorPage);
+            }
             exit();
         }
     }

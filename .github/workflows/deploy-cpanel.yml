@@ -41,9 +41,12 @@ jobs:
             **/Thumbs.db
             **/*.backup
             **/*.log
+            **/*.tmp
             README.md
             .gitignore
             .cpanel.yml
+            assets/img/**
+            assets/fonts/**
             ecommerce/**
             php/**
             Mpago/**
