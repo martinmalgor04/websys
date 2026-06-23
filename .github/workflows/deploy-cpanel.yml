@@ -26,8 +26,11 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /public_html/
+          protocol: ftps
+          port: 21
+          server-dir: /
           local-dir: ./webSyS/
+          log-level: verbose
           exclude: |
             **/.git*
             **/.git*/**
