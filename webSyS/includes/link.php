@@ -53,14 +53,9 @@
         </noscript>
 
         <!-- LCP hero image preload -->
-        <?php
-        $tswStart   = strtotime('2026-05-12 08:00:00');
-        $tswEnd     = strtotime('2026-05-22 23:59:59');
-        $tswInDates = (time() >= $tswStart && time() <= $tswEnd);
-        $tswActive  = $tswInDates;
-        ?>
+        <?php require_once __DIR__ . '/superweek-config.php'; ?>
         <?php if ($tswActive): ?>
-        <link rel="preload" href="assets/img/slider/superweek.webp" as="image" type="image/webp" fetchpriority="high">
+        <link rel="preload" href="assets/superweek/banner_web.webp" as="image" type="image/webp" fetchpriority="high">
         <?php else: ?>
         <link rel="preload" href="assets/img/slider/1.webp" as="image" type="image/webp" fetchpriority="high">
         <?php endif; ?>

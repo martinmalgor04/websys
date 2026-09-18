@@ -1,13 +1,10 @@
-<?php
-$tswStart   = strtotime('2026-05-12 08:00:00');
-$tswEnd     = strtotime('2026-05-22 23:59:59');
-$tswInDates = (time() >= $tswStart && time() <= $tswEnd);
-$tswActive  = $tswInDates;
-?>
+<?php require_once __DIR__ . '/superweek-config.php'; ?>
 <style>
 /* Override height: 711px = alto exacto del banner superweek */
 .swiper-classic {
     height: 500px;
+    position: relative;
+    z-index: 1;
 }
 @media (min-width: 992px) {
     .swiper-classic {
@@ -21,6 +18,12 @@ $tswActive  = $tswInDates;
 .swiper-classic .swiper-slide--superweek .hero-slide-bg {
     object-fit: contain;
 }
+/* Hero: capas visibles en slide activo (evita texto invisible con loop + efectos Swiper) */
+.swiper-classic:not(.swiper-initialized) .swiper-slide:first-child .carousel-layers li,
+.swiper-classic .swiper-slide-active .carousel-layers li {
+    opacity: 1 !important;
+    transform: translateZ(0) scale(1) !important;
+}
 </style>
 <!--Hero-->
 <section class="position-relative bg-dark overflow-hidden">
@@ -28,7 +31,7 @@ $tswActive  = $tswInDates;
                 <div class="cult-hero-overlay" aria-hidden="true"></div>
 
                 <!-- Swiper slider -->
-                <div class="swiper-container swiper-classic">
+                <div class="swiper swiper-classic">
                     <!-- Swiper wrapper -->
                     <div class="swiper-wrapper">
                         <?php if ($tswActive): ?>
@@ -37,11 +40,11 @@ $tswActive  = $tswInDates;
                             <a href="https://www.axoft.com/tango/superweek/?d=SYS2"
                                target="_blank" rel="noopener noreferrer"
                                class="d-block w-100 h-100 position-relative text-decoration-none"
-                               aria-label="Tango SuperWeek 2026 - 50% OFF + 12 cuotas sin interés">
+                               aria-label="Tango SuperWeek 2026, del 21 al 25 de septiembre: 50% OFF + 12 cuotas sin interés">
                                 <picture>
-                                    <source srcset="assets/img/slider/superweek.webp" type="image/webp">
+                                    <source srcset="assets/superweek/banner_web.webp" type="image/webp">
                                     <img
-                                        src="assets/img/slider/superweek.jpg"
+                                        src="assets/superweek/banner_web.jpg"
                                         alt=""
                                         class="hero-slide-bg"
                                         width="1920"
@@ -55,7 +58,7 @@ $tswActive  = $tswInDates;
                                     <ul class="carousel-layers list-unstyled mb-0 text-center">
                                         <li data-carousel-layer="fade-start">
                                             <span class="btn btn-warning btn-lg fw-bold px-5 shadow">
-                                                Conseguí tu código
+                                                <?= htmlspecialchars($tswCta) ?>
                                             </span>
                                         </li>
                                     </ul>
