@@ -8,7 +8,9 @@
 if (!function_exists('renderCultModulesDetailed')) {
     /**
      * @param array $modules Lista de módulos:
-     *   ['title', 'eyebrow', 'icon', 'image', 'description', 'features' => []]
+     *   ['title', 'eyebrow', 'icon', 'image', 'number', 'description', 'features' => []]
+     *   Si no hay 'image', se renderiza un panel visual con 'number' + 'icon'
+     *   (estilo ficha numerada [01], [02]...).
      * @param array $opts {
      *   @type string $section_id
      *   @type string $eyebrow
@@ -18,6 +20,8 @@ if (!function_exists('renderCultModulesDetailed')) {
      *   @type string $subtitle
      *   @type string $bg
      *   @type string $product_color
+     *   @type bool   $show_number   Antepone [01], [02]... al eyebrow de cada módulo
+     *                                y al panel visual de fallback (default: false).
      * }
      */
     function renderCultModulesDetailed(array $modules, array $opts = []): void
@@ -32,6 +36,7 @@ if (!function_exists('renderCultModulesDetailed')) {
         $subtitle      = $opts['subtitle']      ?? '';
         $bg            = $opts['bg']            ?? 'bg-gradient-light';
         $product_color = $opts['product_color']  ?? '';
+        $show_number   = (bool) ($opts['show_number'] ?? false);
 
         $scoped_class = $product_color !== '' ? ' cult-product-scoped' : '';
         $scoped_style = ($product_color !== '' && function_exists('cultProductMeshStyle'))
@@ -67,6 +72,7 @@ if (!function_exists('renderCultModulesDetailed')) {
                         $m_eyebrow   = $module['eyebrow']     ?? '';
                         $m_icon      = $module['icon']        ?? 'bx bx-cube';
                         $m_image     = $module['image']       ?? '';
+                        $m_number    = $module['number']      ?? str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT);
                         $m_desc      = $module['description'] ?? '';
                         $m_features  = $module['features']    ?? [];
                         $delay       = 50 + ($index * 80);
@@ -81,12 +87,24 @@ if (!function_exists('renderCultModulesDetailed')) {
                                      loading="lazy"
                                      decoding="async">
                             </div>
+                            <?php else: ?>
+                            <motion-tilt max-tilt="4" speed="400" style="display:block;">
+                                <div class="cult-modules-detailed__visual">
+                                    <?php if ($show_number): ?>
+                                    <span class="cult-modules-detailed__visual-number" aria-hidden="true"><?= htmlspecialchars($m_number, ENT_QUOTES, 'UTF-8') ?></span>
+                                    <?php endif; ?>
+                                    <i class="<?= htmlspecialchars($m_icon, ENT_QUOTES, 'UTF-8') ?> cult-modules-detailed__visual-icon" aria-hidden="true"></i>
+                                </div>
+                            </motion-tilt>
                             <?php endif; ?>
                         </div>
                         <div class="col-lg-6">
                             <div class="cult-modules-detailed__content">
-                                <?php if ($m_eyebrow): ?>
-                                <span class="cult-modules-detailed__eyebrow"><?= htmlspecialchars($m_eyebrow, ENT_QUOTES, 'UTF-8') ?></span>
+                                <?php if ($m_eyebrow || $show_number): ?>
+                                <span class="cult-modules-detailed__eyebrow">
+                                    <?php if ($show_number): ?><span class="cult-modules-detailed__eyebrow-number">[<?= htmlspecialchars($m_number, ENT_QUOTES, 'UTF-8') ?>]</span><?php endif; ?>
+                                    <?php if ($m_eyebrow): ?><?= htmlspecialchars($m_eyebrow, ENT_QUOTES, 'UTF-8') ?><?php endif; ?>
+                                </span>
                                 <?php endif; ?>
                                 <div class="d-flex align-items-center gap-3 mb-3">
                                     <span class="cult-modules-detailed__icon" aria-hidden="true">

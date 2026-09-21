@@ -1,7 +1,7 @@
 <?php
 /**
  * Configuración central del sitio
- * Servicios y Sistemas SRL
+ * Servicios y Sistemas SA
  */
 
 // Información de la empresa
@@ -83,15 +83,15 @@ $tango_products = [
         'meta_desc' => 'Tango Capital Humano - Software de RRHH integral. Gestión completa de recursos humanos.'
     ],
     'delta' => [
-        'name' => 'Tango Delta 5',
+        'name' => 'Tango Delta 6',
         'slug' => 'tango-delta',
         'color' => '#000000',
-        'logo' => 'delta5iso.webp',
-        'logo_dark' => 'delta5isow.webp',
+        'logo' => 'delta6h.webp',
+        'logo_dark' => 'delta6hw.webp',
         'icon' => 'icon-Technology',
-        'short_desc' => 'La nueva versión de Tango ofrece una plataforma personalizable, abierta y conectada, diseñada para acompañar la transformación digital de tu negocio con inteligencia artificial integrada.',
-        'meta_desc' => 'Tango Delta 5 - La nueva generación de software empresarial con IA integrada. Transformación digital para tu negocio.',
-        'features' => ['Inteligencia Artificial', 'API Abierta', 'Personalización Total', 'Conectividad Avanzada']
+        'short_desc' => 'La nueva versión de Tango ofrece una plataforma personalizable, abierta y conectada, diseñada para acompañar la transformación digital de tu negocio con inteligencia artificial integrada, movilidad y eCommerce.',
+        'meta_desc' => 'Tango Delta 6 - La nueva generación de software empresarial con IA integrada, Tango Ventas Mobile y Tango eCommerce. Transformación digital para tu negocio.',
+        'features' => ['Inteligencia Artificial', 'Tango BI', 'Ventas Mobile', 'Cash Flow']
     ]
 ];
 

@@ -1,13 +1,13 @@
 <?php
 /**
- * Página de Tango Delta 5 — Versión modernizada (cult-* design system)
- * Servicios y Sistemas SRL
+ * Página de Tango Delta 6 — Versión modernizada (cult-* design system)
+ * Servicios y Sistemas SA
  *
  * Estructura:
  *   1. Hero cult con propuesta de valor + CTAs + stats
  *   2. Intro IA (cult-callout-card)
- *   3. Novedades agrupadas (6 funcionalidades en 3 áreas)
- *   4. Comparativa Tango clásico vs Delta 5 (cult-vs)
+ *   3. Novedades agrupadas (7 funcionalidades en 3 áreas)
+ *   4. Comparativa Tango clásico vs Delta 6 (cult-vs)
  *   5. CTA + formulario (renderCultCtaForm)
  *   6. FAQ específico
  *   7. Navegación a otros productos
@@ -23,7 +23,7 @@ require_once('includes/security-init.php');
 initSecurity();
 
 require_once('includes/components/cult-hero-product.php');
-require_once('includes/components/cult-modules-grouped.php');
+require_once('includes/components/cult-modules-detailed.php');
 require_once('includes/components/cult-cta-form.php');
 
 // ─── Identidad del producto ─────────────────────────────────────────────
@@ -33,41 +33,40 @@ $img_base    = 'assets/img/productos/' . $product['slug'] . '/';
 
 $body_id = 'tango-delta';
 
-$meta_keywords = 'tango delta 5, software empresarial, ia, inteligencia artificial, erp, transformacion digital, corrientes, argentina';
+$meta_keywords = 'tango delta 6, software empresarial, ia, inteligencia artificial, erp, tango ventas mobile, tango ecommerce, tango bi, cash flow, transformacion digital, corrientes, argentina';
 
 $product_color_style = function_exists('cultProductMeshStyle') ? cultProductMeshStyle($product['color']) : '';
 
 // ─── Hero ───────────────────────────────────────────────────────────────
 $whatsapp_demo = generateWhatsAppLink(
-    'Hola, me interesa Tango Delta 5. ¿Podrían enviarme más información y coordinar una demo?'
+    'Hola, me interesa Tango Delta 6. ¿Podrían enviarme más información y coordinar una demo?'
 );
 
 $delta_hero_decoration = <<<'HTML'
-<span class="cult-ai-sparkle cult-ai-sparkle--lg" style="top:22%; right:14%; animation-delay:0s;" aria-hidden="true"><i class="bx bxs-star"></i></span>
-<span class="cult-ai-sparkle" style="top:48%; right:8%; animation-delay:0.6s;" aria-hidden="true"><i class="bx bxs-star"></i></span>
-<span class="cult-ai-sparkle cult-ai-sparkle--sm" style="top:70%; right:22%; animation-delay:1.2s;" aria-hidden="true"><i class="bx bxs-star"></i></span>
-<span class="cult-ai-sparkle cult-ai-sparkle--sm" style="top:30%; right:30%; animation-delay:1.8s;" aria-hidden="true"><i class="bx bxs-star"></i></span>
+<span class="cult-ai-sparkle cult-ai-sparkle--sm" style="top:16%; right:34%; animation-delay:0.4s;" aria-hidden="true"><i class="bx bxs-star"></i></span>
+<span class="cult-ai-sparkle cult-ai-sparkle--sm" style="top:76%; right:12%; animation-delay:1.6s;" aria-hidden="true"><i class="bx bxs-star"></i></span>
 HTML;
+
 
 ob_start();
 renderCultProductHero([
     'eyebrow_text'  => 'Nueva versión · IA integrada',
     'eyebrow_icon'  => 'bx bx-chip',
-    'title'         => 'La evolución de tu negocio con',
+    'title'         => 'La evolución total de tu negocio con',
     'shimmer'       => 'inteligencia artificial',
-    'subtitle'      => 'Tecnología avanzada y una plataforma cada vez más abierta y flexible. Analizá datos en lenguaje natural, automatizá tareas y ejecutá acciones con IA integrada — sin perder el control de tu información.',
+    'subtitle'      => 'Evolución digital, inteligencia y conectividad total para tu negocio. Movilidad, eCommerce, tableros de BI y cobros integrados, con IA que automatiza tareas y potencia tus decisiones — sin perder el control de tu información.',
     'ctas'          => [
         ['label' => 'Solicitar demo', 'href' => $whatsapp_demo, 'icon' => 'bxl-whatsapp', 'class' => 'cult-btn-glass cult-btn-shimmer', 'target' => '_blank'],
         ['label' => 'Ver novedades',  'href' => '#novedades',   'icon' => 'bx bx-down-arrow-alt', 'class' => 'btn-outline-light'],
     ],
-    'logo_src'      => $img_base . $product['logo_dark'],
+    'logo_src'      => $img_base . 'delta6isow.webp',
     'logo_alt'      => $product['name'] . ' — Logo',
-    'logo_width'    => 320,
-    'logo_height'   => 120,
+    'logo_width'    => 260,
+    'logo_height'   => 246,
     'product_color' => $product['color'],
     'stats'         => [
         ['value' => '30',  'label' => 'Años en Tango',  'prefix' => '+'],
-        ['value' => '6',   'label' => 'Áreas con IA'],
+        ['value' => '7',   'label' => 'Novedades clave'],
         ['value' => '24/7','label' => 'Disponible',     'animate' => false],
     ],
     'decoration_html' => $delta_hero_decoration,
@@ -108,88 +107,115 @@ ob_start(); ?>
 <?php
 $intro_html = ob_get_clean();
 
-// ─── Novedades agrupadas (6 funcionalidades) ────────────────────────────
-$module_groups = [
-    'Inteligencia Artificial' => [
-        [
-            'title'       => 'Compras más rápidas',
-            'icon'        => 'bx bx-brain',
-            'description' => 'Importación de comprobantes por AI. Simplificá y acelerá la gestión de compras con la importación automática de comprobantes en formato PDF, gracias a la inteligencia artificial que automatiza su registración en el módulo, ahorrándote tiempo y reduciendo errores.',
-        ],
-        [
-            'title'       => 'Tango Empleados',
-            'icon'        => 'bx bx-group',
-            'description' => 'Nuevo módulo de Formularios + AI para responder consultas de RRHH. Dentro del circuito de Gestión Documental, contás con formularios personalizables para gestionar trámites y solicitudes de forma más ágil. Centralizá toda la documentación de Recursos Humanos para que la AI la interprete y responda de forma inmediata a las consultas más frecuentes de tus colaboradores.',
-        ],
+// ─── Novedades (7 funcionalidades, ficha numerada estilo axoft.com) ─────
+$delta_features = [
+    [
+        'number'      => '01',
+        'title'       => 'Tango Ventas Mobile',
+        'eyebrow'     => 'Movilidad & Ventas',
+        'icon'        => 'bx bx-mobile-alt',
+        'description' => 'La nueva app permite gestionar pedidos y promociones, consultar información comercial y registrar cobranzas desde cualquier lugar, con integración en tiempo real con Tango para una experiencia de venta más ágil, moderna y eficiente.',
+        'features'    => ['Pedidos y promociones', 'Información comercial', 'Registro de cobranzas', 'Integración en tiempo real'],
     ],
-    'Productividad & UX' => [
-        [
-            'title'       => 'Diseñá tus comprobantes',
-            'icon'        => 'bx bx-palette',
-            'description' => 'Nueva herramienta gráfica para diseñar intuitivamente tus formularios. Definí colores, incluí fórmulas para mostrar datos del comprobante según una condición, definí comportamientos, trabajá por secciones y agregá imágenes. Contás con modelos predefinidos para agilizar el armado del formulario.',
-        ],
-        [
-            'title'       => 'Visión total del cliente',
-            'icon'        => 'bx bx-user-circle',
-            'description' => 'Gestión de Clientes: toda la información, en una sola vista. Ofrece una visión integral y ágil de cada cliente, con indicadores claves en formato tablero, acceso a su situación financiera actualizada desde el BCRA y consultas dinámicas por ventas, cuentas corrientes, pedidos y cotizaciones. Todo adaptado al perfil del usuario y con acceso directo a fichas live y comprobantes.',
-        ],
+    [
+        'number'      => '02',
+        'title'       => 'Tango eCommerce',
+        'eyebrow'     => 'Movilidad & Ventas',
+        'icon'        => 'bx bx-store-alt',
+        'description' => 'Una nueva plataforma de comercio electrónico totalmente integrada con Tango que permite administrar publicaciones, sincronizar productos y stock, gestionar promociones y optimizar la operatoria de tus canales de venta digitales desde un único lugar.',
+        'features'    => ['Publicaciones unificadas', 'Sincronización de productos y stock', 'Gestión de promociones', 'Canales digitales integrados'],
     ],
-    'Automatización & Sueldos' => [
-        [
-            'title'       => 'Automatizá tus pedidos',
-            'icon'        => 'bx bx-package',
-            'description' => 'Seguimos ampliando las posibilidades de integración de Tango. Ahora en Ventas también podés modificar pedidos desde Excel o mediante API, respetando todas las validaciones del sistema y utilizando los datos por defecto del perfil seleccionado.',
-        ],
-        [
-            'title'       => 'Sueldos, fácil y flexible',
-            'icon'        => 'bx bx-calculator',
-            'description' => 'Editor avanzado de fórmulas y pago de sueldos a múltiples cuentas bancarias. Además del asistente, contás con un nuevo editor de Fórmulas de liquidación que te permite buscar variables rápidamente, con sugerencias automáticas y parámetros completados de manera sencilla. Registrá múltiples cuentas bancarias por empleado y distribuí la acreditación del sueldo por importe o porcentaje.',
-        ],
+    [
+        'number'      => '03',
+        'title'       => 'Tango BI',
+        'eyebrow'     => 'Finanzas & Clientes',
+        'icon'        => 'bx bx-bar-chart-alt-2',
+        'description' => 'Un nuevo módulo orientado al análisis y visualización de información de negocio mediante tableros interactivos y personalizables. Diseñá y administrá tableros con consultas Live y externas, organizalos en solapas y favoritos, y compartilos con tu equipo.',
+        'features'    => ['Tableros interactivos', 'Diseñador y Visor', 'Consultas Live y externas', 'Gestión de favoritos'],
+    ],
+    [
+        'number'      => '04',
+        'title'       => 'Cash Flow',
+        'eyebrow'     => 'Finanzas & Clientes',
+        'icon'        => 'bx bx-line-chart',
+        'description' => 'Planificá el futuro financiero de tu empresa desde cualquier lugar: proyectá distintos escenarios, comparalos entre sí y analizá la evolución del flujo de fondos para tomar decisiones con mayor información y confianza.',
+        'features'    => ['Planificación desde donde estés', 'Proyección de escenarios', 'Comparación de alternativas', 'Evolución del flujo de fondos'],
+    ],
+    [
+        'number'      => '05',
+        'title'       => 'Gestión de Clientes',
+        'eyebrow'     => 'Finanzas & Clientes',
+        'icon'        => 'bx bx-user-circle',
+        'description' => 'Un nuevo historial integral que centraliza comprobantes, actividades e interacciones comerciales, brindando una visión 360° de cada cliente en un único lugar.',
+        'features'    => ['Historial integral unificado', 'Centralización de comprobantes', 'Registro de actividades e interacciones', 'Visión 360° del cliente'],
+    ],
+    [
+        'number'      => '06',
+        'title'       => 'Cobros Integrados',
+        'eyebrow'     => 'Movilidad & Ventas',
+        'icon'        => 'bx bx-credit-card',
+        'description' => 'Permite procesar cobros con Mercado Pago, Clover, Payway, Nave y GetNet, con registración automática en Tesorería para agilizar la operatoria y mantener toda la información integrada.',
+        'features'    => ['Mercado Pago, Clover y Payway', 'Nave y GetNet', 'Registración automática en Tesorería', 'Operatoria 100% integrada'],
+    ],
+    [
+        'number'      => '07',
+        'title'       => 'Inteligencia Artificial',
+        'eyebrow'     => 'Inteligencia Artificial',
+        'icon'        => 'bx bx-brain',
+        'description' => 'La IA potencia la gestión comercial y contable mediante nuevas herramientas que agilizan la búsqueda de información, automatizan procesos y simplifican las tareas diarias. Incorpora también Fórmulas AI, que interpreta requerimientos en lenguaje natural y propone fórmulas de liquidación de Sueldos ajustadas a la Ley de Contrato de Trabajo.',
+        'features'    => ['Gestión comercial y contable', 'Búsqueda ágil de información', 'Automatización de procesos', 'Fórmulas AI de sueldos'],
     ],
 ];
 
 ob_start();
-renderCultModulesGrouped($module_groups, [
-    'eyebrow'       => '6 innovaciones clave',
+renderCultModulesDetailed($delta_features, [
+    'eyebrow'       => '7 innovaciones clave',
     'title'         => 'Todo lo nuevo en',
-    'shimmer'       => 'Delta 5',
-    'subtitle'      => 'Funcionalidades que transforman la forma de trabajar con Tango: IA integrada, automatización avanzada y una experiencia de usuario renovada.',
+    'shimmer'       => 'Delta 6',
+    'subtitle'      => 'Evolución digital, inteligencia y conectividad total: movilidad, eCommerce, BI, Cash Flow, cobros integrados e IA en una experiencia renovada.',
     'section_id'    => 'novedades',
     'product_color' => $product['color'],
+    'show_number'   => true,
 ]);
 $modules_html = ob_get_clean();
 
-// ─── Post-módulos: Comparativa Tango clásico vs Delta 5 ─────────────────
+// ─── Post-módulos: Comparativa Tango clásico vs Delta 6 ─────────────────
 $vs_rows = [
     [
-        'icon'  => 'bx bx-cog',
-        'label' => 'Procesos operativos',
-        'sin'   => 'Manuales y repetitivos',
-        'con'   => 'Automatizados con IA',
+        'icon'  => 'bx bx-mobile-alt',
+        'label' => 'Ventas en movilidad',
+        'sin'   => 'Solo desde la oficina',
+        'con'   => 'Pedidos y cobranzas con Tango Ventas Mobile',
     ],
     [
-        'icon'  => 'bx bx-file',
-        'label' => 'Importación de facturas',
-        'sin'   => 'Carga manual de comprobantes',
-        'con'   => 'Lectura automática de PDF por IA',
+        'icon'  => 'bx bx-store-alt',
+        'label' => 'Canales de venta digitales',
+        'sin'   => 'Publicaciones y stock gestionados manualmente',
+        'con'   => 'Tango eCommerce sincronizado en tiempo real',
     ],
     [
         'icon'  => 'bx bx-bar-chart-alt-2',
-        'label' => 'Análisis de datos',
+        'label' => 'Análisis de negocio',
         'sin'   => 'Reportes estáticos predefinidos',
-        'con'   => 'Consultas en lenguaje natural',
+        'con'   => 'Tableros interactivos con Tango BI',
     ],
     [
-        'icon'  => 'bx bx-layout',
-        'label' => 'Diseño de formularios',
-        'sin'   => 'Configuración técnica compleja',
-        'con'   => 'Editor visual drag-and-drop',
+        'icon'  => 'bx bx-line-chart',
+        'label' => 'Planificación financiera',
+        'sin'   => 'Sin proyección de escenarios',
+        'con'   => 'Cash Flow con comparación de alternativas',
     ],
     [
-        'icon'  => 'bx bx-wallet',
-        'label' => 'Pago de sueldos',
-        'sin'   => 'Una sola cuenta bancaria por empleado',
-        'con'   => 'Múltiples bancos por importe o porcentaje',
+        'icon'  => 'bx bx-credit-card',
+        'label' => 'Cobros con medios de pago',
+        'sin'   => 'Registración manual en Tesorería',
+        'con'   => 'Cobros integrados y automáticos',
+    ],
+    [
+        'icon'  => 'bx bx-brain',
+        'label' => 'Fórmulas de liquidación',
+        'sin'   => 'Configuración manual y técnica',
+        'con'   => 'Fórmulas AI en lenguaje natural',
     ],
 ];
 
@@ -201,7 +227,7 @@ ob_start(); ?>
             <div class="cult-vs__header text-white">
                 <span class="cult-section-eyebrow cult-section-eyebrow--light" data-aos="fade-up">Comparativa</span>
                 <h2 class="cult-display cult-display--xl mb-2 text-white" data-aos="fade-up" data-aos-delay="50">
-                    Tango clásico vs <span class="cult-shimmer-text--bright">Delta 5</span>
+                    Tango clásico vs <span class="cult-shimmer-text--bright">Delta 6</span>
                 </h2>
                 <p class="lead mx-auto mb-0" style="max-width:36rem; opacity:0.8;" data-aos="fade-up" data-aos-delay="100">
                     Descubrí qué cambia cuando actualizás a la nueva generación de software empresarial con IA integrada
@@ -240,17 +266,17 @@ renderCultCtaForm([
     'title'          => '¿Listo para experimentar el',
     'shimmer'        => 'futuro',
     'title_after'    => ' de la gestión empresarial?',
-    'subtitle'       => 'Coordinemos una demo personalizada y descubrí cómo Tango Delta 5 y la inteligencia artificial pueden transformar tu negocio. Te respondemos en menos de 24 horas hábiles.',
-    'asunto_default' => 'TANGO DELTA 5',
+    'subtitle'       => 'Coordinemos una demo personalizada y descubrí cómo Tango Delta 6 —con movilidad, eCommerce, BI e inteligencia artificial— puede transformar tu negocio. Te respondemos en menos de 24 horas hábiles.',
+    'asunto_default' => 'TANGO DELTA 6',
     'asunto_options' => [
-        'TANGO DELTA 5'      => 'Tango Delta 5 — Consulta general',
-        'DEMO TANGO DELTA 5' => 'Solicitar demo Delta 5',
-        'MIGRACION DELTA 5'  => 'Migración a Delta 5',
+        'TANGO DELTA 6'      => 'Tango Delta 6 — Consulta general',
+        'DEMO TANGO DELTA 6' => 'Solicitar demo Delta 6',
+        'MIGRACION DELTA 6'  => 'Migración a Delta 6',
         'CAPACITACION IA'    => 'Capacitación en IA',
         'PRESUPUESTO'        => 'Pedir presupuesto',
         'SOPORTE'            => 'Soporte técnico',
     ],
-    'mensaje_ph'     => 'Contanos qué versión de Tango usás hoy, cuántos usuarios tenés y qué procesos querés automatizar con IA…',
+    'mensaje_ph'     => 'Contanos qué versión de Tango usás hoy, cuántos usuarios tenés y qué funcionalidades de Delta 6 te interesan (Mobile, eCommerce, BI, IA)…',
     'bg_variant'     => 'mesh-product',
     'product_color'  => $product['color'],
     'logo_src'       => $img_base . $product['logo_dark'],
@@ -259,40 +285,45 @@ renderCultCtaForm([
 ]);
 $cta_html = ob_get_clean();
 
-// ─── FAQ específico de Tango Delta 5 ────────────────────────────────────
+// ─── FAQ específico de Tango Delta 6 ────────────────────────────────────
 $faq_items = [
     [
-        'question' => '¿Qué es Tango Delta 5 y en qué se diferencia de Tango Gestión?',
-        'answer'   => 'Tango Delta 5 es la nueva generación del software empresarial Tango. Incorpora inteligencia artificial integrada, una plataforma más abierta y flexible, y herramientas de automatización avanzada. Es la evolución natural de Tango Gestión, con las mismas bases contables y operativas pero potenciadas con IA, editor visual de formularios y nuevas capacidades de integración.',
+        'question' => '¿Qué es Tango Delta 6 y en qué se diferencia de Tango Gestión?',
+        'answer'   => 'Tango Delta 6 es la nueva generación del software empresarial Tango. Suma movilidad con Tango Ventas Mobile, una plataforma de Tango eCommerce, el nuevo módulo de Tango BI, Cash Flow, cobros integrados con múltiples pasarelas e inteligencia artificial. Es la evolución natural de Tango Gestión, con las mismas bases contables y operativas pero potenciadas con nuevas herramientas de conectividad y análisis.',
         'icon'     => 'bx bx-chip',
     ],
     [
-        'question' => '¿Cómo migro mi empresa desde Tango clásico a Delta 5?',
+        'question' => '¿Cómo migro mi empresa desde Tango clásico a Delta 6?',
         'answer'   => 'Como distribuidores oficiales, acompañamos todo el proceso de actualización: relevamiento de tu instalación actual, plan de migración de datos, validación de módulos activos, capacitación del equipo y go-live. La migración respeta tu información histórica y minimiza la interrupción operativa.',
         'icon'     => 'bx bx-transfer',
     ],
     [
+        'question' => '¿Qué es Tango Ventas Mobile y Tango eCommerce?',
+        'answer'   => 'Tango Ventas Mobile es la nueva app para gestionar pedidos, promociones y cobranzas desde cualquier lugar, integrada en tiempo real con Tango. Tango eCommerce es la plataforma para administrar publicaciones, sincronizar stock y gestionar tus canales de venta digitales, todo conectado a tu gestión central.',
+        'icon'     => 'bx bx-store-alt',
+    ],
+    [
         'question' => '¿Qué hace la IA con mis datos? ¿Son seguros?',
-        'answer'   => 'La IA de Tango Delta 5 opera bajo el principio de soberanía de datos: vos elegís con qué proveedor de IA trabajar. Los proveedores pueden analizar tus datos para responder consultas o automatizar tareas, pero nunca los resguardan ni los usan para entrenar modelos. La información siempre permanece bajo tu control.',
+        'answer'   => 'La IA de Tango Delta 6 opera bajo el principio de soberanía de datos: vos elegís con qué proveedor de IA trabajar. Los proveedores pueden analizar tus datos para responder consultas o automatizar tareas, pero nunca los resguardan ni los usan para entrenar modelos. La información siempre permanece bajo tu control.',
         'icon'     => 'bx bx-shield-quarter',
     ],
     [
-        'question' => '¿Qué requisitos técnicos necesito para instalar Delta 5?',
-        'answer'   => 'Tango Delta 5 funciona sobre Windows con base de datos SQL Server. Podés instalarlo en tu servidor propio o en nuestro Datacenter en modalidad cloud. Te ayudamos a definir la infraestructura adecuada según la cantidad de usuarios, módulos activos y el uso de funcionalidades de IA.',
+        'question' => '¿Qué requisitos técnicos necesito para instalar Delta 6?',
+        'answer'   => 'Tango Delta 6 funciona sobre Windows con base de datos SQL Server. Podés instalarlo en tu servidor propio o en nuestro Datacenter en modalidad cloud. Te ayudamos a definir la infraestructura adecuada según la cantidad de usuarios, módulos activos y el uso de funcionalidades de movilidad, eCommerce e IA.',
         'icon'     => 'bx bx-server',
     ],
     [
-        'question' => '¿Cuánto cuesta actualizar a Delta 5?',
+        'question' => '¿Cuánto cuesta actualizar a Delta 6?',
         'answer'   => 'El costo depende de tu instalación actual, cantidad de módulos, usuarios y si incluís servicios de migración y capacitación. Coordiná una llamada con nosotros y armamos una propuesta a medida para tu empresa.',
         'icon'     => 'bx bx-dollar-circle',
     ],
     [
-        'question' => '¿Incluye capacitación en las nuevas funcionalidades de IA?',
-        'answer'   => 'Sí. Ofrecemos capacitación específica para que tu equipo aproveche al máximo las funcionalidades de IA: consultas en lenguaje natural, importación automática de comprobantes, formularios inteligentes y el módulo Tango Empleados. Incluye material de referencia y sesiones de seguimiento.',
+        'question' => '¿Incluye capacitación en las nuevas funcionalidades?',
+        'answer'   => 'Sí. Ofrecemos capacitación específica para que tu equipo aproveche al máximo las novedades de Delta 6: Tango Ventas Mobile, Tango eCommerce, Tango BI, Cash Flow, cobros integrados y las herramientas de inteligencia artificial. Incluye material de referencia y sesiones de seguimiento.',
         'icon'     => 'bx bx-book-open',
     ],
 ];
-$faq_title    = 'Preguntas frecuentes sobre Tango Delta 5';
+$faq_title    = 'Preguntas frecuentes sobre Tango Delta 6';
 $faq_subtitle = 'Las dudas más comunes antes de dar el salto a la nueva generación de Tango.';
 $faq_use_cult = true;
 $render_faq   = true;

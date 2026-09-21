@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!--Slide 2 - Tango Delta 5-->
+                        <!--Slide 2 - Tango Delta 6-->
                         <div class="swiper-slide">
                             <picture>
                                 <source srcset="assets/img/slider/2.webp" type="image/webp">
@@ -139,17 +139,17 @@
                                             </li>
                                             <li data-carousel-layer="fade-start">
                                                 <h2 class="cult-display cult-display--hero mb-4">
-                                                    TANGO <span class="cult-shimmer-text--bright">DELTA 5</span><br>EVOLUCIONÁ CON IA
+                                                    TANGO <span class="cult-shimmer-text--bright">DELTA 6</span><br>EVOLUCIONÁ CON IA
                                                 </h2>
                                             </li>
                                             <li data-carousel-layer="fade-end">
                                                 <p class="lead mb-4 mb-lg-5 mx-auto" style="max-width: 38rem; opacity: 0.88;">
-                                                    Analizá datos en lenguaje natural, automatizá tareas y transformá tu gestión con inteligencia artificial integrada
+                                                    Movilidad, eCommerce, BI e inteligencia artificial integrada para transformar tu gestión
                                                 </p>
                                             </li>
                                             <li data-carousel-layer="fade-start">
                                                 <a href="tango-delta.php" class="btn cult-btn-glass btn-lg cult-btn-shimmer">
-                                                    Descubrí Tango Delta 5
+                                                    Descubrí Tango Delta 6
                                                 </a>
                                             </li>
                                         </ul>

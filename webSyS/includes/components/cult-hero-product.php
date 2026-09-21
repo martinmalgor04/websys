@@ -30,6 +30,9 @@ if (!function_exists('renderCultProductHero')) {
      *     @type string $product_color  Color del producto en HEX para tinting opcional.
      *     @type array  $stats          Stats bajo el hero (mismo formato que renderCultStatsStrip).
      *     @type string $decoration_html HTML adicional inyectado dentro del hero (badges, sparkles, etc.).
+     *     @type string $logo_decoration_html HTML decorativo anclado detrás del logo (columna derecha),
+     *                                         para motivos que deben quedar centrados con el logo en vez
+     *                                         del hero completo.
      * }
      * @return void Imprime el HTML.
      */
@@ -50,6 +53,9 @@ if (!function_exists('renderCultProductHero')) {
         $product_color   = $config['product_color']   ?? '';
         $stats           = $config['stats']           ?? [];
         $decoration_html = $config['decoration_html'] ?? '';
+        $logo_decoration_html = $config['logo_decoration_html'] ?? '';
+        $top_icon_src    = $config['top_icon_src']    ?? '';
+        $top_icon_alt    = $config['top_icon_alt']    ?? '';
 
         $mesh_class = '';
         $mesh_style = '';
@@ -78,6 +84,15 @@ if (!function_exists('renderCultProductHero')) {
             <div class="container py-9 py-lg-15 position-relative">
                 <div class="row align-items-center g-5">
                     <div class="col-lg-7">
+                        <?php if ($top_icon_src): ?>
+                        <img src="<?= htmlspecialchars($top_icon_src, ENT_QUOTES, 'UTF-8') ?>"
+                             alt="<?= htmlspecialchars($top_icon_alt, ENT_QUOTES, 'UTF-8') ?>"
+                             class="mb-4"
+                             style="height: 40px; width: auto; display: block;"
+                             loading="eager"
+                             decoding="async"
+                             data-aos="fade-up">
+                        <?php endif; ?>
                         <?php if ($eyebrow_text): ?>
                         <span class="cult-eyebrow cult-eyebrow--light mb-4 d-inline-flex" data-aos="fade-up">
                             <i class="<?= htmlspecialchars($eyebrow_icon, ENT_QUOTES, 'UTF-8') ?>" aria-hidden="true"></i>
@@ -88,7 +103,27 @@ if (!function_exists('renderCultProductHero')) {
                         <h1 class="cult-display cult-display--hero mb-4" data-aos="fade-up" data-aos-delay="50">
                             <?= $title ?><?php if ($shimmer): ?> <span class="cult-shimmer-text--bright"><?= $shimmer ?></span><?php endif; ?><?= $title_after ?>
                         </h1>
+                    </div>
 
+                    <?php if ($logo_src): ?>
+                    <div class="col-lg-5 text-center position-relative" data-aos="fade-up" data-aos-delay="200">
+                        <?= $logo_decoration_html ?>
+                        <motion-tilt max-tilt="6" speed="400" style="display:inline-block; position:relative; z-index:2;">
+                            <img src="<?= htmlspecialchars($logo_src, ENT_QUOTES, 'UTF-8') ?>"
+                                 alt="<?= htmlspecialchars($logo_alt, ENT_QUOTES, 'UTF-8') ?>"
+                                 class="img-fluid product-logo-enhanced"
+                                 width="<?= $logo_width ?>"
+                                 height="<?= $logo_height ?>"
+                                 loading="eager"
+                                 decoding="async"
+                                 style="max-width: 22rem; position:relative;">
+                        </motion-tilt>
+                    </div>
+                    <?php endif; ?>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-7">
                         <?php if ($subtitle): ?>
                         <p class="lead mb-5" style="max-width: 42rem; opacity: 0.88;" data-aos="fade-up" data-aos-delay="100">
                             <?= $subtitle ?>
@@ -115,21 +150,6 @@ if (!function_exists('renderCultProductHero')) {
                         </div>
                         <?php endif; ?>
                     </div>
-
-                    <?php if ($logo_src): ?>
-                    <div class="col-lg-5 text-center" data-aos="fade-up" data-aos-delay="200">
-                        <motion-tilt max-tilt="6" speed="400" style="display:inline-block;">
-                            <img src="<?= htmlspecialchars($logo_src, ENT_QUOTES, 'UTF-8') ?>"
-                                 alt="<?= htmlspecialchars($logo_alt, ENT_QUOTES, 'UTF-8') ?>"
-                                 class="img-fluid product-logo-enhanced"
-                                 width="<?= $logo_width ?>"
-                                 height="<?= $logo_height ?>"
-                                 loading="eager"
-                                 decoding="async"
-                                 style="max-width: 22rem;">
-                        </motion-tilt>
-                    </div>
-                    <?php endif; ?>
                 </div>
 
                 <?php if (!empty($stats) && function_exists('cultStatNumber')): ?>
