@@ -45,3 +45,6 @@ error_log
 .well-known/
 .htpasswd
 .DS_Store
+.atl/
+.engram/cloud.json
+.engram/engram.db
