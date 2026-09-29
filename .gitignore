@@ -44,3 +44,4 @@ mpdf/
 error_log
 .well-known/
 .htpasswd
+.DS_Store
