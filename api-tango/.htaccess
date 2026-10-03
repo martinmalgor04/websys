@@ -1,0 +1,50 @@
+# api-tango/ — Documentación no oficial de la API de Tango Connect
+# Carpeta externa: NO la toca el deploy principal de webSyS (ver exclude en
+# .github/workflows/deploy-cpanel.yml). Se publica con scripts/deploy-api-docs.sh.
+
+AddDefaultCharset UTF-8
+Options -Indexes
+
+# Tipos MIME correctos (cPanel no siempre los conoce)
+<IfModule mod_mime.c>
+    AddType application/yaml .yaml .yml
+    AddType application/zip .zip
+    AddType application/json .json
+</IfModule>
+
+# noindex: documentación no oficial, hasta revisión legal (decisión D2, 2026-10-03).
+# No bloquear por robots.txt: si Google no puede leer las páginas, tampoco ve el noindex.
+<IfModule mod_headers.c>
+    Header always set X-Robots-Tag "noindex, nofollow, noarchive"
+</IfModule>
+
+# Caché: HTML corta (10 min), specs JSON/YAML larga (1 semana), zip 30 días
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/html "access plus 600 seconds"
+    ExpiresByType application/json "access plus 604800 seconds"
+    ExpiresByType application/yaml "access plus 604800 seconds"
+    ExpiresByType application/zip "access plus 2592000 seconds"
+    ExpiresByType image/png "access plus 2592000 seconds"
+    ExpiresByType image/webp "access plus 2592000 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.html$">
+        Header set Cache-Control "private, must-revalidate, max-age=600"
+    </FilesMatch>
+    <FilesMatch "\.(json|ya?ml)$">
+        Header set Cache-Control "public, max-age=604800"
+    </FilesMatch>
+    <FilesMatch "\.zip$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+</IfModule>
+
+# Compresión para los specs de texto (el swagger por recurso pesa ~11 MB)
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html application/json application/yaml text/yaml
+</IfModule>
+
+# Error propio (con subdominio, /404.html resuelve dentro de esta carpeta)
+ErrorDocument 404 /404.html

@@ -9,6 +9,11 @@ RewriteCond %{HTTP_HOST} ^sysdesk\.serviciosysistemas\.com\.ar$ [NC]
 RewriteCond %{REQUEST_URI} !^/sysdesk/
 RewriteRule ^(.*)$ /sysdesk/$1 [L]
 
+# Subdominio API (docs Tango Connect, no oficial) - Redirigir a carpeta api-tango
+RewriteCond %{HTTP_HOST} ^api\.serviciosysistemas\.com\.ar$ [NC]
+RewriteCond %{REQUEST_URI} !^/api-tango/
+RewriteRule ^(.*)$ /api-tango/$1 [L]
+
 # Regla para URLs amigables (ocultar .php)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f

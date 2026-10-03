@@ -48,6 +48,7 @@ jobs:
             assets/img/**
             assets/fonts/**
             ecommerce/**
+            api-tango/**
             php/**
             Mpago/**
             sysdesk/**
