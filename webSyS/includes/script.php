@@ -23,7 +23,7 @@
                     slidesPerView: 1,
                     spaceBetween: 0,
                     loop: !isMobile,
-                    autoplay: { delay: isMobile ? 5000 : 3500, disableOnInteraction: false },
+                    autoplay: { delay: isMobile ? 6500 : 6000, disableOnInteraction: false },
                     speed: isMobile ? 450 : 700,
                     pagination: {
                         el: ".swiperClassic-pagination",

@@ -24,6 +24,14 @@
     opacity: 1 !important;
     transform: translateZ(0) scale(1) !important;
 }
+/* Entrada del texto más corta: antes el último elemento tardaba ~1,8 s en verse */
+.swiper-classic .swiper-slide-active .carousel-layers li {
+    transition-duration: 450ms;
+    transition-delay: 100ms;
+}
+.swiper-classic .swiper-slide-active .carousel-layers li:nth-child(2) { transition-delay: 180ms; }
+.swiper-classic .swiper-slide-active .carousel-layers li:nth-child(3) { transition-delay: 260ms; }
+.swiper-classic .swiper-slide-active .carousel-layers li:nth-child(4) { transition-delay: 340ms; }
 </style>
 <!--Hero-->
 <section class="position-relative bg-dark overflow-hidden">
