@@ -15,7 +15,7 @@ function renderProductCard($key, $product, $delay = 0) {
     $isAvailable = !isset($product['available']) || $product['available'] !== false;
     $minimalCls  = $isAvailable ? '' : ' cult-card-minimal';
 
-    $html  = '<div class="col-xl-2 col-lg-4 col-md-6 col-10 text-center mb-4" data-aos="fade-up" data-aos-delay="' . $delay . '">';
+    $html  = '<div class="col-xl-2 col-lg-4 col-md-6 col-10 text-center mb-4">';
     $html .= '<motion-tilt max-tilt="6" speed="400" style="display:block;">';
     $html .= '<div class="card card-body py-5 px-4 border-0 shadow-lg hover-lift hover-shadow-xl product-card-' . $key . ' cult-texture-deco position-relative' . $minimalCls . '">';
 

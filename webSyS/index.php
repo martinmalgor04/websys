@@ -58,14 +58,15 @@ include('includes/head.php');
             <?php include('includes/slider.php');?>
             <section id="product" class="overflow-hidden bg-body position-relative">
                 <div class="container position-relative py-9 py-lg-11">
-                    <div class="text-center mb-7" data-aos="fade-up">
-                        <span class="cult-section-eyebrow">Plataforma Tango</span>
-                        <h2 class="cult-display cult-display--xl mb-3">
-                            Software que <span class="cult-shimmer-text">se adapta</span><br>a tu empresa
-                        </h2>
-                        <p class="lead text-muted mx-auto" style="max-width: 38rem;">
-                            Cinco soluciones integradas, una sola plataforma para gestionar todo tu negocio
-                        </p>
+                    <div class="row mb-7">
+                        <div class="col-lg-7">
+                            <h2 class="cult-display cult-display--xl mb-3">
+                                Software que <span class="cult-shimmer-text">se adapta</span><br>a tu empresa
+                            </h2>
+                            <p class="lead text-muted mb-0" style="max-width: 38rem;">
+                                Cinco soluciones integradas, una sola plataforma para gestionar todo tu negocio
+                            </p>
+                        </div>
                     </div>
                     <div class="row justify-content-center">
                         <?php 
@@ -86,14 +87,9 @@ include('includes/head.php');
 
             <!--begin: Datacenter Section -->
             <section class="position-relative overflow-hidden cult-mesh-bg cult-mesh-bg--blue">
-                <div class="cult-hero-grid" aria-hidden="true"></div>
                 <div class="container position-relative py-9 py-lg-11" style="z-index:2;">
                     <div class="row justify-content-center">
-                        <div class="col-lg-10 text-center text-white mb-5 mb-lg-0" data-aos="fade-up">
-                            <span class="cult-eyebrow cult-eyebrow--light mb-4 d-inline-flex">
-                                <i class="bx bx-server" aria-hidden="true"></i>
-                                Infraestructura propia
-                            </span>
+                        <div class="col-lg-10 text-center text-white mb-5 mb-lg-0">
                             <h2 class="cult-display cult-display--xl mb-4 text-white">
                                 Servicios de <span class="cult-shimmer-text--bright">Datacenter</span>
                             </h2>
@@ -103,7 +99,7 @@ include('includes/head.php');
                             </p>
 
                             <!-- Stats animadas -->
-                            <div class="cult-stats-row" data-aos="fade-up" data-aos-delay="100">
+                            <div class="cult-stats-row">
                                 <?= cultStatNumber('99.9', 'Uptime garantizado', '', '%', true,  'cult-stat-block--light') ?>
                                 <?= cultStatNumber('24/7', 'Monitoreo continuo', '',  '', false, 'cult-stat-block--light') ?>
                                 <?= cultStatNumber('5',    'Latencia máx.',     '<', 'ms', false, 'cult-stat-block--light') ?>
@@ -111,28 +107,28 @@ include('includes/head.php');
                             </div>
 
                             <div class="row justify-content-center mb-5 g-3">
-                                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                                <div class="col-md-6 col-lg-3">
                                     <div class="cult-feature-glass d-flex flex-column align-items-center text-center">
                                         <i class="bx bx-shield-quarter fs-1 mb-3 text-white"></i>
                                         <h6 class="mb-1 text-white">Máxima Seguridad</h6>
                                         <small class="text-white-50">Protección avanzada 24/7</small>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="180">
+                                <div class="col-md-6 col-lg-3">
                                     <div class="cult-feature-glass d-flex flex-column align-items-center text-center">
                                         <i class="bx bx-server fs-1 mb-3 text-white"></i>
                                         <h6 class="mb-1 text-white">Alta Disponibilidad</h6>
                                         <small class="text-white-50">99.9% uptime garantizado</small>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="260">
+                                <div class="col-md-6 col-lg-3">
                                     <div class="cult-feature-glass d-flex flex-column align-items-center text-center">
                                         <i class="bx bx-support fs-1 mb-3 text-white"></i>
                                         <h6 class="mb-1 text-white">Soporte Experto</h6>
                                         <small class="text-white-50">Asistencia especializada</small>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="340">
+                                <div class="col-md-6 col-lg-3">
                                     <div class="cult-feature-glass d-flex flex-column align-items-center text-center">
                                         <i class="bx bx-dollar-circle fs-1 mb-3 text-white"></i>
                                         <h6 class="mb-1 text-white">Ahorro de Costos</h6>
@@ -156,28 +152,28 @@ include('includes/head.php');
             <section id="nosotros" class="position-relative bg-body">
                 <div class="container position-relative py-9 py-lg-11">
 					<div class="row justify-content-center align-items-center mb-9">
-                        <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="50">
+                        <div class="col-lg-6 mb-5 mb-lg-0">
                             <span class="cult-eyebrow mb-4 d-inline-flex">
                                 <i class="bx bx-buildings" aria-hidden="true"></i>
                                 Nosotros
                             </span>
 							<h2 class="cult-display cult-display--xl mb-4">
-                                Más de 30 años <span class="cult-gradient-text">acompañando</span> empresas
+                                Más de 30 años <span class="cult-gradient-text">implementando Tango</span> en el NEA
                             </h2>
 							<p class="lead mb-4">
                                 Somos Servicios y Sistemas, una empresa que busca revolucionar empresas y negocios a través de soluciones tecnológicas creativas. Con más de 30 años en la industria, contamos con amplia experiencia y un equipo que se forma continuamente para brindar el mejor servicio al cliente.
 							</p>
 							<p class="mb-4">
-								Como distribuidores oficiales de Tango Software y Business Partner de HPE (Hewlett Packard Enterprise), Lenovo, Dell y Sophos, nos hemos posicionado como pioneros en la incorporación de soluciones innovadoras en el nordeste argentino. Nuestra propuesta integral abarca desde hardware y software hasta infraestructura de red y servicios especializados, brindando una poderosa solución a los miles de clientes que han confiado en nosotros a lo largo de estas décadas.
+								Como distribuidores oficiales de Tango Software y Business Partner de HPE (Hewlett Packard Enterprise), Lenovo, Dell y Sophos, implementamos el sistema de gestión y los servidores de empresas del NEA. Nuestra propuesta integral abarca desde hardware y software hasta infraestructura de red y servicios especializados.
 							</p>
 							<p class="mb-4">
-								Más de 200 empresas eligen nuestros servicios cada año, testimonio del valor que aportamos y la confianza que hemos construido. Con presencia consolidada en todo el nordeste argentino, hemos crecido junto a nuestros clientes, acompañándolos en su transformación digital.
+								Más de 200 empresas nos renuevan cada año. Playadito, la yerba N°1 de Argentina, administra su operación con Tango implementado por nosotros.
 							</p>
 							<p class="mb-0">
 								Estamos frente a un futuro donde la tecnología evoluciona constantemente y transforma la manera de hacer negocios. En esta vorágine de cambio permanente, lo que mantenemos como valor esencial es la responsabilidad hacia nuestros clientes. La filosofía de quienes conformamos Servicios y Sistemas, un equipo de 12 profesionales en constante formación, se enfoca en mantener la excelencia en el servicio y el compromiso genuino con el éxito de cada cliente que confía en nosotros.
 							</p>
                         </div>
-                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="col-lg-6">
                             <div class="position-relative bg-light rounded-3 p-4" style="min-height: 400px;">
                                 <!-- Placeholder para imagen/video -->
                                 <div class="d-flex align-items-center justify-content-center h-100 text-muted">
@@ -192,9 +188,8 @@ include('includes/head.php');
                     
                     <!-- Métricas — rediseñadas estilo cult hero stats -->
                     <div class="cult-mesh-bg cult-mesh-bg--blue position-relative overflow-hidden p-4 p-lg-5" style="border-radius: var(--cult-r-2xl);">
-                        <div class="cult-hero-grid" aria-hidden="true"></div>
                         <div class="row justify-content-center text-center g-4 position-relative" style="z-index:2;">
-                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
+                        <div class="col-lg-4 col-md-6">
                             <div class="cult-stat-hero">
                                 <div class="cult-stat-hero__icon">
                                     <i class="bx bx-calendar" aria-hidden="true"></i>
@@ -202,11 +197,11 @@ include('includes/head.php');
                                 <div class="cult-stat-hero__number">
                                     <span class="cult-stat-count" data-target="30" data-prefix="+">+30</span>
                                 </div>
-                                <div class="cult-stat-hero__title">Años de Experiencia</div>
-                                <p class="cult-stat-hero__subtitle">Proveyendo soluciones tecnológicas inteligentes</p>
+                                <div class="cult-stat-hero__title">Años de trayectoria</div>
+                                <p class="cult-stat-hero__subtitle">Fundada en Corrientes, con equipo propio</p>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="col-lg-4 col-md-6">
                             <div class="cult-stat-hero">
                                 <div class="cult-stat-hero__icon">
                                     <i class="bx bx-group" aria-hidden="true"></i>
@@ -214,11 +209,11 @@ include('includes/head.php');
                                 <div class="cult-stat-hero__number">
                                     <span class="cult-stat-count" data-target="1000" data-prefix="+">+1000</span>
                                 </div>
-                                <div class="cult-stat-hero__title">Empresas</div>
-                                <p class="cult-stat-hero__subtitle">Con implementaciones de Tango Software exitosas</p>
+                                <div class="cult-stat-hero__title">Implementaciones de Tango</div>
+                                <p class="cult-stat-hero__subtitle">En empresas de todo el NEA</p>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="250">
+                        <div class="col-lg-4 col-md-6">
                             <div class="cult-stat-hero">
                                 <div class="cult-stat-hero__icon">
                                     <i class="bx bx-medal" aria-hidden="true"></i>
@@ -238,16 +233,16 @@ include('includes/head.php');
 			<!--begin:About section-->
             <section class="position-relative">
                 <div class="container position-relative">
-					<div class="row justify-content-center">
-                        <div class="col-12 text-center mb-5" data-aos="fade-up" data-aos-delay="50">
-                            <span class="cult-section-eyebrow">Clientes</span>
+					<div class="row">
+                        <div class="col-lg-7 mb-5">
+                            <span class="cult-section-eyebrow text-start">Clientes</span>
 							<h2 class="cult-display cult-display--xl">Confían en <span class="cult-shimmer-text">Nosotros</span></h2>
-                            <p class="lead text-muted mx-auto mt-3" style="max-width: 36rem;">
-                                Empresas del NEA argentino que crecieron con nuestras soluciones
+                            <p class="lead text-muted mt-3" style="max-width: 36rem;">
+                                Algunas de las empresas del NEA que trabajan con nosotros
                             </p>
 						</div>
                     </div>
-					<div data-aos="fade-up" class="cult-partners-shell text-dark px-4 py-6 py-lg-7 px-lg-6 mb-5 position-relative z-1">
+					<div class="cult-partners-shell text-dark px-4 py-6 py-lg-7 px-lg-6 mb-5 position-relative z-1">
                     <?php
                         $marqueeItems = [];
                         // Logos con wordmark claro / blanco — necesitan tarjeta oscura
@@ -276,7 +271,7 @@ include('includes/head.php');
                                 $marqueeItems[] = $item;
                             }
                         }
-                        echo cultMarquee($marqueeItems, 'partners');
+                        echo cultMarquee($marqueeItems, 'partners-static');
                     ?>
                     </div>
                 </div>
@@ -286,9 +281,9 @@ include('includes/head.php');
             <!--begin: FAQ Section -->
             <section class="position-relative bg-gradient-light overflow-hidden">
                 <div class="container position-relative py-9 py-lg-11">
-                    <div class="row justify-content-center mb-7">
-                        <div class="col-lg-8 text-center" data-aos="fade-up">
-                            <span class="cult-section-eyebrow">FAQ</span>
+                    <div class="row mb-7">
+                        <div class="col-lg-8">
+                            <span class="cult-section-eyebrow text-start">FAQ</span>
                             <h2 class="cult-display cult-display--xl mb-3">
                                 Preguntas <span class="cult-gradient-text">frecuentes</span>
                             </h2>
@@ -298,9 +293,9 @@ include('includes/head.php');
                         </div>
                     </div>
                     
-                    <div class="row justify-content-center">
+                    <div class="row">
                         <div class="col-lg-10">
-                            <div class="accordion cult-faq" id="faqAccordion" data-aos="fade-up" data-aos-delay="150">
+                            <div class="accordion cult-faq" id="faqAccordion">
                                 
                                 <!-- FAQ 1 -->
                                 <div class="accordion-item border-0 shadow-sm mb-3">
@@ -421,9 +416,9 @@ include('includes/head.php');
             <!--begin: Contacto Section -->
             <section id="contacto" class="position-relative bg-body">
                 <div class="container position-relative py-9 py-lg-11">
-                    <div class="row justify-content-center mb-7">
-                        <div class="col-lg-8 text-center" data-aos="fade-up">
-                            <span class="cult-section-eyebrow">Contacto</span>
+                    <div class="row g-5">
+                        <div class="col-lg-4">
+                            <span class="cult-section-eyebrow text-start">Contacto</span>
                             <h2 class="cult-display cult-display--xl mb-3">
                                 Hablemos de tu <span class="cult-gradient-text">próximo proyecto</span>
                             </h2>
@@ -431,11 +426,8 @@ include('includes/head.php');
                                 ¿Tenés alguna consulta? Estamos para ayudarte. Completá el formulario y nos pondremos en contacto contigo.
                             </p>
                         </div>
-                    </div>
-                    
-                    <div class="row justify-content-center">
                         <div class="col-lg-8">
-                            <div class="cult-form-card card card-body py-5 px-4 px-lg-5" data-aos="fade-up" data-aos-delay="150">
+                            <div class="cult-form-card card card-body py-5 px-4 px-lg-5">
                                 <form id="contactForm" class="cult-form" method="POST" action="https://formsubmit.co/<?= FORMSUBMIT_EMAIL ?>">
                                     <!-- Campos ocultos para FormSubmit -->
                                     <input type="hidden" name="_subject" value="Nueva consulta desde Servicios y Sistemas">
@@ -522,7 +514,6 @@ include('includes/head.php');
         <?php include('includes/script.php');?>
         <?php include('includes/superweek-overlay.php');?>
         
-        <!-- Formulario de contacto con FormSubmit -->
         <script>
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('contactForm');
@@ -674,4 +665,4 @@ include('includes/head.php');
         </script>
     </body>
 
-</html>
+</html>        <!-- Formulario de contacto con FormSubmit -->

@@ -27,9 +27,6 @@
 </style>
 <!--Hero-->
 <section class="position-relative bg-dark overflow-hidden">
-                <!-- Cult overlay decorativo (no interfiere con el Swiper) -->
-                <div class="cult-hero-overlay" aria-hidden="true"></div>
-
                 <!-- Swiper slider -->
                 <div class="swiper swiper-classic">
                     <!-- Swiper wrapper -->
@@ -94,12 +91,12 @@
                                             </li>
 											<li data-carousel-layer="fade-start">
                                                 <h2 class="cult-display cult-display--hero mb-4">
-                                                    A LA <span class="cult-shimmer-text--bright">MEDIDA</span><br>DE TU NEGOCIO
+                                                    A LA MEDIDA<br>DE TU NEGOCIO
                                                 </h2>
                                             </li>
                                             <li data-carousel-layer="fade-end">
                                                 <p class="lead mb-4 mb-lg-5 mx-auto" style="max-width: 38rem; opacity: 0.88;">
-                                                    Hospeda tu servidor de manera segura y escalable, con soporte 24/7 y tecnología de vanguardia
+                                                    Alojamos el servidor de tu empresa en nuestro datacenter. Si se corta la luz en el local, seguís facturando con Tango. Uptime 99.9% y monitoreo 24/7.
                                                 </p>
                                             </li>
                                             <li data-carousel-layer="fade-start">
@@ -184,7 +181,7 @@
                                             </li>
                                             <li data-carousel-layer="fade-start">
                                                 <h2 class="cult-display cult-display--hero mb-4">
-                                                    GESTIÓN <span class="cult-shimmer-text--bright">INTEGRAL</span><br>DE TU INFORMÁTICA
+                                                    GESTIÓN INTEGRAL<br>DE TU INFORMÁTICA
                                                 </h2>
                                             </li>
                                             <li data-carousel-layer="fade-end">

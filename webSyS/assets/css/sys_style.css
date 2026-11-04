@@ -272,7 +272,7 @@
   --bs-black-rgb: 15, 19, 33;
   --bs-body-color-rgb: 26, 30, 48;
   --bs-body-bg-rgb: 255, 255, 255;
-  --bs-font-sans-serif: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-sans-serif: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
@@ -19028,7 +19028,7 @@ textarea.form-control-lg {
   }
 }
 :root {
-  --bs-font-serif: "Source Serif Pro", serif;
+  --bs-font-serif: "Sora", sans-serif;
   --bs-border-radius-block: 3.25rem;
   --bs-border-radius-blob: 30% 70% 70% 30%/30% 30% 70% 70%;
   --bs-border-style-dotted: dotted;
@@ -21284,7 +21284,7 @@ header.header-transparent.sticky-fixed.is-fixed .navbar-dark .navbar-fixed-bg {
   }
 }
 .carousel-layers li {
-  transition: opacity 0.3s, transform cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.35s;
+  transition: opacity 0.3s, transform cubic-bezier(0.16, 1, 0.3, 1) 0.35s;
   overflow: hidden;
   height: auto;
   display: block;

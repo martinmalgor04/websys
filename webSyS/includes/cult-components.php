@@ -152,9 +152,18 @@ if (!function_exists('cultMarquee')) {
     {
         if (empty($items)) return '';
 
+        // 'partners-static': mismas tarjetas que 'partners', pero quietas y sin duplicar.
+        $static = ($variant === 'partners-static');
+        if ($static) {
+            $variant = 'partners';
+        }
+
         $marqueeCls = 'cult-marquee';
         if ($variant === 'partners') {
             $marqueeCls .= ' cult-marquee--partners';
+        }
+        if ($static) {
+            $marqueeCls .= ' cult-marquee--static';
         }
 
         $renderItem = static function (array $it, bool $hidden = false) use ($variant): string {
@@ -184,9 +193,11 @@ if (!function_exists('cultMarquee')) {
                 <?php foreach ($items as $it): ?>
                     <?= $renderItem($it) ?>
                 <?php endforeach; ?>
-                <?php foreach ($items as $it): ?>
-                    <?= $renderItem($it, true) ?>
-                <?php endforeach; ?>
+                <?php if (!$static): ?>
+                    <?php foreach ($items as $it): ?>
+                        <?= $renderItem($it, true) ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
         <?php

@@ -45,12 +45,12 @@
   --cult-gap-8: 4rem;
   --cult-gap-9: 6rem;
 
-  /* Radius generoso 2026 */
-  --cult-r-sm:   0.5rem;
-  --cult-r-md:   0.875rem;
-  --cult-r-lg:   1.25rem;
-  --cult-r-xl:   1.75rem;
-  --cult-r-2xl:  2.5rem;
+  /* Radius por jerarquía: controles 6px, cajas 8px, destacadas 12px, contenedores 16px */
+  --cult-r-sm:   0.25rem;
+  --cult-r-md:   0.375rem;
+  --cult-r-lg:   0.5rem;
+  --cult-r-xl:   0.75rem;
+  --cult-r-2xl:  1rem;
   --cult-r-pill: 50rem;
 
   /* Sombras con tinte azul */
@@ -65,8 +65,9 @@
   --cult-shadow-glow: 0 0 32px rgba(91, 214, 236, 0.45),
                       0 0 64px rgba(13, 110, 253, 0.3);
 
-  /* Tipografía — Poppins ya está cargada */
-  --cult-font-display: 'Poppins', system-ui, sans-serif;
+  /* Títulos: Sora. Texto corrido y UI: Hanken Grotesk. */
+  --cult-font-display: "Sora", "Hanken Grotesk", system-ui, sans-serif;
+  --cult-font-text: "Hanken Grotesk", system-ui, sans-serif;
 
   --cult-text-eyebrow: 0.75rem;
   --cult-text-body:    1rem;
@@ -79,7 +80,7 @@
 
   /* Easings */
   --cult-ease:        cubic-bezier(0.16, 1, 0.3, 1);
-  --cult-spring:      cubic-bezier(0.34, 1.56, 0.64, 1);
+  --cult-spring:      cubic-bezier(0.16, 1, 0.3, 1);
   --cult-bounce:      cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 
@@ -160,6 +161,11 @@ motion-tilt, motion-reveal, motion-parallax { display: inline-block; }
 }
 
 .cult-display--hero { font-size: var(--cult-text-hero); font-weight: 800; }
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6,
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  font-family: var(--cult-font-display);
+}
 .cult-display--xl   { font-size: var(--cult-text-4xl); }
 .cult-display--lg   { font-size: var(--cult-text-3xl); }
 .cult-display--md   { font-size: var(--cult-text-2xl); }
@@ -178,7 +184,6 @@ motion-tilt, motion-reveal, motion-parallax { display: inline-block; }
   background: rgba(13, 110, 253, 0.1);
   border: 1px solid rgba(13, 110, 253, 0.18);
   border-radius: var(--cult-r-pill);
-  backdrop-filter: blur(10px);
 }
 
 .cult-eyebrow--light {
@@ -261,8 +266,6 @@ motion-tilt, motion-reveal, motion-parallax { display: inline-block; }
   border-radius: var(--cult-r-pill);
   padding: 0.85rem 1.75rem;
   font-weight: 600;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   transition: all 0.3s var(--cult-ease);
 }
 
@@ -370,38 +373,6 @@ motion-tilt, motion-reveal, motion-parallax { display: inline-block; }
 .cult-blob--cyan   { background: var(--cult-cyan);   width: 22rem; height: 22rem; }
 .cult-blob--violet { background: var(--cult-violet); width: 20rem; height: 20rem; animation-delay: -8s; }
 
-/* Hero del slider — overlay decorativo */
-.cult-hero-overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.cult-hero-overlay::before,
-.cult-hero-overlay::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.35;
-}
-
-.cult-hero-overlay::before {
-  top: -10%; left: -5%;
-  width: 30rem; height: 30rem;
-  background: var(--cult-blue);
-  animation: cult-blob-drift 20s ease-in-out infinite;
-}
-
-.cult-hero-overlay::after {
-  bottom: -15%; right: -10%;
-  width: 25rem; height: 25rem;
-  background: var(--cult-cyan);
-  animation: cult-blob-drift 22s ease-in-out infinite reverse;
-}
-
 /* Page header (datacenter.php / gestion-it.php) — wrapper */
 .cult-page-header {
   position: relative;
@@ -446,7 +417,7 @@ motion-tilt, motion-reveal, motion-parallax { display: inline-block; }
    ═════════════════════════════════════════════════════════════ */
 
 /* Override el wrapper de productos. Bootstrap card existente, pero:
-   - Más radius (24px), más altura, más interactividad. */
+   - Radius de tarjeta destacada (--cult-r-xl), más altura, más interactividad. */
 
 .product-card-gestion,
 .product-card-punto-venta,
@@ -546,7 +517,6 @@ motion-tilt:hover .card[class*="product-card-"] {
   pointer-events: none;
   z-index: 5;
   animation: cult-badge-pop 0.5s var(--cult-spring) both;
-  backdrop-filter: blur(8px);
 }
 
 .cult-card-badge--available {
@@ -646,8 +616,6 @@ motion-tilt:hover .card[class*="product-card-"] {
   border-radius: var(--cult-r-xl);
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   overflow: hidden;
   transition: transform 0.4s var(--cult-ease), border-color 0.4s var(--cult-ease), background 0.4s var(--cult-ease);
 }
@@ -747,8 +715,6 @@ motion-tilt:hover .card[class*="product-card-"] {
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--cult-r-lg);
   padding: 1.75rem 1.25rem;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   transition: all 0.35s var(--cult-ease);
   height: 100%;
   position: relative;
@@ -1541,8 +1507,6 @@ header.header-transparent.sticky-fixed.is-fixed.cult-nav-glow .navbar .navbar-fi
   box-shadow:
     0 4px 20px rgba(13, 110, 253, 0.12),
     0 1px 0 rgba(255, 255, 255, 0.9) inset;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
 .cult-marquee--partners .cult-marquee__card img {
@@ -1585,6 +1549,22 @@ header.header-transparent.sticky-fixed.is-fixed.cult-nav-glow .navbar .navbar-fi
   overflow: visible;
 }
 
+/* Variante quieta: logos en grilla, sin loop ni desvanecido en los bordes */
+.cult-marquee--static {
+  -webkit-mask-image: none;
+          mask-image: none;
+}
+
+.cult-marquee--static .cult-marquee__track {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
+  animation: none;
+  will-change: auto;
+  padding-inline: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 /* ═════════════════════════════════════════════════════════════
    13. FOOTER ENHANCEMENT
    ═════════════════════════════════════════════════════════════ */
@@ -1616,7 +1596,7 @@ footer#footer.cult-footer::before {
 
 .cult-section-eyebrow {
   display: block;
-  font-family: var(--cult-font-display);
+  font-family: var(--cult-font-text);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -1766,7 +1746,7 @@ footer#footer.cult-footer::before {
   width: 3.25rem;
   height: 3.25rem;
   border-radius: 50%;
-  font-family: var(--cult-font-display);
+  font-family: var(--cult-font-text);
   font-weight: 800;
   font-size: 0.85rem;
   letter-spacing: 0.08em;
@@ -1791,7 +1771,7 @@ footer#footer.cult-footer::before {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  font-family: var(--cult-font-display);
+  font-family: var(--cult-font-text);
   font-weight: 700;
   font-size: 0.9rem;
   color: var(--cult-ink-700);
@@ -1915,8 +1895,6 @@ footer#footer.cult-footer::before {
   border-radius: var(--cult-r-xl);
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   height: 100%;
   transition: transform 0.35s var(--cult-ease), border-color 0.35s var(--cult-ease);
 }
@@ -1933,7 +1911,7 @@ footer#footer.cult-footer::before {
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
-  font-family: var(--cult-font-display);
+  font-family: var(--cult-font-text);
   font-weight: 800;
   font-size: 1.35rem;
   color: white;
@@ -2011,8 +1989,6 @@ footer#footer.cult-footer::before {
   .cult-pulse-icon::before,
   .cult-stat-hero__icon::after,
   .cult-fab__trigger::after,
-  .cult-hero-overlay::before,
-  .cult-hero-overlay::after,
   .cult-vs__chip {
     animation: none !important;
   }
@@ -2049,7 +2025,7 @@ footer#footer.cult-footer::before {
 }
 
 .cult-tab {
-  font-family: var(--cult-font-display);
+  font-family: var(--cult-font-text);
   font-weight: 600;
   font-size: 0.95rem;
   color: var(--cult-ink-600) !important;
@@ -2590,11 +2566,9 @@ footer#footer.cult-footer::before {
   padding: 0.55rem 1.1rem;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
-  -webkit-backdrop-filter: blur(14px);
-          backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.22);
   color: #ffffff;
-  font-family: var(--cult-font-display, inherit);
+  font-family: var(--cult-font-text, inherit);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.14em;
