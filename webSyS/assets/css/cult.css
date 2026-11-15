@@ -854,6 +854,18 @@ motion-tilt:hover .card[class*="product-card-"] {
    8. FORM CONTACTO (rebuild visual)
    ═════════════════════════════════════════════════════════════ */
 
+/* Honeypot anti-bot: oculto para humanos, visible para scrapers naive */
+.sys-hp {
+  position: absolute !important;
+  left: -10000px !important;
+  top: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 .cult-form .form-label {
   font-weight: 600 !important;
   font-size: 0.85rem !important;

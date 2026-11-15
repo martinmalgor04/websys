@@ -201,6 +201,13 @@ function setupSecureSessions() {
             error_log("setupSecureSessions: No se pudo configurar session.$key");
         }
     }
+
+    // Iniciar la sesión antes de que la página emita HTML; el token CSRF se
+    // renderiza dentro del formulario y para entonces los headers ya salieron.
+    if (session_status() === PHP_SESSION_NONE && !session_start()) {
+        error_log('setupSecureSessions: No se pudo iniciar la sesión');
+        return false;
+    }
     
     return true;
 }
@@ -212,8 +219,9 @@ function setupSecureSessions() {
 function loadSecurityModules() {
     $securityModules = [
         'csrf.php' => 'CSRFProtection',
-        'rate-limiter.php' => 'RateLimiter', 
-        'validator.php' => 'InputValidator'
+        'rate-limiter.php' => 'RateLimiter',
+        'validator.php' => 'InputValidator',
+        'spam-guard.php' => 'SpamGuard',
     ];
     
     $securityDir = dirname(__FILE__) . '/security/';
@@ -296,9 +304,10 @@ function getSecurityStatus() {
  * @return bool true si está inicializada
  */
 function isSecurityInitialized() {
-    return class_exists('CSRFProtection') && 
-           class_exists('RateLimiter') && 
+    return class_exists('CSRFProtection') &&
+           class_exists('RateLimiter') &&
            class_exists('InputValidator') &&
+           class_exists('SpamGuard') &&
            !empty(getEnvVar('APP_SALT'));
 }
 

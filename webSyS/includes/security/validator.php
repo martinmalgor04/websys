@@ -239,6 +239,65 @@ class InputValidator {
         
         return true;
     }
+
+    /**
+     * Valida y sanitiza un asunto de una sola línea.
+     * @return string|false
+     */
+    public static function validateSubject($subject) {
+        if (!is_string($subject)) {
+            return false;
+        }
+
+        $subject = trim($subject);
+        if (strlen($subject) < 3 || strlen($subject) > 200) {
+            return false;
+        }
+
+        if (!preg_match(self::$patterns['subject'], $subject) || self::isSuspicious($subject)) {
+            return false;
+        }
+
+        return self::sanitizeString($subject);
+    }
+
+    /**
+     * Valida texto opcional de una sola línea.
+     * @return string|false
+     */
+    public static function validateOptionalText($value, $maxLength = 100) {
+        if (!is_string($value)) {
+            return false;
+        }
+
+        $value = trim($value);
+        if ($value === '') {
+            return '';
+        }
+
+        if (strlen($value) > $maxLength || self::isSuspicious($value)) {
+            return false;
+        }
+
+        return self::sanitizeString($value);
+    }
+
+    /**
+     * Valida un valor contra una lista cerrada.
+     * @return string|false
+     */
+    public static function validateChoice($value, array $allowedValues) {
+        if (!is_string($value)) {
+            return false;
+        }
+
+        $value = trim($value);
+        if (!in_array($value, $allowedValues, true)) {
+            return false;
+        }
+
+        return self::sanitizeString($value);
+    }
     
     /**
      * Detecta si el input contiene contenido sospechoso

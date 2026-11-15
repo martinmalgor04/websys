@@ -350,8 +350,10 @@ initSecurity();
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <div class="cult-form-card py-5 px-4 px-lg-5" data-aos="fade-up" data-aos-delay="150">
-                                <form id="datacenterForm" class="cult-form" method="POST" action="enviar-datacenter.php">
+                                <form id="datacenterForm" class="cult-form" method="POST" action="enviar-consulta.php">
                                     <?php echo CSRFProtection::getTokenField('contact_form'); ?>
+                                    <?php echo class_exists('SpamGuard') ? SpamGuard::getProtectionFields() : ''; ?>
+                                    <input type="hidden" name="origen" value="datacenter">
 
                                     <div id="form-messages" class="mb-4" style="display: none;">
                                         <div id="success-message" class="alert alert-success" role="alert" style="display: none;">
@@ -410,8 +412,8 @@ initSecurity();
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="mensaje" class="form-label fw-bold">Mensaje o Comentarios</label>
-                                        <textarea class="form-control" id="mensaje" name="mensaje" rows="5" placeholder="Contanos sobre tus necesidades específicas de infraestructura..."></textarea>
+                                        <label for="mensaje" class="form-label fw-bold">Mensaje o Comentarios *</label>
+                                        <textarea class="form-control" id="mensaje" name="mensaje" rows="5" required minlength="10" placeholder="Contanos sobre tus necesidades específicas de infraestructura..."></textarea>
                                     </div>
 
                                     <div class="mb-4">
@@ -456,138 +458,9 @@ initSecurity();
 
         <?php include('includes/script.php');?>
         
-        <!-- Formulario seguro con validaciones client-side -->
         <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('datacenterForm');
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            
-            // Funciones de utilidad para mostrar mensajes
-            function showMessage(type, message) {
-                const messagesDiv = document.getElementById('form-messages');
-                const successDiv = document.getElementById('success-message');
-                const errorDiv = document.getElementById('error-message');
-                const rateLimitDiv = document.getElementById('rate-limit-message');
-                
-                // Ocultar todos los mensajes
-                successDiv.style.display = 'none';
-                errorDiv.style.display = 'none';
-                rateLimitDiv.style.display = 'none';
-                
-                // Mostrar el mensaje correspondiente
-                messagesDiv.style.display = 'block';
-                
-                if (type === 'success') {
-                    successDiv.querySelector('span').textContent = message;
-                    successDiv.style.display = 'block';
-                } else if (type === 'error') {
-                    errorDiv.querySelector('span').textContent = message;
-                    errorDiv.style.display = 'block';
-                } else if (type === 'rate-limit') {
-                    rateLimitDiv.style.display = 'block';
-                }
-                
-                // Scroll al mensaje
-                messagesDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-            
-            function hideMessages() {
-                document.getElementById('form-messages').style.display = 'none';
-            }
-            
-            function setButtonLoading(loading) {
-                if (loading) {
-                    submitBtn.innerHTML = '<i class="bx bx-loader-alt bx-spin me-2"></i>ENVIANDO...';
-                    submitBtn.disabled = true;
-                } else {
-                    submitBtn.innerHTML = originalBtnText;
-                    submitBtn.disabled = false;
-                }
-            }
-            
-            // Validaciones client-side básicas
-            function validateForm() {
-                const nombre = form.nombre.value.trim();
-                const email = form.email.value.trim();
-                const asunto = form.asunto.value;
-                
-                if (nombre.length < 2) {
-                    showMessage('error', 'El nombre debe tener al menos 2 caracteres');
-                    return false;
-                }
-                
-                if (!email || !email.includes('@')) {
-                    showMessage('error', 'Por favor ingresá un email válido');
-                    return false;
-                }
-                
-                if (!asunto) {
-                    showMessage('error', 'Por favor seleccioná un asunto');
-                    return false;
-                }
-                
-                return true;
-            }
-            
-            // Manejo del formulario
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                hideMessages();
-                
-                // Validar formulario
-                if (!validateForm()) {
-                    return;
-                }
-                
-                setButtonLoading(true);
-                
-                // Preparar datos del formulario
-                const formData = new FormData(this);
-                
-                // Enviar vía fetch
-                fetch('enviar-datacenter.php', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        showMessage('success', data.mensaje || '¡Gracias por tu consulta! Te hemos enviado una confirmación por email.');
-                        form.reset();
-                        
-                        // Redireccionar a página de agradecimiento después de 3 segundos
-                        setTimeout(() => {
-                            window.location.href = 'gracias.html';
-                        }, 3000);
-                        
-                    } else {
-                        showMessage('error', data.error || 'Error al enviar la consulta. Por favor intentá nuevamente.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    
-                    // Verificar si es un error de rate limiting
-                    if (error.message && error.message.includes('429')) {
-                        showMessage('rate-limit');
-                    } else {
-                        showMessage('error', 'Error de conexión. Por favor verificá tu internet e intentá nuevamente.');
-                    }
-                })
-                .finally(() => {
-                    setButtonLoading(false);
-                });
-            });
-            
-            // Limpiar mensajes cuando el usuario empieza a escribir
-            const inputs = form.querySelectorAll('input, select, textarea');
-            inputs.forEach(input => {
-                input.addEventListener('input', hideMessages);
-            });
+        document.addEventListener('DOMContentLoaded', function () {
+            SysFormHandler.initPHP('datacenterForm', 'enviar-consulta.php', 'gracias.html');
         });
         </script>
 		

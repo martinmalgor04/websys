@@ -61,10 +61,16 @@ const SysFormHandler = {
      */
     initPHP: function(formId, endpoint, successRedirect) {
         const form = document.getElementById(formId);
-        if (!form) return;
+        if (!form || form.dataset.sysFormInitialized === 'true') return;
+        form.dataset.sysFormInitialized = 'true';
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
+
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
             
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
@@ -76,18 +82,23 @@ const SysFormHandler = {
             // Enviar formulario
             fetch(endpoint, {
                 method: 'POST',
-                body: new FormData(this)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    SysFormHandler.handleSuccess(form, successRedirect, data.mensaje);
-                } else {
-                    SysFormHandler.handleError(data.error);
+                body: new FormData(this),
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
                 }
             })
+            .then(async response => {
+                const data = await response.json();
+                if (!response.ok || !data.success) {
+                    const error = new Error(data.error || SysFormHandler.config.errorMessage);
+                    error.status = response.status;
+                    throw error;
+                }
+
+                SysFormHandler.handleSuccess(form, successRedirect, data.mensaje);
+            })
             .catch(error => {
-                SysFormHandler.handleError(error);
+                SysFormHandler.handleError(error, form);
             })
             .finally(() => {
                 submitBtn.innerHTML = originalText;
@@ -120,7 +131,7 @@ const SysFormHandler = {
         const message = customMessage || this.config.successMessage;
         
         // Mostrar mensaje de éxito
-        if (typeof Swal !== 'undefined') {
+        if (!this.showInlineMessage(form, 'success', message) && typeof Swal !== 'undefined') {
             Swal.fire({
                 icon: 'success',
                 title: '¡Enviado!',
@@ -128,7 +139,7 @@ const SysFormHandler = {
                 timer: 3000,
                 showConfirmButton: false
             });
-        } else {
+        } else if (!form.querySelector('#success-message')) {
             alert(message);
         }
         
@@ -146,10 +157,17 @@ const SysFormHandler = {
     /**
      * Manejar errores
      */
-    handleError: function(error) {
+    handleError: function(error, form = null) {
         console.error('Error:', error);
         
-        const message = typeof error === 'string' ? error : this.config.errorMessage;
+        const message = typeof error === 'string'
+            ? error
+            : (error && error.message ? error.message : this.config.errorMessage);
+        const type = error && error.status === 429 ? 'rate-limit' : 'error';
+
+        if (form && this.showInlineMessage(form, type, message)) {
+            return;
+        }
         
         if (typeof Swal !== 'undefined') {
             Swal.fire({
@@ -161,6 +179,34 @@ const SysFormHandler = {
         } else {
             alert(message + '\n\nContactanos al +54 3794 426022');
         }
+    },
+
+    /**
+     * Mostrar mensajes dentro del formulario cuando existen sus contenedores.
+     */
+    showInlineMessage: function(form, type, message) {
+        const messages = form.querySelector('#form-messages');
+        const success = form.querySelector('#success-message');
+        const error = form.querySelector('#error-message');
+        const rateLimit = form.querySelector('#rate-limit-message');
+
+        if (!messages || !success || !error || !rateLimit) {
+            return false;
+        }
+
+        success.style.display = 'none';
+        error.style.display = 'none';
+        rateLimit.style.display = 'none';
+        messages.style.display = 'block';
+
+        const target = type === 'success' ? success : (type === 'rate-limit' ? rateLimit : error);
+        const text = target.querySelector('span');
+        if (text && type !== 'rate-limit') {
+            text.textContent = message;
+        }
+        target.style.display = 'block';
+        messages.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        return true;
     },
 
     /**

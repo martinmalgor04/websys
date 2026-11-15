@@ -4,6 +4,8 @@ header('Content-Type: text/html; charset=utf-8');
 // Incluir configuración y funciones
 require_once('config/config.php');
 require_once('includes/functions.php');
+require_once('includes/security-init.php');
+initSecurity();
 
 // Configurar página
 $page_title = 'Inicio';
@@ -428,12 +430,10 @@ include('includes/head.php');
                         </div>
                         <div class="col-lg-8">
                             <div class="cult-form-card card card-body py-5 px-4 px-lg-5">
-                                <form id="contactForm" class="cult-form" method="POST" action="https://formsubmit.co/<?= FORMSUBMIT_EMAIL ?>">
-                                    <!-- Campos ocultos para FormSubmit -->
-                                    <input type="hidden" name="_subject" value="Nueva consulta desde Servicios y Sistemas">
-                                    <input type="hidden" name="_captcha" value="false">
-                                    <input type="hidden" name="_template" value="table">
-                                    <input type="text" name="_honey" style="display:none">
+                                <form id="contactForm" class="cult-form" method="POST" action="enviar-consulta.php">
+                                    <?php echo CSRFProtection::getTokenField('contact_form'); ?>
+                                    <?php echo class_exists('SpamGuard') ? SpamGuard::getProtectionFields() : ''; ?>
+                                    <input type="hidden" name="origen" value="home">
                                     <!-- Mensaje de estado del formulario -->
                                     <div id="form-messages" class="mb-4" style="display: none;">
                                         <div id="success-message" class="alert alert-success" role="alert" style="display: none;">
@@ -471,6 +471,13 @@ include('includes/head.php');
                                             <input type="text" class="form-control" id="empresa" name="empresa">
                                         </div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <label for="puesto" class="form-label fw-bold">Puesto / Cargo</label>
+                                            <input type="text" class="form-control" id="puesto" name="puesto">
+                                        </div>
+                                    </div>
                                     
                                     <div class="mb-4">
                                         <label for="asunto" class="form-label fw-bold">Asunto *</label>
@@ -489,7 +496,29 @@ include('includes/head.php');
                                     
                                     <div class="mb-4">
                                         <label for="mensaje" class="form-label fw-bold">Mensaje o Comentarios *</label>
-                                        <textarea class="form-control" id="mensaje" name="mensaje" rows="5" placeholder="Contanos cómo podemos ayudarte..." required></textarea>
+                                        <textarea class="form-control" id="mensaje" name="mensaje" rows="5" placeholder="Contanos cómo podemos ayudarte..." required minlength="10"></textarea>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label fw-bold">¿Cómo te enteraste de nosotros?</label>
+                                        <div class="cult-form-radio-group">
+                                            <label class="cult-form-radio-chip">
+                                                <input type="radio" name="como_se_entero" value="REDES SOCIALES">
+                                                <span>Redes sociales</span>
+                                            </label>
+                                            <label class="cult-form-radio-chip">
+                                                <input type="radio" name="como_se_entero" value="BOCA EN BOCA">
+                                                <span>Boca en boca</span>
+                                            </label>
+                                            <label class="cult-form-radio-chip">
+                                                <input type="radio" name="como_se_entero" value="GOOGLE">
+                                                <span>Google</span>
+                                            </label>
+                                            <label class="cult-form-radio-chip">
+                                                <input type="radio" name="como_se_entero" value="EN EL LOCAL">
+                                                <span>En el local</span>
+                                            </label>
+                                        </div>
                                     </div>
                                     
                                     <div class="text-center">
@@ -515,154 +544,10 @@ include('includes/head.php');
         <?php include('includes/superweek-overlay.php');?>
         
         <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('contactForm');
-            if (!form) return;
-            
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            
-            // Funciones de utilidad para mostrar mensajes
-            function showMessage(type, message) {
-                const messagesDiv = document.getElementById('form-messages');
-                const successDiv = document.getElementById('success-message');
-                const errorDiv = document.getElementById('error-message');
-                const rateLimitDiv = document.getElementById('rate-limit-message');
-                
-                // Ocultar todos los mensajes
-                successDiv.style.display = 'none';
-                errorDiv.style.display = 'none';
-                rateLimitDiv.style.display = 'none';
-                
-                // Mostrar el mensaje correspondiente
-                messagesDiv.style.display = 'block';
-                
-                if (type === 'success') {
-                    successDiv.querySelector('span').textContent = message;
-                    successDiv.style.display = 'block';
-                } else if (type === 'error') {
-                    errorDiv.querySelector('span').textContent = message;
-                    errorDiv.style.display = 'block';
-                } else if (type === 'rate-limit') {
-                    rateLimitDiv.style.display = 'block';
-                }
-                
-                // Scroll al mensaje
-                messagesDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-            
-            function hideMessages() {
-                document.getElementById('form-messages').style.display = 'none';
-            }
-            
-            function setButtonLoading(loading) {
-                if (loading) {
-                    submitBtn.innerHTML = '<i class="bx bx-loader-alt bx-spin me-2"></i>ENVIANDO...';
-                    submitBtn.disabled = true;
-                } else {
-                    submitBtn.innerHTML = originalBtnText;
-                    submitBtn.disabled = false;
-                }
-            }
-            
-            // Validaciones client-side básicas
-            function validateForm() {
-                const nombre = form.nombre.value.trim();
-                const email = form.email.value.trim();
-                const asunto = form.asunto.value;
-                const mensaje = form.mensaje.value.trim();
-                
-                if (nombre.length < 2) {
-                    showMessage('error', 'El nombre debe tener al menos 2 caracteres');
-                    return false;
-                }
-                
-                if (!email || !email.includes('@')) {
-                    showMessage('error', 'Por favor ingresá un email válido');
-                    return false;
-                }
-                
-                if (!asunto) {
-                    showMessage('error', 'Por favor seleccioná un asunto');
-                    return false;
-                }
-                
-                if (mensaje.length < 10) {
-                    showMessage('error', 'El mensaje debe tener al menos 10 caracteres');
-                    return false;
-                }
-                
-                return true;
-            }
-            
-            // Manejo del formulario
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                hideMessages();
-                
-                // Validar formulario
-                if (!validateForm()) {
-                    return;
-                }
-                
-                // Validar que el email esté configurado
-                const formSubmitEmail = '<?= FORMSUBMIT_EMAIL ?>';
-                if (!formSubmitEmail || formSubmitEmail === 'TU_EMAIL@ejemplo.com') {
-                    showMessage('error', 'Error de configuración: Por favor configurá tu email en config/config.php');
-                    return;
-                }
-                
-                setButtonLoading(true);
-                
-                // FormSubmit funciona con submit normal, pero podemos interceptar para mostrar mensajes
-                // Primero validamos, luego permitimos el submit normal
-                const formAction = form.getAttribute('action');
-                if (!formAction || !formAction.includes('formsubmit.co')) {
-                    showMessage('error', 'Error de configuración del formulario');
-                    setButtonLoading(false);
-                    return;
-                }
-                
-                // Preparar datos del formulario
-                const formData = new FormData(this);
-                
-                // Enviar vía FormSubmit usando fetch para mejor control
-                fetch(formAction, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'text/html'
-                    }
-                })
-                .then(response => {
-                    // FormSubmit redirige o devuelve HTML, así que verificamos el status
-                    if (response.ok || response.status === 200 || response.redirected) {
-                        showMessage('success', '¡Gracias por tu consulta! Te contactaremos pronto.');
-                        form.reset();
-                        // Scroll al mensaje de éxito
-                        setTimeout(() => {
-                            document.getElementById('form-messages').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }, 300);
-                    } else {
-                        throw new Error('Error al enviar el formulario');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error FormSubmit:', error);
-                    showMessage('error', 'Error de conexión. Por favor verificá tu internet e intentá nuevamente.');
-                })
-                .finally(() => {
-                    setButtonLoading(false);
-                });
-            });
-            
-            // Limpiar mensajes cuando el usuario empieza a escribir
-            const inputs = form.querySelectorAll('input, select, textarea');
-            inputs.forEach(input => {
-                input.addEventListener('input', hideMessages);
-            });
+        document.addEventListener('DOMContentLoaded', function () {
+            SysFormHandler.initPHP('contactForm', 'enviar-consulta.php', 'gracias.html');
         });
         </script>
     </body>
 
-</html>        <!-- Formulario de contacto con FormSubmit -->
+</html>

@@ -2,7 +2,7 @@
 /**
  * Componente: Cult CTA + Formulario de Contacto
  * Sección de cierre con título, lead y formulario de contacto idéntico
- * al de gestion-it.php / datacenter.php (POST a enviar-datacenter.php).
+ * al de gestion-it.php / datacenter.php (POST a enviar-consulta.php).
  *
  * Reutiliza: CSRFProtection, sys-forms.js (id="datacenterForm"),
  * cult-form-radio-chip, cult-form-select-wrap.
@@ -16,6 +16,7 @@ if (!function_exists('renderCultCtaForm')) {
      *
      * @param array $config {
      *   @type string $section_id      Default: 'contacto'.
+     *   @type string $origin          Identificador fijo de la página.
      *   @type string $eyebrow         Texto eyebrow superior.
      *   @type string $title           Encabezado (HTML permitido en spans).
      *   @type string $shimmer         Fragmento shimmer en el título.
@@ -34,6 +35,7 @@ if (!function_exists('renderCultCtaForm')) {
     function renderCultCtaForm(array $config = []): void
     {
         $section_id     = $config['section_id']     ?? 'contacto';
+        $origin         = $config['origin']         ?? '';
         $eyebrow        = $config['eyebrow']        ?? 'Hablemos';
         $title          = $config['title']          ?? '¿Listo para';
         $shimmer        = $config['shimmer']        ?? 'transformar';
@@ -115,12 +117,16 @@ if (!function_exists('renderCultCtaForm')) {
                 <div class="row justify-content-center">
                     <div class="col-lg-9 col-xl-8">
                         <div class="card card-body py-5 px-4 px-md-5 shadow-lg border-0 text-body" data-aos="fade-up" data-aos-delay="150" style="border-radius: var(--cult-r-xl);">
-                            <form id="datacenterForm" method="POST" action="enviar-datacenter.php" novalidate>
+                            <form id="datacenterForm" method="POST" action="enviar-consulta.php">
                                 <?php
                                 if (class_exists('CSRFProtection')) {
                                     echo CSRFProtection::getTokenField('contact_form');
                                 }
+                                if (class_exists('SpamGuard')) {
+                                    echo SpamGuard::getProtectionFields();
+                                }
                                 ?>
+                                <input type="hidden" name="origen" value="<?= htmlspecialchars($origin, ENT_QUOTES, 'UTF-8') ?>">
 
                                 <div id="form-messages" class="mb-4" style="display: none;">
                                     <div id="success-message" class="alert alert-success" role="alert" style="display: none;">
@@ -219,6 +225,13 @@ if (!function_exists('renderCultCtaForm')) {
                 </div>
             </div>
         </section>
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof SysFormHandler !== 'undefined') {
+                SysFormHandler.initPHP('datacenterForm', 'enviar-consulta.php', 'gracias.html');
+            }
+        });
+        </script>
         <?php
     }
 }

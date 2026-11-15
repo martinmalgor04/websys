@@ -12,7 +12,7 @@
  *   6. Tango Reportes (split + features + sistemas compatibles)
  *   7. Conectividad (TangoNet + Tango Connect)
  *   8. Integraciones (marquee infinito)
- *   9. CTA principal con formulario de contacto (vía enviar-datacenter.php)
+ *   9. CTA principal con formulario de contacto (vía enviar-consulta.php)
  *  10. FAQ específico
  *  11. Navegación a otros productos
  */
@@ -236,6 +236,7 @@ $post_modules_html = ob_get_clean();
 ob_start();
 renderCultCtaForm([
     'section_id'     => 'contacto',
+    'origin'         => 'tango-gestion',
     'eyebrow'        => 'Hablemos',
     'title'          => '¿Listo para',
     'shimmer'        => 'integrar',
