@@ -47,11 +47,10 @@ die()  { printf '\033[1;31m[X]\033[0m %s\n' "$*" >&2; exit 1; }
 [[ -f "$SOURCE_DIR/index.html" ]] || die "Falta la landing en $SOURCE_DIR"
 
 # REMOTE_DIR tiene que ser una subcarpeta (mirror --delete sobre / sería fatal)
-case "$REMOTE_DIR" in
-    /[A-Za-z0-9._-]*[A-Za-z0-9._-]) : ;;  # al menos un segmento, sin comodines
-    *) die "REMOTE_DIR inseguro: '$REMOTE_DIR'" ;;
-esac
-[[ "$REMOTE_DIR" != "/" ]] || die "REMOTE_DIR no puede ser /"
+# (rechaza también "." y "..": /api-tango/.. resolvería a la raíz)
+# shellcheck source=lib/remote-dir.sh
+source "$WEBSYS_ROOT/scripts/lib/remote-dir.sh"
+is_safe_remote_dir "$REMOTE_DIR" || die "REMOTE_DIR inseguro: '$REMOTE_DIR'"
 
 if [[ "$DRY_RUN" -eq 0 ]]; then
     : "${FTP_HOST:?Falta FTP_HOST (env)}"
