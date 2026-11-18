@@ -87,14 +87,8 @@ const SysFormHandler = {
                     'X-Requested-With': 'XMLHttpRequest'
                 }
             })
-            .then(async response => {
-                const data = await response.json();
-                if (!response.ok || !data.success) {
-                    const error = new Error(data.error || SysFormHandler.config.errorMessage);
-                    error.status = response.status;
-                    throw error;
-                }
-
+            .then(response => SysFormHandler.parseResponse(response))
+            .then(data => {
                 SysFormHandler.handleSuccess(form, successRedirect, data.mensaje);
             })
             .catch(error => {
@@ -105,6 +99,28 @@ const SysFormHandler = {
                 submitBtn.disabled = false;
             });
         });
+    },
+
+    /**
+     * Leer la respuesta JSON del endpoint PHP.
+     * Si el servidor responde HTML (error 500, límite del hosting, etc.) se usa
+     * el mensaje genérico en lugar del error de parseo del navegador.
+     */
+    parseResponse: async function(response) {
+        let data = null;
+        try {
+            data = await response.json();
+        } catch (parseError) {
+            data = null;
+        }
+
+        if (!response.ok || !data || !data.success) {
+            const error = new Error((data && data.error) || SysFormHandler.config.errorMessage);
+            error.status = response.status;
+            throw error;
+        }
+
+        return data;
     },
 
     /**
@@ -247,3 +263,7 @@ const SysFormHandler = {
         return isValid;
     }
 }; 
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = SysFormHandler;
+}
