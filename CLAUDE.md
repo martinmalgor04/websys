@@ -6,7 +6,7 @@ Hosted on cPanel. Copy is Spanish and follows the `sys-brand` skill.
 
 ## Commands
 - Install: none (`bash scripts/agent-setup.sh` only checks tooling).
-- Test: none automated. Manual check: `php -S localhost:8000 -t webSyS webSyS/router.php` and open the changed page.
+- Test: `bash scripts/tests/remote-dir.test.sh` (deploy-script guard). PHP has none automated. Manual check: `php -S localhost:8000 -t webSyS webSyS/router.php` and open the changed page.
 - Lint/typecheck: `find webSyS demo -name '*.php' -print0 | xargs -0 -n1 php -l` (needs php-cli; may be missing on gen8).
 - Build: none.
 - Dev: the built-in PHP server command above; no Docker or database needed.
