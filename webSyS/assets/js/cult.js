@@ -127,6 +127,24 @@
   }
 
   /* ── Custom select (reemplaza dropdown nativo del OS) ──────── */
+
+  /**
+   * Asocia el <label for> del select nativo (oculto) al botón visible:
+   * aria-labelledby = "<label> <valor actual>" y el click en el label
+   * enfoca el botón en vez del select que ya no recibe foco.
+   */
+  function linkSelectLabel(select, trigger, valueEl, doc) {
+    var label = select.id ? doc.querySelector('label[for="' + select.id + '"]') : null;
+    if (!label) return;
+    if (!label.id) label.id = select.id + '-label';
+    if (!valueEl.id) valueEl.id = select.id + '-value';
+    trigger.setAttribute('aria-labelledby', label.id + ' ' + valueEl.id);
+    label.addEventListener('click', function (e) {
+      e.preventDefault();
+      trigger.focus();
+    });
+  }
+
   function initCustomSelects() {
     var wraps = document.querySelectorAll('.cult-form-select-wrap');
     if (!wraps.length) return;
@@ -146,11 +164,10 @@
       trigger.className = 'cult-form-select-trigger';
       trigger.setAttribute('aria-haspopup', 'listbox');
       trigger.setAttribute('aria-expanded', 'false');
-      if (select.id) trigger.setAttribute('aria-labelledby', select.id + '-label');
-
       var valueEl = document.createElement('span');
       valueEl.className = 'cult-form-select-value';
       trigger.appendChild(valueEl);
+      linkSelectLabel(select, trigger, valueEl, document);
 
       var chevron = document.createElement('i');
       chevron.className = 'bx bx-chevron-down cult-form-select-chevron';
@@ -274,6 +291,11 @@
     initCustomSelects();
   }
 
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { linkSelectLabel: linkSelectLabel };
+  }
+
+  if (typeof document === 'undefined') return;
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
