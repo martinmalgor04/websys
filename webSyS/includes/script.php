@@ -2,8 +2,10 @@
 		<!--  Back to Top button -->
         <a href="#" class="toTop"><i class="bx bxs-up-arrow"></i></a>
         <!-- Scripts principales -->
-        <script src="assets/js/sys.bundle.min.js" defer></script>
-        <script src="assets/js/sys-forms.js" defer></script>
+        <?php $bundleJsVer = file_exists(__DIR__ . '/../assets/js/sys.bundle.min.js') ? @filemtime(__DIR__ . '/../assets/js/sys.bundle.min.js') : time(); ?>
+        <script src="assets/js/sys.bundle.min.js?v=<?= $bundleJsVer ?>" defer></script>
+        <?php $formsJsVer = file_exists(__DIR__ . '/../assets/js/sys-forms.js') ? @filemtime(__DIR__ . '/../assets/js/sys-forms.js') : time(); ?>
+        <script src="assets/js/sys-forms.js?v=<?= $formsJsVer ?>" defer></script>
         <?php $cultJsVer = file_exists(__DIR__ . '/../assets/js/cult.js') ? @filemtime(__DIR__ . '/../assets/js/cult.js') : time(); ?>
         <script src="assets/js/cult.js?v=<?= $cultJsVer ?>" defer></script>
         
