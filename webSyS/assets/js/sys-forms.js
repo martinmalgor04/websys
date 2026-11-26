@@ -117,6 +117,7 @@ const SysFormHandler = {
         if (!response.ok || !data || !data.success) {
             const error = new Error((data && data.error) || SysFormHandler.config.errorMessage);
             error.status = response.status;
+            error.fromServer = true;
             throw error;
         }
 
@@ -171,14 +172,28 @@ const SysFormHandler = {
     },
 
     /**
+     * Texto que se le muestra al visitante ante un error.
+     * Solo se confía en los mensajes propios (string) o en los que vienen del
+     * endpoint; los errores del navegador ("Failed to fetch", etc.) se
+     * reemplazan por el mensaje genérico.
+     */
+    getErrorMessage: function(error) {
+        if (typeof error === 'string' && error) {
+            return error;
+        }
+        if (error && error.fromServer && error.message) {
+            return error.message;
+        }
+        return this.config.errorMessage;
+    },
+
+    /**
      * Manejar errores
      */
     handleError: function(error, form = null) {
         console.error('Error:', error);
         
-        const message = typeof error === 'string'
-            ? error
-            : (error && error.message ? error.message : this.config.errorMessage);
+        const message = this.getErrorMessage(error);
         const type = error && error.status === 429 ? 'rate-limit' : 'error';
 
         if (form && this.showInlineMessage(form, type, message)) {
